@@ -522,6 +522,14 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 12px;
   right: 12px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  z-index: 2;
+  white-space: nowrap;
 }
 
 .subject-card--featured.subject-card--soon::after {
