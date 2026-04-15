@@ -92,15 +92,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ── Dashboard ─────────────────────────────────
-function initDashboard() {
-  renderStats();
-  renderUsers();
+async function initDashboard() {
+  const users = await Auth.getAllUsers();
+  renderStats(users);
+  renderUsers(users);
   renderActivity();
   renderAnnouncement();
 }
 
-function renderStats() {
-  const users    = Auth.getUsers();
+function renderStats(users) {
   const activity = Auth.getActivity();
 
   const today = new Date().toDateString();
@@ -113,8 +113,7 @@ function renderStats() {
   document.getElementById('statActivity').textContent = activity.length;
 }
 
-function renderUsers() {
-  const users   = Auth.getUsers();
+function renderUsers(users) {
   const tbody   = document.getElementById('usersTableBody');
   const countEl = document.getElementById('usersCount');
 
@@ -125,14 +124,11 @@ function renderUsers() {
     return;
   }
 
-  // Sort newest first
-  const sorted = [...users].sort((a, b) => new Date(b.signupDate) - new Date(a.signupDate));
-
-  tbody.innerHTML = sorted.map(u => `
+  tbody.innerHTML = users.map(u => `
     <tr>
       <td>
         <span class="user-avatar">${esc(initials(u.firstName, u.lastName))}</span>
-        ${esc(u.firstName)} ${esc(u.lastName)}
+        ${esc(u.firstName)} ${esc(u.lastName || '')}
       </td>
       <td>${esc(u.email)}</td>
       <td>${fmtDate(u.signupDate)}</td>
@@ -222,7 +218,7 @@ function renderAnnouncement() {
   });
 
   // Refresh button
-  document.getElementById('refreshBtn').addEventListener('click', () => {
-    initDashboard();
+  document.getElementById('refreshBtn').addEventListener('click', async () => {
+    await initDashboard();
   });
 }

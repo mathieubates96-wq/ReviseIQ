@@ -1,16 +1,14 @@
 /* =============================================
    ReviseIQ — auth.js
-   Client-side auth using localStorage.
-   ⚠️  Passwords are SHA-256 hashed client-side.
-       This is suitable for a demo/study tool but
-       NOT for a production app with sensitive data.
+   Firebase Auth + Firestore backend.
+   Keeps a lightweight localStorage session cache
+   so synchronous getSession() calls still work.
    ============================================= */
 
 const Auth = (() => {
 
   // ── Storage keys ──────────────────────────
   const K = {
-    USERS:        'riq_users',
     SESSION:      'riq_session',
     ACTIVITY:     'riq_activity',
     ANNOUNCEMENT: 'riq_announcement',
@@ -30,14 +28,6 @@ const Auth = (() => {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
-  async function hashPassword(password) {
-    const data   = new TextEncoder().encode(password);
-    const buf    = await crypto.subtle.digest('SHA-256', data);
-    return Array.from(new Uint8Array(buf))
-      .map(b => b.toString(16).padStart(2, '0'))
-      .join('');
-  }
-
   function escapeHtml(str) {
     return String(str)
       .replace(/&/g, '&amp;')
@@ -46,25 +36,46 @@ const Auth = (() => {
       .replace(/"/g, '&quot;');
   }
 
-  // ── Users ─────────────────────────────────
-  function getUsers()       { return readJSON(K.USERS, []); }
-  function saveUsers(users) { writeJSON(K.USERS, users); }
+  // ── Firebase handles ──────────────────────
+  function fbAuth()  { return firebase.auth(); }
+  function fbStore() { return firebase.firestore(); }
+  function usersCol(){ return fbStore().collection('users'); }
 
-  // ── Session ───────────────────────────────
-  function getSession()     { return readJSON(K.SESSION, null); }
+  // ── Session cache (localStorage) ──────────
+  // Stores non-sensitive profile data so getSession()
+  // can stay synchronous throughout the app.
+  function getSession() { return readJSON(K.SESSION, null); }
 
-  function setSession(user) {
+  function _setSessionCache(user, profile) {
     writeJSON(K.SESSION, {
-      userId:    user.id,
+      userId:    user.uid,
       email:     user.email,
-      firstName: user.firstName,
-      subjects:  user.subjects || [],
+      firstName: profile.firstName || '',
+      subjects:  profile.subjects  || [],
     });
   }
 
   function clearSession() {
     localStorage.removeItem(K.SESSION);
+    fbAuth().signOut().catch(() => {});
   }
+
+  // Keep cache in sync with Firebase auth state.
+  // Fires on every page load — refreshes profile from Firestore.
+  fbAuth().onAuthStateChanged(async (user) => {
+    if (user) {
+      try {
+        const doc = await usersCol().doc(user.uid).get();
+        if (doc.exists) {
+          _setSessionCache(user, doc.data());
+        }
+      } catch (e) {
+        // Offline or rules issue — keep existing cache
+      }
+    } else {
+      localStorage.removeItem(K.SESSION);
+    }
+  });
 
   // ── Sign up ───────────────────────────────
   async function signup({ firstName, lastName, email, password, subjects }) {
@@ -78,62 +89,82 @@ const Auth = (() => {
     if (!password || password.length < 6)
       return { error: 'Password must be at least 6 characters.' };
 
-    const users = getUsers();
-    if (users.some(u => u.email === email))
-      return { error: 'An account with that email already exists.' };
+    try {
+      const cred    = await fbAuth().createUserWithEmailAndPassword(email, password);
+      const fbUser  = cred.user;
+      const profile = {
+        firstName,
+        lastName,
+        email,
+        subjects:   Array.isArray(subjects) ? subjects : [],
+        signupDate: new Date().toISOString(),
+      };
 
-    const user = {
-      id:           crypto.randomUUID(),
-      firstName,
-      lastName,
-      email,
-      passwordHash: await hashPassword(password),
-      subjects:     Array.isArray(subjects) ? subjects : [],
-      signupDate:   new Date().toISOString(),
-    };
+      await usersCol().doc(fbUser.uid).set(profile);
+      _setSessionCache(fbUser, profile);
+      _track('signup', `${firstName} ${lastName}`.trim() + ' signed up', email);
+      return { user: fbUser };
 
-    users.push(user);
-    saveUsers(users);
-    setSession(user);
-    _track('signup', `${firstName} ${lastName || ''} signed up`.trim(), email);
-    return { user };
+    } catch (e) {
+      if (e.code === 'auth/email-already-in-use')
+        return { error: 'An account with that email already exists.' };
+      if (e.code === 'auth/weak-password')
+        return { error: 'Password must be at least 6 characters.' };
+      return { error: e.message };
+    }
   }
 
   // ── Login ─────────────────────────────────
   async function login(email, password) {
     email = (email || '').trim().toLowerCase();
-    const users = getUsers();
-    const user  = users.find(u => u.email === email);
-    if (!user) return { error: 'No account found with that email.' };
 
-    const hash = await hashPassword(password);
-    if (hash !== user.passwordHash) return { error: 'Incorrect password.' };
+    try {
+      const cred   = await fbAuth().signInWithEmailAndPassword(email, password);
+      const fbUser = cred.user;
+      const doc    = await usersCol().doc(fbUser.uid).get();
+      const profile = doc.exists ? doc.data() : {};
 
-    setSession(user);
-    _track('login', `${user.firstName} logged in`, email);
-    return { user };
+      _setSessionCache(fbUser, profile);
+      _track('login', `${profile.firstName || email} logged in`, email);
+      return { user: fbUser };
+
+    } catch (e) {
+      if (e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential'
+          || e.code === 'auth/invalid-email')
+        return { error: 'No account found with that email.' };
+      if (e.code === 'auth/wrong-password')
+        return { error: 'Incorrect password.' };
+      return { error: e.message };
+    }
   }
 
   // ── Subjects ──────────────────────────────
   function getSubjects() {
-    const session = getSession();
-    return session?.subjects || [];
+    return getSession()?.subjects || [];
   }
 
-  function updateSubjects(subjects) {
+  async function updateSubjects(subjects) {
     const session = getSession();
     if (!session) return;
-    session.subjects = Array.isArray(subjects) ? subjects : [];
+    subjects = Array.isArray(subjects) ? subjects : [];
+    session.subjects = subjects;
     writeJSON(K.SESSION, session);
-    const users = getUsers();
-    const user  = users.find(u => u.id === session.userId);
-    if (user) {
-      user.subjects = session.subjects;
-      saveUsers(users);
+    try {
+      await usersCol().doc(session.userId).update({ subjects });
+    } catch (e) {}
+  }
+
+  // ── All users (admin) ─────────────────────
+  async function getAllUsers() {
+    try {
+      const snap = await usersCol().orderBy('signupDate', 'desc').get();
+      return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch (e) {
+      return [];
     }
   }
 
-  // ── Activity log ──────────────────────────
+  // ── Activity log (local per-device) ───────
   function getActivity() { return readJSON(K.ACTIVITY, []); }
 
   function _track(type, detail, userEmail) {
@@ -149,7 +180,6 @@ const Auth = (() => {
     writeJSON(K.ACTIVITY, activity);
   }
 
-  // Public alias so other scripts can call Auth.track(...)
   function track(type, detail) { _track(type, detail); }
 
   // ── Announcement ──────────────────────────
@@ -176,10 +206,10 @@ const Auth = (() => {
 
   // ── Public API ────────────────────────────
   return {
-    getSession, setSession, clearSession,
-    getUsers,
+    getSession, clearSession,
     signup, login,
     getSubjects, updateSubjects,
+    getAllUsers,
     track, getActivity,
     getAnnouncement, setAnnouncement, clearAnnouncement,
     escapeHtml,
