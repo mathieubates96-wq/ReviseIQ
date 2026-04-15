@@ -524,6 +524,10 @@ img { display: block; max-width: 100%; }
   right: 12px;
 }
 
+.subject-card--featured.subject-card--soon::after {
+  display: none;
+}
+
 .subject-card-badge--left {
   right: auto;
   left: 12px;
