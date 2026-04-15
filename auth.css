@@ -219,6 +219,75 @@
   border-top-color: #1e293b;
 }
 
+/* ── Wide wrap (signup page) ──────────────── */
+.auth-wrap--wide {
+  max-width: 540px;
+}
+
+/* ── Label hint ───────────────────────────── */
+.auth-label-hint {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--gray-400);
+  font-size: 0.76rem;
+}
+
+/* ── Subject picker ───────────────────────── */
+.subject-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+}
+
+.subject-pill {
+  padding: 8px 15px;
+  border-radius: 100px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-family: var(--font);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1;
+  user-select: none;
+}
+
+.subject-pill:hover {
+  border-color: var(--green-400);
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+.subject-pill.selected {
+  background: var(--green-600);
+  border-color: var(--green-600);
+  color: white;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.25);
+}
+
+[data-theme="dark"] .subject-pill {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .subject-pill:hover {
+  border-color: var(--green-500);
+  background: rgba(99,102,241,0.1);
+  color: var(--green-400);
+}
+
+[data-theme="dark"] .subject-pill.selected {
+  background: var(--green-600);
+  border-color: var(--green-600);
+  color: white;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.3);
+}
+
 /* ── Responsive ───────────────────────────── */
 @media (max-width: 480px) {
   .auth-card { padding: 28px 18px; }

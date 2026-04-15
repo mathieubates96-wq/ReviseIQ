@@ -58,6 +58,7 @@ const Auth = (() => {
       userId:    user.id,
       email:     user.email,
       firstName: user.firstName,
+      subjects:  user.subjects || [],
     });
   }
 
@@ -66,7 +67,7 @@ const Auth = (() => {
   }
 
   // ── Sign up ───────────────────────────────
-  async function signup({ firstName, lastName, email, password }) {
+  async function signup({ firstName, lastName, email, password, subjects }) {
     firstName = (firstName || '').trim();
     lastName  = (lastName  || '').trim();
     email     = (email     || '').trim().toLowerCase();
@@ -87,6 +88,7 @@ const Auth = (() => {
       lastName,
       email,
       passwordHash: await hashPassword(password),
+      subjects:     Array.isArray(subjects) ? subjects : [],
       signupDate:   new Date().toISOString(),
     };
 
@@ -110,6 +112,25 @@ const Auth = (() => {
     setSession(user);
     _track('login', `${user.firstName} logged in`, email);
     return { user };
+  }
+
+  // ── Subjects ──────────────────────────────
+  function getSubjects() {
+    const session = getSession();
+    return session?.subjects || [];
+  }
+
+  function updateSubjects(subjects) {
+    const session = getSession();
+    if (!session) return;
+    session.subjects = Array.isArray(subjects) ? subjects : [];
+    writeJSON(K.SESSION, session);
+    const users = getUsers();
+    const user  = users.find(u => u.id === session.userId);
+    if (user) {
+      user.subjects = session.subjects;
+      saveUsers(users);
+    }
   }
 
   // ── Activity log ──────────────────────────
@@ -158,6 +179,7 @@ const Auth = (() => {
     getSession, setSession, clearSession,
     getUsers,
     signup, login,
+    getSubjects, updateSubjects,
     track, getActivity,
     getAnnouncement, setAnnouncement, clearAnnouncement,
     escapeHtml,

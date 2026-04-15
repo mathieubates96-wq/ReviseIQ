@@ -115,6 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── Auth navbar injection ───────────────────
   injectAuthNav();
 
+  // ── My Subjects (homepage, logged-in users) ─
+  renderMySubjects();
+
   // ── Announcement banner (homepage only) ─────
   injectAnnouncement();
 
@@ -217,6 +220,148 @@ function injectAnnouncement() {
 
   const nav = document.getElementById('navbar');
   if (nav) nav.insertAdjacentElement('afterend', banner);
+}
+
+// ── My Subjects section (homepage only) ────────
+function renderMySubjects() {
+  if (typeof Auth === 'undefined') return;
+  const page = location.pathname.split('/').pop();
+  if (page && page !== '' && page !== 'index.html') return;
+
+  const session = Auth.getSession();
+  if (!session) return;
+
+  const subjects = session.subjects || [];
+  if (!subjects.length) return;
+
+  const SUBJECT_INFO = {
+    irish:      { emoji: '🇮🇪', label: 'Irish',      href: 'subject.html?s=irish',      available: false },
+    english:    { emoji: '📖',  label: 'English',    href: 'subject.html?s=english',    available: false },
+    maths:      { emoji: '📐',  label: 'Maths',      href: 'subject.html?s=maths',      available: false },
+    biology:    { emoji: '🧬',  label: 'Biology',    href: 'subject.html?s=biology',    available: false },
+    chemistry:  { emoji: '⚗️',  label: 'Chemistry',  href: 'subject.html?s=chemistry',  available: false },
+    physics:    { emoji: '🔭',  label: 'Physics',    href: 'subject.html?s=physics',    available: false },
+    history:    { emoji: '🏛️',  label: 'History',    href: 'subject.html?s=history',    available: false },
+    geography:  { emoji: '🌍',  label: 'Geography',  href: 'subject.html?s=geography',  available: false },
+    business:   { emoji: '💼',  label: 'Business',   href: 'subject.html?s=business',   available: false },
+    french:     { emoji: '🥐',  label: 'French',     href: 'subject.html?s=french',     available: false },
+    spanish:    { emoji: '🇪🇸',  label: 'Spanish',    href: 'subject.html?s=spanish',    available: false },
+    accounting: { emoji: '🧾',  label: 'Accounting', href: 'subject.html?s=accounting', available: false },
+    economics:  { emoji: '📉',  label: 'Economics',  href: 'papers.html?s=economics',   available: true  },
+    art:        { emoji: '🎨',  label: 'Art',        href: 'subject.html?s=art',        available: false },
+    music:      { emoji: '🎵',  label: 'Music',      href: 'subject.html?s=music',      available: false },
+  };
+
+  const subjectsSection = document.getElementById('subjects');
+  if (!subjectsSection) return;
+
+  const cards = subjects.map(s => {
+    const info = SUBJECT_INFO[s];
+    if (!info) return '';
+    return `
+      <a href="${info.href}" class="my-subject-card${info.available ? '' : ' my-subject-card--soon'}">
+        <span class="my-subject-emoji">${info.emoji}</span>
+        <div class="my-subject-body">
+          <span class="my-subject-label">${escHtml(info.label)}</span>
+          ${info.available
+            ? '<span class="my-subject-status my-subject-status--avail">Papers available</span>'
+            : '<span class="my-subject-status my-subject-status--soon">Coming soon</span>'}
+        </div>
+        ${info.available ? '<span class="my-subject-arrow">→</span>' : ''}
+      </a>
+    `;
+  }).join('');
+
+  const section = document.createElement('section');
+  section.className = 'my-subjects-section';
+  section.innerHTML = `
+    <div class="container">
+      <div class="my-subjects-header">
+        <div>
+          <h2 class="section-title" style="margin-bottom:6px">Your Subjects</h2>
+          <p class="section-sub" style="margin:0">Resources for the subjects you chose at sign-up.</p>
+        </div>
+        <button class="my-subjects-edit-btn" id="mySubjectsEditBtn">Edit subjects</button>
+      </div>
+      <div class="my-subjects-grid">${cards}</div>
+    </div>
+  `;
+
+  subjectsSection.insertAdjacentElement('beforebegin', section);
+
+  // Edit button → opens inline picker modal
+  document.getElementById('mySubjectsEditBtn').addEventListener('click', openSubjectEditor);
+}
+
+function openSubjectEditor() {
+  if (document.getElementById('subjectEditorOverlay')) return;
+  const SUBJECTS = [
+    { key: 'irish',      emoji: '🇮🇪', label: 'Irish' },
+    { key: 'english',    emoji: '📖',  label: 'English' },
+    { key: 'maths',      emoji: '📐',  label: 'Maths' },
+    { key: 'biology',    emoji: '🧬',  label: 'Biology' },
+    { key: 'chemistry',  emoji: '⚗️',  label: 'Chemistry' },
+    { key: 'physics',    emoji: '🔭',  label: 'Physics' },
+    { key: 'history',    emoji: '🏛️',  label: 'History' },
+    { key: 'geography',  emoji: '🌍',  label: 'Geography' },
+    { key: 'business',   emoji: '💼',  label: 'Business' },
+    { key: 'french',     emoji: '🥐',  label: 'French' },
+    { key: 'spanish',    emoji: '🇪🇸',  label: 'Spanish' },
+    { key: 'accounting', emoji: '🧾',  label: 'Accounting' },
+    { key: 'economics',  emoji: '📉',  label: 'Economics' },
+    { key: 'art',        emoji: '🎨',  label: 'Art' },
+    { key: 'music',      emoji: '🎵',  label: 'Music' },
+  ];
+
+  const current = (typeof Auth !== 'undefined') ? (Auth.getSession()?.subjects || []) : [];
+
+  const pills = SUBJECTS.map(s => `
+    <button type="button" class="subject-editor-pill${current.includes(s.key) ? ' selected' : ''}" data-subject="${s.key}">
+      ${s.emoji} ${s.label}
+    </button>
+  `).join('');
+
+  const overlay = document.createElement('div');
+  overlay.id = 'subjectEditorOverlay';
+  overlay.className = 'subject-editor-overlay';
+  overlay.innerHTML = `
+    <div class="subject-editor-modal">
+      <div class="subject-editor-head">
+        <div>
+          <h3>Your subjects</h3>
+          <p>Select all the subjects you're studying this year.</p>
+        </div>
+        <button class="subject-editor-close" id="subjectEditorCancel" aria-label="Close">✕</button>
+      </div>
+      <div class="subject-editor-body">
+        <div class="subject-editor-pills">${pills}</div>
+      </div>
+      <div class="subject-editor-foot">
+        <button class="subject-editor-save" id="subjectEditorSave">Save changes</button>
+        <button class="subject-editor-cancel" id="subjectEditorCancelBtn">Cancel</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+
+  overlay.querySelectorAll('.subject-editor-pill').forEach(pill => {
+    pill.addEventListener('click', () => pill.classList.toggle('selected'));
+  });
+
+  document.getElementById('subjectEditorCancel').addEventListener('click', () => overlay.remove());
+  document.getElementById('subjectEditorCancelBtn').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+
+  document.getElementById('subjectEditorSave').addEventListener('click', () => {
+    const selected = [...overlay.querySelectorAll('.subject-editor-pill.selected')]
+      .map(p => p.dataset.subject);
+    if (typeof Auth !== 'undefined') Auth.updateSubjects(selected);
+    overlay.remove();
+    // Refresh the my-subjects section
+    const existing = document.querySelector('.my-subjects-section');
+    if (existing) existing.remove();
+    renderMySubjects();
+  });
 }
 
 // ── Activity tracking ───────────────────────────

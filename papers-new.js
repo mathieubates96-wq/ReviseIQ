@@ -97,17 +97,46 @@ const NO_EXAM_YEARS = [];
 // ms:    path to marking scheme PDF (optional)
 // ─────────────────────────────────────────────
 const LOCAL_PAPERS = {
-  'economics-2025': { paper: 'papers/2025ecopp.pdf', ms: 'papers/2025ecoMS.pdf' },
-  'economics-2024': { paper: 'papers/2024ecopp.pdf', ms: 'papers/2024ecoMS.pdf' },
-  'economics-2023': { paper: 'papers/2023ecopp.pdf', ms: 'papers/2023ecoMS.pdf' },
-  'economics-2022': { paper: 'papers/2022ecopp.pdf', ms: 'papers/2022ecoMS.pdf' },
-  'economics-2021': { paper: 'papers/2021ecopp.pdf', ms: 'papers/2021ecoMS.pdf' },
-  'economics-2020': { paper: 'papers/2020ecopp.pdf', ms: 'papers/2020ecoMS.pdf' },
-  'economics-2019': { paper: 'papers/2019ecopp.pdf', ms: 'papers/2019ecoMS.pdf' },
-  'economics-2018': { paper: 'papers/2018ecopp.pdf', ms: 'papers/2018ecoMS.pdf' },
-  'economics-2017': { paper: 'papers/2017ecopp.pdf', ms: 'papers/2017ecoMS.pdf' },
-  'economics-2016': { paper: 'papers/2016ecopp.pdf', ms: 'papers/2016ecoMS.pdf' },
-  'economics-2015': { paper: 'papers/2015ecopp.pdf', ms: 'papers/2015ecoMS.pdf' },
+  // ── Economics (Higher & Ordinary — single paper) ──────────────────────────
+  'economics-2025': { paper: 'papers/economics/2025ecopp.pdf', ms: 'papers/economics/2025ecoMS.pdf' },
+  'economics-2024': { paper: 'papers/economics/2024ecopp.pdf', ms: 'papers/economics/2024ecoMS.pdf' },
+  'economics-2023': { paper: 'papers/economics/2023ecopp.pdf', ms: 'papers/economics/2023ecoMS.pdf' },
+  'economics-2022': { paper: 'papers/economics/2022ecopp.pdf', ms: 'papers/economics/2022ecoMS.pdf' },
+  'economics-2021': { paper: 'papers/economics/2021ecopp.pdf', ms: 'papers/economics/2021ecoMS.pdf' },
+  'economics-2020': { paper: 'papers/economics/2020ecopp.pdf', ms: 'papers/economics/2020ecoMS.pdf' },
+  'economics-2019': { paper: 'papers/economics/2019ecopp.pdf', ms: 'papers/economics/2019ecoMS.pdf' },
+  'economics-2018': { paper: 'papers/economics/2018ecopp.pdf', ms: 'papers/economics/2018ecoMS.pdf' },
+  'economics-2017': { paper: 'papers/economics/2017ecopp.pdf', ms: 'papers/economics/2017ecoMS.pdf' },
+  'economics-2016': { paper: 'papers/economics/2016ecopp.pdf', ms: 'papers/economics/2016ecoMS.pdf' },
+  'economics-2015': { paper: 'papers/economics/2015ecopp.pdf', ms: 'papers/economics/2015ecoMS.pdf' },
+
+  // ── Maths Higher Level (two papers per year + deferred where available) ───
+  'maths-2025': {
+    p1: 'papers/maths/2025mathsHLp1.pdf',
+    p2: 'papers/maths/2025mathsHLp2.pdf',
+    ms: 'papers/maths/2025mathsHLms.pdf',
+  },
+  'maths-2024': {
+    p1: 'papers/maths/2024mathsHLp1.pdf',
+    p2: 'papers/maths/2024mathsHLp2.pdf',
+    ms: 'papers/maths/2024mathsHlms.pdf',
+    defp1: 'papers/maths/2024DEFmathsHLp1.pdf',
+    defp2: 'papers/maths/2024DEFmathsHLp2.pdf',
+    defms: 'papers/maths/2024DEFmathsHLms.pdf',
+  },
+  'maths-2023': {
+    p1: 'papers/maths/2023mathsHLp1.pdf',
+    p2: 'papers/maths/2023mathsHLp2.pdf',
+    ms: 'papers/maths/2023mathsHLms.pdf',
+    defp1: 'papers/maths/2023DEFmathsHLp1.pdf',
+    defp2: 'papers/maths/2023DEFmathsHLp2.pdf',
+    defms: 'papers/maths/2023DEFmathsHLms.pdf',
+  },
+  'maths-2022': {
+    p1: 'papers/maths/2022mathsHLp1.pdf',
+    p2: 'papers/maths/2022mathsHLp2.pdf',
+    ms: 'papers/maths/2022mathsHLms.pdf',
+  },
 };
 
 const SEC_ARCHIVE = 'https://www.examinations.ie/exammaterialarchive/';
@@ -119,17 +148,41 @@ function buildCard(subject, year, level) {
   const data       = SUBJECT_DATA[subject];
   const levelCls   = level === 'higher' ? 'lvl-higher' : 'lvl-ordinary';
   const levelLabel = level === 'higher' ? 'Higher Level' : 'Ordinary Level';
-  const papersNote = data.papers > 1 ? `${data.papers} papers` : '1 paper';
 
   const local = LOCAL_PAPERS[`${subject}-${year}`];
 
-  const paperBtn = local
-    ? `<a href="${local.paper}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Exam Paper</a>`
-    : `<a href="${SEC_ARCHIVE}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Open on SEC Website</a>`;
+  let actionsHtml;
 
-  const msBtn = local?.ms
-    ? `<a href="${local.ms}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-secondary">📝 Marking Scheme</a>`
-    : '';
+  if (!local) {
+    // No local copy — link to SEC archive
+    actionsHtml = `
+      <a href="${SEC_ARCHIVE}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Open on SEC Website</a>
+    `;
+  } else if (local.paper) {
+    // Single-paper subject (e.g. Economics)
+    actionsHtml = `
+      <a href="${local.paper}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Exam Paper</a>
+      ${local.ms ? `<a href="${local.ms}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-secondary">📝 Marking Scheme</a>` : ''}
+    `;
+  } else {
+    // Two-paper subject (e.g. Maths) — main sitting
+    actionsHtml = `
+      <a href="${local.p1}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Paper 1</a>
+      <a href="${local.p2}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Paper 2</a>
+      ${local.ms ? `<a href="${local.ms}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-secondary">📝 Marking Scheme</a>` : ''}
+    `;
+    // Deferred sitting (where available)
+    if (local.defp1) {
+      actionsHtml += `
+        <div class="pcard-deferred-label">Deferred sitting</div>
+        <a href="${local.defp1}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-deferred">📄 DEF Paper 1</a>
+        <a href="${local.defp2}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-deferred">📄 DEF Paper 2</a>
+        ${local.defms ? `<a href="${local.defms}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-deferred">📝 DEF Mark. Scheme</a>` : ''}
+      `;
+    }
+  }
+
+  const papersNote = local?.p1 ? '2 papers' : '1 paper';
 
   return `
     <div class="pcard">
@@ -140,8 +193,7 @@ function buildCard(subject, year, level) {
       <div class="pcard-subject">${data.emoji} ${data.label}</div>
       <div class="pcard-info">Leaving Certificate ${year} &middot; ${papersNote}</div>
       <div class="pcard-actions">
-        ${paperBtn}
-        ${msBtn}
+        ${actionsHtml}
       </div>
     </div>
   `;
@@ -191,6 +243,16 @@ function renderResults(subject, year, level) {
     resultsGrid.style.display = 'none';
     emptyState.style.display  = 'block';
     emptyMsg.innerHTML = 'Subject not found. Try the SEC website directly.';
+    return;
+  }
+
+  // Maths OL — not yet available locally
+  const localKey = `${subject}-${year}`;
+  if (subject === 'maths' && level === 'ordinary') {
+    resultsGrid.style.display = 'none';
+    emptyState.style.display  = 'block';
+    emptyMsg.innerHTML = 'Ordinary Level Maths papers are coming soon.<br>Only Higher Level is currently available on ReviseIQ.';
+    resultsMeta.innerHTML = `Searching for <strong>${data.emoji} ${data.label}</strong> · <strong>${levelLabel}</strong> · <strong>${year}</strong>`;
     return;
   }
 
