@@ -103,6 +103,11 @@ const LOCAL_PAPERS = {
   'economics-2022': { paper: 'papers/2022ecopp.pdf', ms: 'papers/2022ecoMS.pdf' },
   'economics-2021': { paper: 'papers/2021ecopp.pdf', ms: 'papers/2021ecoMS.pdf' },
   'economics-2020': { paper: 'papers/2020ecopp.pdf', ms: 'papers/2020ecoMS.pdf' },
+  'economics-2019': { paper: 'papers/2019ecopp.pdf', ms: 'papers/2019ecoMS.pdf' },
+  'economics-2018': { paper: 'papers/2018ecopp.pdf', ms: 'papers/2018ecoMS.pdf' },
+  'economics-2017': { paper: 'papers/2017ecopp.pdf', ms: 'papers/2017ecoMS.pdf' },
+  'economics-2016': { paper: 'papers/2016ecopp.pdf', ms: 'papers/2016ecoMS.pdf' },
+  'economics-2015': { paper: 'papers/2015ecopp.pdf', ms: 'papers/2015ecoMS.pdf' },
 };
 
 const SEC_ARCHIVE = 'https://www.examinations.ie/exammaterialarchive/';
