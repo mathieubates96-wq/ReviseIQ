@@ -7,4 +7,6 @@
 //      It is listed in .gitignore for this reason.
 // ─────────────────────────────────────────────────────────
 
-window.ANTHROPIC_API_KEY = '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';
+// API key is now handled server-side via /api/quiz (Vercel environment variable).
+// See Vercel dashboard → Settings → Environment Variables → ANTHROPIC_API_KEY
+window.ANTHROPIC_API_KEY = null;

@@ -1,13 +1,27 @@
 /* =============================================
-   quiz.js — AI-powered Quiz Engine
-   Calls the Anthropic Claude API directly from
-   the browser to generate fresh LC questions.
+   quiz.js — ReviseIQ Quiz Engine
+   Calls /api/quiz (Vercel serverless) which
+   proxies Anthropic so the key stays server-side.
    ============================================= */
 
 // ─────────────────────────────────────────────
 // Topic catalogue per subject
 // ─────────────────────────────────────────────
 const TOPICS = {
+  economics: [
+    'Supply & Demand',
+    'Market Structures & Competition',
+    'National Income & GDP',
+    'Inflation & Deflation',
+    'Unemployment',
+    'International Trade & Balance of Payments',
+    'Money, Banking & Interest Rates',
+    'Government & Fiscal Policy',
+    'Economic Growth & Development',
+    'Irish Economy & EU',
+    'Price Elasticity',
+    'Consumer & Producer Surplus',
+  ],
   maths: [
     'Calculus — Differentiation',
     'Calculus — Integration',
@@ -58,7 +72,6 @@ const TOPICS = {
     'Electrochemistry',
     'Water Chemistry',
     'Rates of Reaction',
-    'Fuels & Energy',
   ],
   history: [
     'The 1916 Easter Rising',
@@ -70,7 +83,6 @@ const TOPICS = {
     'The Cold War',
     'USA 1920s–1960s',
     'European Integration',
-    'The Church & State in Ireland',
   ],
   geography: [
     'Plate Tectonics & Volcanoes',
@@ -82,7 +94,6 @@ const TOPICS = {
     'Urbanisation & Settlement',
     'Economic Development & HDI',
     'Irish Physical Geography',
-    'Environmental Issues',
   ],
   business: [
     'Enterprise & Entrepreneurship',
@@ -92,7 +103,6 @@ const TOPICS = {
     'Insurance',
     'Industrial Relations & Employment Law',
     'International Trade',
-    'Business Ethics & CSR',
     'Household & Personal Finance',
   ],
   french: [
@@ -101,7 +111,6 @@ const TOPICS = {
     'Vocabulary — Everyday Life',
     'Vocabulary — Society & Environment',
     'Reading Comprehension',
-    'Listening & Oral',
   ],
   spanish: [
     'Grammar — Tenses & Verbs',
@@ -109,7 +118,6 @@ const TOPICS = {
     'Vocabulary — Everyday Life',
     'Vocabulary — Society & Culture',
     'Reading Comprehension',
-    'Listening & Oral',
   ],
   physics: [
     'Mechanics — Forces & Motion',
@@ -135,14 +143,19 @@ const TOPICS = {
 // State
 // ─────────────────────────────────────────────
 let state = {
-  subject:   'maths',
-  topic:     '',
-  level:     'higher',
-  questions: [],   // parsed from API
-  current:   0,
-  answers:   {},   // index → chosen option index
-  score:     0,
+  subject:    'economics',
+  topic:      '',
+  level:      'higher',
+  count:      5,
+  timerSecs:  0,
+  questions:  [],
+  current:    0,
+  answers:    {},
+  score:      0,
 };
+
+let timerInterval  = null;
+let timerRemaining = 0;
 
 // ─────────────────────────────────────────────
 // Screen helpers
@@ -162,95 +175,84 @@ function populateTopics(subject) {
 }
 
 // ─────────────────────────────────────────────
-// Claude API call
-// Returns parsed array of question objects.
+// Call /api/quiz serverless function
 // ─────────────────────────────────────────────
-async function generateQuestions(subject, topic, level) {
-  const apiKey = window.ANTHROPIC_API_KEY;
-
-  if (!apiKey || apiKey === 'sk-ant-YOUR-KEY-HERE') {
-    throw new Error(
-      'API key not set. Open config.js and replace sk-ant-YOUR-KEY-HERE with your real key.'
-    );
-  }
-
-  const systemPrompt = `You are an expert Leaving Certificate examiner for Irish secondary schools.
-You create challenging, accurate multiple-choice questions that reflect the style and difficulty
-of real Leaving Certificate exam questions set by the State Examinations Commission (SEC).
-Always respond with valid JSON and nothing else — no markdown, no explanation, just the JSON object.`;
-
-  const userPrompt = `Generate exactly 5 multiple-choice questions for the following:
-
-Subject: ${subject.charAt(0).toUpperCase() + subject.slice(1)}
-Topic: ${topic}
-Level: ${level.charAt(0).toUpperCase() + level.slice(1)} Level
-Exam: Leaving Certificate (Ireland)
-
-Requirements:
-- Questions must be at ${level} level difficulty
-- Each question must have exactly 4 answer options labelled A–D
-- Questions should cover different aspects of the topic
-- Include a clear, educational explanation for the correct answer
-- Explanations should help the student understand the concept, not just state the answer
-
-Respond ONLY with a JSON object in this exact format:
-{
-  "questions": [
-    {
-      "question": "Full question text here?",
-      "options": ["Option A text", "Option B text", "Option C text", "Option D text"],
-      "correct": 0,
-      "explanation": "Clear explanation of why option A is correct and the key concept involved."
-    }
-  ]
-}
-
-The "correct" field must be the 0-based index (0, 1, 2 or 3) of the correct option.`;
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type':                          'application/json',
-      'x-api-key':                             apiKey,
-      'anthropic-version':                     '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model:      'claude-sonnet-4-20250514',
-      max_tokens: 2048,
-      system:     systemPrompt,
-      messages: [
-        { role: 'user', content: userPrompt }
-      ],
-    }),
+async function generateQuestions(subject, topic, level, count) {
+  const res = await fetch('/api/quiz', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify({ subject, topic, level, count }),
   });
 
-  if (!response.ok) {
-    const err = await response.json().catch(() => ({}));
-    const msg = err?.error?.message || `HTTP ${response.status}`;
-    throw new Error(`Anthropic API error: ${msg}`);
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || `Server error ${res.status}`);
   }
 
-  const data = await response.json();
-  const raw  = data?.content?.[0]?.text;
-
-  if (!raw) throw new Error('Empty response from API.');
-
-  // Strip potential markdown fences just in case
-  const cleaned = raw.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
-
-  let parsed;
-  try {
-    parsed = JSON.parse(cleaned);
-  } catch {
-    throw new Error(`Could not parse JSON response.\n\nRaw: ${raw.slice(0, 300)}`);
+  if (!Array.isArray(data?.questions) || data.questions.length === 0) {
+    throw new Error('Unexpected response from server.');
   }
 
-  if (!Array.isArray(parsed?.questions) || parsed.questions.length === 0) {
-    throw new Error('API returned unexpected JSON structure.');
-  }
+  return data.questions;
+}
 
-  return parsed.questions;
+// ─────────────────────────────────────────────
+// Timer
+// ─────────────────────────────────────────────
+function startQuestionTimer(seconds) {
+  clearQuestionTimer();
+  if (!seconds || seconds <= 0) return;
+
+  timerRemaining = seconds;
+  updateTimerDisplay();
+
+  timerInterval = setInterval(() => {
+    timerRemaining--;
+    updateTimerDisplay();
+    if (timerRemaining <= 0) {
+      clearQuestionTimer();
+      timeOutQuestion();
+    }
+  }, 1000);
+}
+
+function clearQuestionTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  const badge = document.getElementById('qTimerBadge');
+  if (badge) badge.classList.add('hidden');
+}
+
+function updateTimerDisplay() {
+  const badge = document.getElementById('qTimerBadge');
+  if (!badge) return;
+  badge.classList.remove('hidden', 'timer-badge--low', 'timer-badge--critical');
+  badge.textContent = timerRemaining;
+  if (timerRemaining <= 5)       badge.classList.add('timer-badge--critical');
+  else if (timerRemaining <= 15) badge.classList.add('timer-badge--low');
+}
+
+function timeOutQuestion() {
+  const idx = state.current;
+  if (state.answers[idx] !== undefined) return;
+  state.answers[idx] = -1; // -1 = timed out
+
+  const q    = state.questions[idx];
+  const list = document.getElementById('optionsList');
+  list.querySelectorAll('.option-btn').forEach(btn => {
+    btn.disabled = true;
+    if (parseInt(btn.dataset.index) === q.correct) btn.classList.add('reveal');
+  });
+
+  const expBox = document.getElementById('explanationBox');
+  expBox.classList.remove('hidden', 'is-correct', 'is-wrong');
+  expBox.classList.add('is-wrong');
+  document.getElementById('explanationIcon').textContent    = '⏱️';
+  document.getElementById('explanationVerdict').textContent = "Time's up!";
+  document.getElementById('explanationText').textContent    = q.explanation;
+  document.getElementById('btnNext').disabled = false;
+  document.getElementById('liveScore').textContent =
+    `Score: ${state.score} / ${state.questions.length}`;
 }
 
 // ─────────────────────────────────────────────
@@ -259,24 +261,21 @@ The "correct" field must be the 0-based index (0, 1, 2 or 3) of the correct opti
 const LETTERS = ['A', 'B', 'C', 'D'];
 
 function renderQuestion(index) {
-  const q      = state.questions[index];
-  const total  = state.questions.length;
-  const pct    = (index / total) * 100;
+  clearQuestionTimer();
 
-  // Progress
-  document.getElementById('progressFill').style.width = `${pct}%`;
+  const q     = state.questions[index];
+  const total = state.questions.length;
+  const pct   = (index / total) * 100;
+
+  document.getElementById('progressFill').style.width   = `${pct}%`;
   document.getElementById('questionCounter').textContent = `Question ${index + 1} of ${total}`;
-  document.getElementById('liveScore').textContent = `Score: ${state.score} / ${total}`;
-
-  // Badges
-  document.getElementById('qTopicBadge').textContent  = state.topic;
-  document.getElementById('qLevelBadge').textContent  =
+  document.getElementById('liveScore').textContent       = `Score: ${state.score} / ${total}`;
+  document.getElementById('qTopicBadge').textContent     = state.topic;
+  document.getElementById('qLevelBadge').textContent     =
     state.level === 'higher' ? 'Higher Level' : 'Ordinary Level';
 
-  // Question
   document.getElementById('questionText').textContent = q.question;
 
-  // Options
   const list = document.getElementById('optionsList');
   list.innerHTML = q.options.map((opt, i) => `
     <button class="option-btn" data-index="${i}">
@@ -285,40 +284,51 @@ function renderQuestion(index) {
     </button>
   `).join('');
 
-  // Hide explanation
   const expBox = document.getElementById('explanationBox');
   expBox.classList.add('hidden');
   expBox.classList.remove('is-correct', 'is-wrong');
 
-  // Restore previous answer if navigating back
   const prev = state.answers[index];
   if (prev !== undefined) {
-    applyAnswerUI(index, prev);
+    if (prev === -1) {
+      // Timed out
+      list.querySelectorAll('.option-btn').forEach(btn => {
+        btn.disabled = true;
+        if (parseInt(btn.dataset.index) === q.correct) btn.classList.add('reveal');
+      });
+      expBox.classList.remove('hidden');
+      expBox.classList.add('is-wrong');
+      document.getElementById('explanationIcon').textContent    = '⏱️';
+      document.getElementById('explanationVerdict').textContent = "Time's up!";
+      document.getElementById('explanationText').textContent    = q.explanation;
+    } else {
+      applyAnswerUI(index, prev);
+    }
   } else {
-    // Bind click handlers
     list.querySelectorAll('.option-btn').forEach(btn => {
       btn.addEventListener('click', () => handleAnswer(index, parseInt(btn.dataset.index)));
     });
+    startQuestionTimer(state.timerSecs);
   }
 
-  // Nav buttons
   document.getElementById('btnPrev').disabled = index === 0;
-  const isLast = index === total - 1;
+  const isLast  = index === total - 1;
   const btnNext = document.getElementById('btnNext');
-  btnNext.textContent  = isLast ? 'See Results →' : 'Next Question →';
-  btnNext.disabled     = prev === undefined; // disabled until answered
+  btnNext.textContent = isLast ? 'See Results →' : 'Next Question →';
+  btnNext.disabled    = prev === undefined;
 }
 
 // ─────────────────────────────────────────────
 // Handle an answer click
 // ─────────────────────────────────────────────
 function handleAnswer(qIndex, chosenIndex) {
-  if (state.answers[qIndex] !== undefined) return; // already answered
+  if (state.answers[qIndex] !== undefined) return;
+  clearQuestionTimer();
 
   const q = state.questions[qIndex];
   state.answers[qIndex] = chosenIndex;
-
   if (chosenIndex === q.correct) state.score++;
+
   document.getElementById('liveScore').textContent =
     `Score: ${state.score} / ${state.questions.length}`;
 
@@ -332,17 +342,11 @@ function applyAnswerUI(qIndex, chosenIndex) {
   list.querySelectorAll('.option-btn').forEach(btn => {
     btn.disabled = true;
     const i = parseInt(btn.dataset.index);
-
-    if (i === q.correct && i === chosenIndex) {
-      btn.classList.add('correct');
-    } else if (i === chosenIndex && i !== q.correct) {
-      btn.classList.add('wrong');
-    } else if (i === q.correct) {
-      btn.classList.add('reveal'); // show correct in muted green
-    }
+    if      (i === q.correct && i === chosenIndex) btn.classList.add('correct');
+    else if (i === chosenIndex && i !== q.correct) btn.classList.add('wrong');
+    else if (i === q.correct)                      btn.classList.add('reveal');
   });
 
-  // Show explanation
   const isCorrect = chosenIndex === q.correct;
   const expBox    = document.getElementById('explanationBox');
   expBox.classList.remove('hidden', 'is-correct', 'is-wrong');
@@ -351,8 +355,6 @@ function applyAnswerUI(qIndex, chosenIndex) {
   document.getElementById('explanationIcon').textContent    = isCorrect ? '✅' : '❌';
   document.getElementById('explanationVerdict').textContent = isCorrect ? 'Correct!' : 'Incorrect';
   document.getElementById('explanationText').textContent    = q.explanation;
-
-  // Enable Next button
   document.getElementById('btnNext').disabled = false;
 }
 
@@ -360,28 +362,26 @@ function applyAnswerUI(qIndex, chosenIndex) {
 // Render results
 // ─────────────────────────────────────────────
 function renderResults() {
+  clearQuestionTimer();
   showScreen('screenResults');
 
   const total = state.questions.length;
   const score = state.score;
   const pct   = score / total;
 
-  // Score ring SVG animation
-  const CIRCUMFERENCE = 264; // 2π × 42
-  document.getElementById('scoreArc').style.strokeDashoffset =
-    CIRCUMFERENCE - pct * CIRCUMFERENCE;
+  const CIRCUMFERENCE = 264;
+  document.getElementById('scoreArc').style.strokeDashoffset = CIRCUMFERENCE - pct * CIRCUMFERENCE;
 
-  // Colour arc by performance
   const arc = document.getElementById('scoreArc');
-  if (pct >= 0.8)       arc.style.stroke = 'var(--green-500)';
-  else if (pct >= 0.5)  arc.style.stroke = '#f59e0b';
-  else                  arc.style.stroke = '#ef4444';
+  if      (pct >= 0.8) arc.style.stroke = 'var(--green-500)';
+  else if (pct >= 0.5) arc.style.stroke = '#f59e0b';
+  else                 arc.style.stroke = '#ef4444';
 
   document.getElementById('scoreNum').textContent   = score;
   document.getElementById('scoreDenom').textContent = `/${total}`;
 
   let title = 'Keep going!';
-  if (pct === 1)        title = 'Perfect score! 🎉';
+  if      (pct === 1)   title = 'Perfect score! 🎉';
   else if (pct >= 0.8)  title = 'Excellent work! 🌟';
   else if (pct >= 0.6)  title = 'Good job! 👍';
   else if (pct >= 0.4)  title = 'Getting there! 📚';
@@ -389,18 +389,20 @@ function renderResults() {
   document.getElementById('resultsSub').textContent   =
     `You scored ${score} out of ${total} (${Math.round(pct * 100)}%)`;
 
-  // Per-question review
   const list = document.getElementById('reviewList');
   list.innerHTML = state.questions.map((q, i) => {
     const chosen    = state.answers[i];
     const correct   = q.correct;
+    const timedOut  = chosen === -1;
     const isCorrect = chosen === correct;
     const cls       = isCorrect ? 'review-correct' : 'review-wrong';
-    const icon      = isCorrect ? '✅' : '❌';
+    const icon      = isCorrect ? '✅' : (timedOut ? '⏱️' : '❌');
 
-    const chosenLabel  = chosen !== undefined
-      ? `${LETTERS[chosen]}. ${q.options[chosen]}`
-      : '(not answered)';
+    const chosenLabel  = timedOut
+      ? '(time ran out)'
+      : chosen !== undefined
+        ? `${LETTERS[chosen]}. ${q.options[chosen]}`
+        : '(not answered)';
     const correctLabel = `${LETTERS[correct]}. ${q.options[correct]}`;
 
     return `
@@ -424,33 +426,49 @@ function renderResults() {
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Check API key on load
-  const apiKey = window.ANTHROPIC_API_KEY;
-  if (!apiKey || apiKey === 'sk-ant-YOUR-KEY-HERE') {
-    document.getElementById('apiKeyWarning').classList.remove('hidden');
-  }
+  const selSubject = document.getElementById('selSubject');
 
   // Subject change → repopulate topics
-  const selSubject = document.getElementById('selSubject');
-  selSubject.addEventListener('change', () => {
-    populateTopics(selSubject.value);
-  });
-  populateTopics(selSubject.value); // initial population
+  selSubject.addEventListener('change', () => populateTopics(selSubject.value));
+  populateTopics(selSubject.value);
 
   // Level toggle
-  document.querySelectorAll('.pill-btn').forEach(btn => {
+  document.querySelectorAll('[data-level]').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('[data-level]').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       state.level = btn.dataset.level;
     });
   });
 
-  // ── Generate Quiz ──
+  // Question count toggle
+  document.querySelectorAll('[data-count]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-count]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.count = parseInt(btn.dataset.count);
+    });
+  });
+
+  // Timer input
+  const timerInput = document.getElementById('timerInput');
+  timerInput.addEventListener('input', () => {
+    state.timerSecs = Math.max(0, parseInt(timerInput.value) || 0);
+  });
+
+  // Timer preset buttons
+  document.querySelectorAll('.timer-preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = parseInt(btn.dataset.val);
+      timerInput.value = val;
+      state.timerSecs  = val;
+    });
+  });
+
+  // Generate quiz
   document.getElementById('generateBtn').addEventListener('click', async () => {
     const subject = selSubject.value;
     const topic   = document.getElementById('selTopic').value;
-
     if (!topic) return;
 
     state.subject   = subject;
@@ -460,12 +478,12 @@ document.addEventListener('DOMContentLoaded', () => {
     state.answers   = {};
     state.score     = 0;
 
-    // Show loading
     document.getElementById('loadingTopic').textContent = topic;
+    document.getElementById('loadingCount').textContent = state.count;
     showScreen('screenLoading');
 
     try {
-      state.questions = await generateQuestions(subject, topic, state.level);
+      state.questions = await generateQuestions(subject, topic, state.level, state.count);
       if (typeof Auth !== 'undefined') {
         Auth.track('quiz_taken', `Took a quiz on ${topic} (${subject}, ${state.level})`);
       }
@@ -473,13 +491,13 @@ document.addEventListener('DOMContentLoaded', () => {
       renderQuestion(0);
     } catch (err) {
       document.getElementById('errorMsg').textContent =
-        'Unable to generate quiz questions. Check your API key and internet connection.';
+        'Unable to generate quiz questions. Check your internet connection.';
       document.getElementById('errorDetail').textContent = err.message;
       showScreen('screenError');
     }
   });
 
-  // ── Question navigation ──
+  // Question navigation
   document.getElementById('btnNext').addEventListener('click', () => {
     const next = state.current + 1;
     if (next < state.questions.length) {
@@ -497,34 +515,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── Results actions ──
+  // Results actions
   document.getElementById('btnRetry').addEventListener('click', async () => {
-    // Same subject + topic, fresh questions
     state.questions = [];
     state.current   = 0;
     state.answers   = {};
     state.score     = 0;
 
     document.getElementById('loadingTopic').textContent = state.topic;
+    document.getElementById('loadingCount').textContent = state.count;
     showScreen('screenLoading');
 
     try {
-      state.questions = await generateQuestions(state.subject, state.topic, state.level);
+      state.questions = await generateQuestions(state.subject, state.topic, state.level, state.count);
       showScreen('screenQuestion');
       renderQuestion(0);
     } catch (err) {
-      document.getElementById('errorMsg').textContent = 'Failed to regenerate questions.';
+      document.getElementById('errorMsg').textContent    = 'Failed to regenerate questions.';
       document.getElementById('errorDetail').textContent = err.message;
       showScreen('screenError');
     }
   });
 
-  document.getElementById('btnNewTopic').addEventListener('click', () => {
-    showScreen('screenSetup');
-  });
-
-  // ── Error back button ──
-  document.getElementById('btnErrorBack').addEventListener('click', () => {
-    showScreen('screenSetup');
-  });
+  document.getElementById('btnNewTopic').addEventListener('click', () => showScreen('screenSetup'));
+  document.getElementById('btnErrorBack').addEventListener('click', () => showScreen('screenSetup'));
 });

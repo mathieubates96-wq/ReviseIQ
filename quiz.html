@@ -48,7 +48,7 @@
     <div class="page-header-band">
       <div class="container">
         <h1 class="page-title">AI Quiz</h1>
-        <p class="page-subtitle">Pick a subject and topic — Claude generates 5 fresh Leaving Cert questions just for you.</p>
+        <p class="page-subtitle">Pick a subject, topic, length and timer — Claude generates fresh Leaving Cert questions just for you.</p>
       </div>
     </div>
 
@@ -72,7 +72,7 @@
 
         <div class="setup-card">
           <h2>Set up your quiz</h2>
-          <p class="setup-sub">Claude will generate 5 multiple-choice questions tailored to your selection.</p>
+          <p class="setup-sub">Claude generates multiple-choice questions in the style of real SEC exam papers.</p>
 
           <div class="setup-grid">
 
@@ -81,6 +81,7 @@
               <label class="setup-label" for="selSubject">Subject</label>
               <div class="select-wrap">
                 <select id="selSubject">
+                  <option value="economics">📉 Economics</option>
                   <option value="maths">📐 Maths</option>
                   <option value="english">📖 English</option>
                   <option value="irish">🇮🇪 Irish</option>
@@ -116,6 +117,34 @@
               </div>
             </div>
 
+            <!-- Question count -->
+            <div class="setup-field">
+              <label class="setup-label">Questions</label>
+              <div class="pill-toggle pill-toggle--4">
+                <button class="pill-btn active" data-count="5">5</button>
+                <button class="pill-btn" data-count="10">10</button>
+                <button class="pill-btn" data-count="15">15</button>
+                <button class="pill-btn" data-count="20">20</button>
+              </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="setup-field">
+              <label class="setup-label">Time per question <span class="setup-label-hint">— 0 = no limit</span></label>
+              <div class="timer-input-wrap">
+                <input type="number" id="timerInput" class="timer-input"
+                       min="0" max="300" value="0" placeholder="0" />
+                <span class="timer-input-unit">seconds</span>
+              </div>
+              <div class="timer-presets">
+                <button class="timer-preset-btn" data-val="0">No limit</button>
+                <button class="timer-preset-btn" data-val="30">30s</button>
+                <button class="timer-preset-btn" data-val="60">60s</button>
+                <button class="timer-preset-btn" data-val="90">90s</button>
+                <button class="timer-preset-btn" data-val="120">2 min</button>
+              </div>
+            </div>
+
           </div>
 
           <button class="btn btn-primary generate-btn" id="generateBtn">
@@ -131,7 +160,7 @@
         <div class="loading-card">
           <div class="spinner"></div>
           <h2>Generating your quiz…</h2>
-          <p id="loadingMsg">Claude is writing 5 questions on <strong id="loadingTopic"></strong></p>
+          <p id="loadingMsg">Claude is writing <strong id="loadingCount">5</strong> questions on <strong id="loadingTopic"></strong></p>
           <p class="loading-sub">This usually takes 5–10 seconds.</p>
         </div>
       </div>
@@ -157,6 +186,7 @@
           <div class="question-header">
             <span class="topic-badge" id="qTopicBadge">Topic</span>
             <span class="level-badge" id="qLevelBadge">Higher</span>
+            <span class="timer-badge hidden" id="qTimerBadge">60</span>
           </div>
           <h2 class="question-text" id="questionText">Question text</h2>
 
