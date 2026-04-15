@@ -7,4 +7,4 @@
 //      It is listed in .gitignore for this reason.
 // ─────────────────────────────────────────────────────────
 
-window.ANTHROPIC_API_KEY = 'sk-ant-YOUR-KEY-HERE';
+window.ANTHROPIC_API_KEY = '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';
