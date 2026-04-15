@@ -87,40 +87,44 @@ const SUBJECT_DATA = {
   },
 };
 
-// Years with no written LC exams
-const NO_EXAM_YEARS = [2020];
+// Years with no written LC exams (COVID — no papers sat)
+const NO_EXAM_YEARS = [];
 
 // ─────────────────────────────────────────────
-// URL builders
-// Primary:  SEC search page filtered to subject + year
-//           → directly shows papers & PDF links for that year
-// Fallback: SEC search page for subject only (no year filter)
-//           → guaranteed to always have results
+// Locally hosted PDFs
+// Key format: "subject-year"
+// paper: path to exam paper PDF
+// ms:    path to marking scheme PDF (optional)
 // ─────────────────────────────────────────────
-function secPaperUrl(subject, year) {
-  const data = SUBJECT_DATA[subject];
-  if (!data?.sc) return secFallbackUrl(subject);
-  return `https://www.examinations.ie/school-exam-papers/?l=en&mc=LC&sc=${data.sc}&y=${year}`;
-}
+const LOCAL_PAPERS = {
+  'economics-2025': { paper: 'papers/2025ecopp.pdf', ms: 'papers/2025ecoMS.pdf' },
+  'economics-2024': { paper: 'papers/2024ecopp.pdf', ms: 'papers/2024ecoMS.pdf' },
+  'economics-2023': { paper: 'papers/2023ecopp.pdf', ms: 'papers/2023ecoMS.pdf' },
+  'economics-2022': { paper: 'papers/2022ecopp.pdf', ms: 'papers/2022ecoMS.pdf' },
+  'economics-2021': { paper: 'papers/2021ecopp.pdf', ms: 'papers/2021ecoMS.pdf' },
+  'economics-2020': { paper: 'papers/2020ecopp.pdf', ms: 'papers/2020ecoMS.pdf' },
+};
 
-function secFallbackUrl(subject) {
-  const data = SUBJECT_DATA[subject];
-  if (data?.sc) {
-    return `https://www.examinations.ie/school-exam-papers/?l=en&mc=LC&sc=${data.sc}`;
-  }
-  return 'https://www.examinations.ie/school-exam-papers/?l=en&mc=LC';
-}
+const SEC_ARCHIVE = 'https://www.examinations.ie/exammaterialarchive/';
 
 // ─────────────────────────────────────────────
 // Card builder
 // ─────────────────────────────────────────────
 function buildCard(subject, year, level) {
   const data       = SUBJECT_DATA[subject];
-  const paperUrl   = secPaperUrl(subject, year);
-  const fallback   = secFallbackUrl(subject);
   const levelCls   = level === 'higher' ? 'lvl-higher' : 'lvl-ordinary';
   const levelLabel = level === 'higher' ? 'Higher Level' : 'Ordinary Level';
   const papersNote = data.papers > 1 ? `${data.papers} papers` : '1 paper';
+
+  const local = LOCAL_PAPERS[`${subject}-${year}`];
+
+  const paperBtn = local
+    ? `<a href="${local.paper}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Exam Paper</a>`
+    : `<a href="${SEC_ARCHIVE}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-primary">📄 Open on SEC Website</a>`;
+
+  const msBtn = local?.ms
+    ? `<a href="${local.ms}" target="_blank" rel="noopener noreferrer" class="pcard-btn pcard-btn-secondary">📝 Marking Scheme</a>`
+    : '';
 
   return `
     <div class="pcard">
@@ -131,12 +135,8 @@ function buildCard(subject, year, level) {
       <div class="pcard-subject">${data.emoji} ${data.label}</div>
       <div class="pcard-info">Leaving Certificate ${year} &middot; ${papersNote}</div>
       <div class="pcard-actions">
-        <a href="${paperUrl}"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="pcard-btn pcard-btn-primary">
-          📄 Open Paper
-        </a>
+        ${paperBtn}
+        ${msBtn}
       </div>
     </div>
   `;
@@ -193,7 +193,7 @@ function renderResults(subject, year, level) {
     Papers for <strong>${data.emoji} ${data.label}</strong>
     · <strong>${levelLabel}</strong>
     · <strong>${year}</strong>
-    &nbsp;<a href="${secPaperUrl(subject, year)}" target="_blank" rel="noopener"
+    &nbsp;<a href="https://www.examinations.ie/exammaterialarchive/" target="_blank" rel="noopener"
       style="color:var(--green-600);font-size:0.8rem;white-space:nowrap;">View on SEC ↗</a>`;
 
   resultsGrid.innerHTML = buildCard(subject, year, level);

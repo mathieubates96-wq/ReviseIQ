@@ -209,6 +209,9 @@
 
 .pcard-actions {
   margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .pcard-btn {
