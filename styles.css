@@ -518,6 +518,26 @@ img { display: block; max-width: 100%; }
   border-radius: 100px;
 }
 
+.tag-coming-soon {
+  background: rgba(100,116,139,0.15);
+  color: var(--gray-500);
+}
+
+.tag-available {
+  background: rgba(99,102,241,0.12);
+  color: var(--green-400);
+}
+
+[data-theme="dark"] .tag-coming-soon {
+  background: rgba(100,116,139,0.2);
+  color: #64748b;
+}
+
+[data-theme="dark"] .tag-available {
+  background: rgba(99,102,241,0.15);
+  color: #818cf8;
+}
+
 .subject-arrow {
   position: absolute;
   bottom: 20px; right: 20px;
