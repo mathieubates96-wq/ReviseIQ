@@ -134,8 +134,7 @@ function buildCard(subject, year, level) {
         <a href="${paperUrl}"
            target="_blank"
            rel="noopener noreferrer"
-           class="pcard-btn pcard-btn-primary"
-           data-fallback="${fallback}">
+           class="pcard-btn pcard-btn-primary">
           📄 Open Paper
         </a>
       </div>
@@ -143,32 +142,6 @@ function buildCard(subject, year, level) {
   `;
 }
 
-// ─────────────────────────────────────────────
-// Attach fallback logic after cards are injected.
-// If the SEC page returns a non-OK response (rare),
-// the user is redirected to the subject's fallback URL
-// so they are never left on a broken page.
-// ─────────────────────────────────────────────
-function attachFallbackHandlers(container) {
-  container.querySelectorAll('.pcard-btn-primary[data-fallback]').forEach(link => {
-    link.addEventListener('click', async (e) => {
-      // Always open something — check if primary URL is reachable first.
-      // Because the SEC site is cross-origin we use no-cors; an opaque response
-      // means the server responded (good). A network error means try fallback.
-      const primary  = link.href;
-      const fallback = link.dataset.fallback;
-      e.preventDefault();
-      try {
-        await fetch(primary, { method: 'HEAD', mode: 'no-cors', cache: 'no-store' });
-        // Server responded — open the primary link
-        window.open(primary, '_blank', 'noopener,noreferrer');
-      } catch {
-        // Network-level failure — open subject fallback
-        window.open(fallback, '_blank', 'noopener,noreferrer');
-      }
-    });
-  });
-}
 
 // ─────────────────────────────────────────────
 // COVID notice
@@ -224,7 +197,6 @@ function renderResults(subject, year, level) {
       style="color:var(--green-600);font-size:0.8rem;white-space:nowrap;">View on SEC ↗</a>`;
 
   resultsGrid.innerHTML = buildCard(subject, year, level);
-  attachFallbackHandlers(resultsGrid);
 }
 
 // ─────────────────────────────────────────────

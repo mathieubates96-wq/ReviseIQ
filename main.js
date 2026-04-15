@@ -6,8 +6,11 @@
 
 // ── Dark mode (runs before DOM to avoid flash) ──
 (function initTheme() {
-  if (localStorage.getItem('lcStudyTheme') === 'dark' ||
-      localStorage.getItem('riq_theme')    === 'dark') {
+  const saved = localStorage.getItem('riq_theme') || localStorage.getItem('lcStudyTheme');
+  // Default to dark unless user has explicitly chosen light
+  if (saved === 'light') {
+    document.documentElement.removeAttribute('data-theme');
+  } else {
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 })();
@@ -153,8 +156,12 @@ function injectAuthNav() {
   authDiv.className = 'nav-auth';
 
   if (session) {
+    const adminLink = (typeof Auth !== 'undefined' && Auth.isAdmin())
+      ? `<a href="admin.html" class="nav-link nav-admin-link" data-no-transition="1">Admin</a>`
+      : '';
     authDiv.innerHTML = `
       <span class="nav-user-name">Hi, ${escHtml(session.firstName)}</span>
+      ${adminLink}
       <button class="nav-logout-btn" id="logoutBtn">Log out</button>
     `;
     authDiv.querySelector('#logoutBtn').addEventListener('click', () => {

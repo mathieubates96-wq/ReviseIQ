@@ -17,6 +17,9 @@ const Auth = (() => {
   };
   const MAX_ACTIVITY = 100;
 
+  // ── Admin email ───────────────────────────
+  const ADMIN_EMAIL = 'mathieu.bates96@gmail.com';
+
   // ── Helpers ───────────────────────────────
   function readJSON(key, fallback) {
     try { return JSON.parse(localStorage.getItem(key) ?? 'null') ?? fallback; }
@@ -144,6 +147,12 @@ const Auth = (() => {
     if (ann) { ann.active = false; writeJSON(K.ANNOUNCEMENT, ann); }
   }
 
+  // ── Admin check ───────────────────────────
+  function isAdmin() {
+    const session = getSession();
+    return session && session.email === ADMIN_EMAIL;
+  }
+
   // ── Public API ────────────────────────────
   return {
     getSession, setSession, clearSession,
@@ -152,5 +161,7 @@ const Auth = (() => {
     track, getActivity,
     getAnnouncement, setAnnouncement, clearAnnouncement,
     escapeHtml,
+    isAdmin,
+    ADMIN_EMAIL,
   };
 })();

@@ -1,6 +1,6 @@
 /* =============================================
    ReviseIQ — Main Stylesheet
-   Green & White theme, fully responsive
+   Indigo theme, fully responsive
    ============================================= */
 
 /* --- RESET & BASE --- */
@@ -11,16 +11,16 @@
 }
 
 :root {
-  --green-50:  #f0fdf4;
-  --green-100: #dcfce7;
-  --green-200: #bbf7d0;
-  --green-300: #86efac;
-  --green-400: #4ade80;
-  --green-500: #22c55e;
-  --green-600: #16a34a;
-  --green-700: #15803d;
-  --green-800: #166534;
-  --green-900: #14532d;
+  --green-50:  #eef2ff;
+  --green-100: #e0e7ff;
+  --green-200: #c7d2fe;
+  --green-300: #a5b4fc;
+  --green-400: #818cf8;
+  --green-500: #6366f1;
+  --green-600: #4f46e5;
+  --green-700: #4338ca;
+  --green-800: #3730a3;
+  --green-900: #312e81;
 
   --white: #ffffff;
   --gray-50:  #f9fafb;
@@ -289,13 +289,13 @@ img { display: block; max-width: 100%; }
 .btn-primary {
   background: var(--green-600);
   color: white;
-  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.35);
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.35);
 }
 
 .btn-primary:hover {
   background: var(--green-700);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(22, 163, 74, 0.4);
+  box-shadow: 0 8px 28px rgba(79, 70, 229, 0.4);
 }
 
 .btn-secondary {
@@ -883,6 +883,21 @@ body.page-exit {
 
 .nav-auth-signup:hover { background: var(--green-700); color: white; }
 
+.nav-admin-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--green-400) !important;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--green-400);
+  transition: all 0.15s;
+}
+
+.nav-admin-link:hover {
+  background: var(--green-400) !important;
+  color: white !important;
+}
+
 /* =============================================
    ANNOUNCEMENT BANNER
    ============================================= */
@@ -935,11 +950,11 @@ body.page-exit {
 .announcement-close:hover { background: rgba(255,255,255,0.2); }
 
 /* Dark mode overrides */
-[data-theme="dark"] .nav-user-name { color: #4ade80; }
+[data-theme="dark"] .nav-user-name { color: #818cf8; }
 [data-theme="dark"] .nav-logout-btn { border-color: #334155; color: #94a3b8; }
 [data-theme="dark"] .nav-logout-btn:hover { border-color: #f87171; color: #f87171; }
 [data-theme="dark"] .nav-auth-login { color: #94a3b8; }
-[data-theme="dark"] .nav-auth-login:hover { color: #4ade80; background: rgba(74,222,128,0.08); }
+[data-theme="dark"] .nav-auth-login:hover { color: #818cf8; background: rgba(99,102,241,0.08); }
 
 /* =============================================
    THEME TOGGLE BUTTON
@@ -1241,7 +1256,7 @@ body.page-exit {
 
 [data-theme="dark"] .theme-btn:hover {
   background: #283548;
-  border-color: #4ade80;
+  border-color: #818cf8;
 }
 
 /* =============================================
@@ -1253,17 +1268,17 @@ body.page-exit {
 }
 
 [data-theme="dark"] .nav-logo { color: #f1f5f9; }
-[data-theme="dark"] .logo-text { color: #4ade80; }
+[data-theme="dark"] .logo-text { color: #818cf8; }
 
 [data-theme="dark"] .nav-link  { color: #94a3b8; }
 [data-theme="dark"] .nav-link:hover,
 [data-theme="dark"] .nav-link.active {
-  color: #4ade80;
-  background: rgba(74,222,128,0.1);
+  color: #818cf8;
+  background: rgba(99,102,241,0.1);
 }
 
-[data-theme="dark"] .nav-link.nav-cta { background: #16a34a; color: white; }
-[data-theme="dark"] .nav-link.nav-cta:hover { background: #15803d; }
+[data-theme="dark"] .nav-link.nav-cta { background: #4f46e5; color: white; }
+[data-theme="dark"] .nav-link.nav-cta:hover { background: #4338ca; }
 
 [data-theme="dark"] .nav-toggle span { background: #e2e8f0; }
 
@@ -1276,7 +1291,7 @@ body.page-exit {
    DARK MODE — Hero
    ============================================= */
 [data-theme="dark"] .hero {
-  background: linear-gradient(160deg, #0d2416 0%, #0f172a 60%);
+  background: linear-gradient(160deg, #0e0d1f 0%, #0f172a 60%);
 }
 
 [data-theme="dark"] .hero-card {
@@ -1288,9 +1303,9 @@ body.page-exit {
 [data-theme="dark"] .mini-card-text span   { color: #94a3b8; }
 
 [data-theme="dark"] .hero-badge {
-  background: rgba(74,222,128,0.1);
-  border-color: rgba(74,222,128,0.25);
-  color: #4ade80;
+  background: rgba(99,102,241,0.1);
+  border-color: rgba(99,102,241,0.25);
+  color: #818cf8;
 }
 
 [data-theme="dark"] .stat-divider { background: #334155; }
@@ -1307,18 +1322,18 @@ body.page-exit {
 
 [data-theme="dark"] .subject-card--featured {
   background: linear-gradient(135deg, #0d2416, #1e293b);
-  border-color: #166534;
+  border-color: #3730a3;
 }
 
 [data-theme="dark"] .subject-card::before {
-  background: linear-gradient(135deg, rgba(74,222,128,0.08), transparent);
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), transparent);
 }
 
-[data-theme="dark"] .subject-card:hover { border-color: #4ade80; }
+[data-theme="dark"] .subject-card:hover { border-color: #818cf8; }
 
 [data-theme="dark"] .tag {
-  background: rgba(74,222,128,0.1);
-  color: #4ade80;
+  background: rgba(99,102,241,0.1);
+  color: #818cf8;
 }
 
 [data-theme="dark"] .features { background: #0a1120; }
@@ -1328,20 +1343,20 @@ body.page-exit {
   border-color: #334155;
 }
 
-[data-theme="dark"] .feature-card:hover { border-color: #4ade80; }
+[data-theme="dark"] .feature-card:hover { border-color: #818cf8; }
 
 /* =============================================
    DARK MODE — Buttons
    ============================================= */
 [data-theme="dark"] .btn-secondary {
   background: #1e293b;
-  color: #4ade80;
+  color: #818cf8;
   border-color: #334155;
 }
 
 [data-theme="dark"] .btn-secondary:hover {
   background: #283548;
-  border-color: #4ade80;
+  border-color: #818cf8;
 }
 
 /* =============================================
@@ -1391,30 +1406,30 @@ body.page-exit {
 }
 
 [data-theme="dark"] .option-btn:hover:not(:disabled) {
-  background: rgba(74,222,128,0.08);
-  border-color: #4ade80;
-  color: #4ade80;
+  background: rgba(99,102,241,0.08);
+  border-color: #818cf8;
+  color: #818cf8;
 }
 
 [data-theme="dark"] .option-letter { background: #283548; }
 
 [data-theme="dark"] .option-btn.correct {
-  background: rgba(74,222,128,0.1);
-  border-color: #4ade80;
+  background: rgba(99,102,241,0.1);
+  border-color: #818cf8;
 }
 
 [data-theme="dark"] .option-btn.reveal {
-  background: rgba(74,222,128,0.06);
-  border-color: rgba(74,222,128,0.3);
+  background: rgba(99,102,241,0.06);
+  border-color: rgba(99,102,241,0.3);
 }
 
 [data-theme="dark"] .explanation-box.is-correct {
-  background: rgba(74,222,128,0.08);
-  border-color: rgba(74,222,128,0.25);
+  background: rgba(99,102,241,0.08);
+  border-color: rgba(99,102,241,0.25);
 }
 
 [data-theme="dark"] .explanation-box.is-correct strong,
-[data-theme="dark"] .explanation-box.is-correct p { color: #4ade80; }
+[data-theme="dark"] .explanation-box.is-correct p { color: #818cf8; }
 
 [data-theme="dark"] .explanation-box.is-wrong {
   background: rgba(248,113,113,0.08);
@@ -1427,8 +1442,8 @@ body.page-exit {
 }
 
 [data-theme="dark"] .review-item.review-correct {
-  background: rgba(74,222,128,0.07);
-  border-color: rgba(74,222,128,0.2);
+  background: rgba(99,102,241,0.07);
+  border-color: rgba(99,102,241,0.2);
 }
 
 [data-theme="dark"] .review-item.review-wrong {
@@ -1463,7 +1478,7 @@ body.page-exit {
 
 [data-theme="dark"] .likely-item:hover {
   background: #2d3f55;
-  border-color: #4ade80;
+  border-color: #818cf8;
 }
 
 [data-theme="dark"] .disclaimer-card {
@@ -1477,7 +1492,7 @@ body.page-exit {
 [data-theme="dark"] .mode-btn.active {
   background: #1e293b;
   border-color: #334155;
-  color: #4ade80;
+  color: #818cf8;
 }
 
 [data-theme="dark"] .glance-pill.pill-no {
@@ -1502,7 +1517,7 @@ body.page-exit {
 
 [data-theme="dark"] .pcard:hover,
 [data-theme="dark"] .paper-card:hover {
-  border-color: #4ade80;
+  border-color: #818cf8;
 }
 
 [data-theme="dark"] .empty-state {
@@ -1541,6 +1556,6 @@ body.page-exit {
   border-color: #334155;
 }
 
-[data-theme="dark"] .quick-link-card:hover { border-color: #4ade80; }
+[data-theme="dark"] .quick-link-card:hover { border-color: #818cf8; }
 [data-theme="dark"] .quick-link-card strong { color: #f1f5f9; }
 [data-theme="dark"] .quick-link-card span   { color: #94a3b8; }

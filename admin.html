@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -140,6 +140,12 @@
   </div>
 
   <script src="auth.js"></script>
+  <script>
+    // Auto-bypass password gate if logged in as admin
+    if (Auth.isAdmin()) {
+      sessionStorage.setItem('riq_admin_session', '1');
+    }
+  </script>
   <script src="admin.js"></script>
 </body>
 </html>
