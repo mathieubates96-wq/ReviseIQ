@@ -522,6 +522,11 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 12px;
   right: 12px;
+}
+
+.subject-card-badge--left {
+  right: auto;
+  left: 12px;
   font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
