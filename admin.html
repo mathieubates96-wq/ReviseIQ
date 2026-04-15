@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin — ReviseIQ</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── Password gate ──────────────────────────── -->
+  <div id="passwordGate">
+    <div class="gate-card">
+      <div class="gate-logo">
+        <div class="gate-logo-icon">R</div>
+        ReviseIQ
+      </div>
+      <h1>Admin Access</h1>
+      <p>Enter the admin password to continue.</p>
+      <input class="gate-input" type="password" id="gateInput"
+             placeholder="Password" autocomplete="current-password" />
+      <button class="gate-btn" id="gateBtn">Unlock Dashboard</button>
+      <div class="gate-error" id="gateError"></div>
+    </div>
+  </div>
+
+  <!-- ── Dashboard ──────────────────────────────── -->
+  <div id="dashboard">
+
+    <!-- Header -->
+    <header class="ad-header">
+      <div class="ad-header-left">
+        <div class="ad-logo">
+          <div class="ad-logo-icon">R</div>
+          ReviseIQ
+        </div>
+        <span class="ad-badge">Admin</span>
+      </div>
+      <div class="ad-header-right">
+        <a href="index.html" class="ad-home-link">← Back to site</a>
+        <button class="ad-logout-btn" id="adminLogoutBtn">Log out</button>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="ad-main">
+
+      <!-- Stats row -->
+      <div class="ad-stats">
+        <div class="stat-card">
+          <div class="stat-card-label">Total Users</div>
+          <div class="stat-card-value" id="statUsers">—</div>
+          <div class="stat-card-sub">registered accounts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Signed Up Today</div>
+          <div class="stat-card-value" id="statToday">—</div>
+          <div class="stat-card-sub">new today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Quizzes Taken</div>
+          <div class="stat-card-value" id="statQuizzes">—</div>
+          <div class="stat-card-sub">all time</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-label">Activity Events</div>
+          <div class="stat-card-value" id="statActivity">—</div>
+          <div class="stat-card-sub">tracked events</div>
+        </div>
+      </div>
+
+      <!-- Grid: Users + Activity -->
+      <div class="ad-grid">
+
+        <!-- Users panel -->
+        <div class="ad-panel">
+          <div class="ad-panel-head">
+            <span class="ad-panel-title">Registered Users</span>
+            <span class="ad-panel-count" id="usersCount">0</span>
+          </div>
+          <table class="users-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Signed Up</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+              <tr><td colspan="3" class="empty-table">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Activity feed panel -->
+        <div class="ad-panel">
+          <div class="ad-panel-head">
+            <span class="ad-panel-title">Recent Activity</span>
+            <span class="ad-panel-count" id="activityCount">0 recent</span>
+          </div>
+          <ul class="activity-feed" id="activityFeed">
+            <li class="activity-item">
+              <span style="color:var(--ad-muted);font-size:0.85rem;">Loading…</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Announcements panel (full width) -->
+      <div class="ad-grid">
+        <div class="ad-panel ad-grid-full">
+          <div class="ad-panel-head">
+            <span class="ad-panel-title">Homepage Announcement</span>
+            <button class="ad-logout-btn" id="refreshBtn" style="font-size:0.78rem;">↺ Refresh</button>
+          </div>
+
+          <div class="announcement-form">
+            <textarea class="ann-textarea" id="annText"
+                      placeholder="Type an announcement to display on the homepage…"
+                      maxlength="300"></textarea>
+            <div class="ann-actions">
+              <button class="ann-publish-btn" id="annPublishBtn">Publish</button>
+              <button class="ann-clear-btn"   id="annClearBtn">Clear</button>
+              <span class="ann-status" id="annStatus"></span>
+            </div>
+          </div>
+
+          <div class="ann-preview" id="annPreview" style="display:none;">
+            <div class="ann-preview-label">Preview</div>
+            <div id="annPreviewText"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

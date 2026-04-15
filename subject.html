@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subject — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Subject — ReviseIQ" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="subject.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"  class="nav-link">Home</a></li>
+        <li><a href="papers.html" class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html"   class="nav-link">Quiz</a></li>
+        <li><a href="trends.html" class="nav-link">Topic Trends</a></li>
+        <li><a href="quiz.html"   class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    <div class="page-header-band subject-header-band" id="subjectBand">
+      <div class="container">
+        <div class="subject-hero">
+          <span class="subject-hero-emoji" id="subjectEmoji">📐</span>
+          <div>
+            <h1 class="page-title" id="subjectTitle">Maths</h1>
+            <p class="page-subtitle" id="subjectDesc">Higher, Ordinary &amp; Foundation Level</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container subject-layout">
+      <!-- Quick links -->
+      <div class="subject-quick-links">
+        <a href="#" id="linkPapers" class="quick-link-card">
+          <span class="ql-icon">📄</span>
+          <div>
+            <strong>Past Papers</strong>
+            <span>Browse all years</span>
+          </div>
+        </a>
+        <a href="#" id="linkQuiz" class="quick-link-card">
+          <span class="ql-icon">🧠</span>
+          <div>
+            <strong>Take a Quiz</strong>
+            <span>Test your knowledge</span>
+          </div>
+        </a>
+        <a href="#" id="linkTrends" class="quick-link-card">
+          <span class="ql-icon">📊</span>
+          <div>
+            <strong>Topic Trends</strong>
+            <span>See what comes up most</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Recent papers table -->
+      <div class="subject-papers-block">
+        <h2>Recent Papers</h2>
+        <div class="recent-papers-grid" id="recentPapersGrid">
+          <!-- Populated by JS -->
+        </div>
+        <a href="#" id="allPapersLink" class="btn btn-secondary" style="margin-top:16px;">View All Papers →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Past exam papers are the property of the State Examinations Commission.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="subject.js"></script>
+</body>
+</html>

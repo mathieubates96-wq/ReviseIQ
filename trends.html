@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topic Trends — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Topic Trends — ReviseIQ" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic Trends — ReviseIQ" />
+  <meta name="twitter:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="trends.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"  class="nav-link">Home</a></li>
+        <li><a href="papers.html" class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html"   class="nav-link">Quiz</a></li>
+        <li><a href="trends.html" class="nav-link active">Topic Trends</a></li>
+        <li><a href="quiz.html"   class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-main">
+
+    <!-- ── PAGE HEADER ── -->
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">Topic Trends</h1>
+        <p class="page-subtitle">
+          See which topics appear most often in past Leaving Cert papers (2015–2024)
+          and find out what's likely to come up next.
+        </p>
+      </div>
+    </div>
+
+    <div class="container trends-page">
+
+      <!-- ── TOP CONTROLS ── -->
+      <div class="trends-controls">
+
+        <!-- Subject picker -->
+        <div class="trends-subject-wrap">
+          <label class="ctrl-label" for="selSubject">Subject</label>
+          <div class="select-wrap">
+            <select id="selSubject">
+              <option value="maths">📐 Maths</option>
+              <option value="biology">🧬 Biology</option>
+              <option value="history">🏛️ History</option>
+            </select>
+            <span class="sel-arrow">▾</span>
+          </div>
+        </div>
+
+        <!-- Level toggle -->
+        <div class="trends-level-wrap">
+          <label class="ctrl-label">Level</label>
+          <div class="pill-toggle">
+            <button class="pill-btn active" data-level="higher">Higher</button>
+            <button class="pill-btn" data-level="ordinary">Ordinary</button>
+          </div>
+        </div>
+
+        <!-- Chart mode toggle -->
+        <div class="trends-mode-wrap">
+          <label class="ctrl-label">View</label>
+          <div class="mode-toggle">
+            <button class="mode-btn active" data-mode="bar" title="Frequency bar chart">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <rect x="1" y="6" width="3" height="9" rx="1"/>
+                <rect x="6" y="3" width="3" height="12" rx="1"/>
+                <rect x="11" y="1" width="3" height="14" rx="1"/>
+              </svg>
+              Frequency
+            </button>
+            <button class="mode-btn" data-mode="line" title="Year-by-year line chart">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1,12 5,6 9,9 13,3 15,5"/>
+              </svg>
+              View by Year
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── MAIN CONTENT: chart + sidebar ── -->
+      <div class="trends-body">
+
+        <!-- LEFT — Chart area -->
+        <div class="chart-area">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <div>
+                <h2 class="chart-heading" id="chartHeading">Topic Frequency — Maths Higher (2015–2024)</h2>
+                <p class="chart-sub" id="chartSub">Total appearances across 9 exam sittings</p>
+              </div>
+              <button class="btn btn-secondary download-chart-btn" id="downloadChartBtn" title="Save chart as PNG">
+                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px">
+                  <path d="M7.5 1v9M4 7l3.5 3.5L11 7"/>
+                  <path d="M1 11v2a1 1 0 001 1h11a1 1 0 001-1v-2"/>
+                </svg>
+                Download PNG
+              </button>
+            </div>
+            <div class="chart-canvas-wrap">
+              <canvas id="trendsChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="chart-legend" id="chartLegend"></div>
+        </div>
+
+        <!-- RIGHT — Sidebar -->
+        <aside class="trends-sidebar">
+
+          <!-- Likely to come up -->
+          <div class="sidebar-card likely-card">
+            <div class="sidebar-card-header">
+              <span class="sidebar-icon">🎯</span>
+              <h3>Likely to Come Up</h3>
+            </div>
+            <p class="sidebar-intro">Top 3 topics by total appearances (2015–2024)</p>
+            <div class="likely-list" id="likelyList">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <!-- Year at a glance -->
+          <div class="sidebar-card glance-card">
+            <div class="sidebar-card-header">
+              <span class="sidebar-icon">📅</span>
+              <h3>2024 at a Glance</h3>
+            </div>
+            <div class="glance-list" id="glanceList">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <!-- Disclaimer -->
+          <div class="sidebar-card disclaimer-card">
+            <div class="disclaimer-icon">⚠️</div>
+            <p>
+              <strong>Disclaimer:</strong> These trends are based on past paper patterns only.
+              They do not guarantee what will appear in future exams.
+              Always study the full course — topics can repeat or skip years unpredictably.
+            </p>
+          </div>
+
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Analysis based on publicly available SEC past papers (2015–2024).</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="trends.js"></script>
+</body>
+</html>

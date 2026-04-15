@@ -1,0 +1,225 @@
+/* =============================================
+   ReviseIQ — auth.css
+   Sign Up / Log In pages
+   ============================================= */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  background: var(--gray-50);
+}
+
+[data-theme="dark"] .auth-page {
+  background: #0f172a;
+}
+
+/* ── Wrapper (logo + card stacked) ────────── */
+.auth-wrap {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── Logo above the card ──────────────────── */
+.auth-logo-link {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: var(--gray-900);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.3px;
+  transition: opacity 0.15s;
+}
+
+.auth-logo-link:hover { opacity: 0.75; }
+
+.auth-logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--green-600);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.auth-logo-name { color: var(--gray-900); }
+
+[data-theme="dark"] .auth-logo-link { color: #f1f5f9; }
+[data-theme="dark"] .auth-logo-name { color: #f1f5f9; }
+
+/* ── Card ─────────────────────────────────── */
+.auth-card {
+  width: 100%;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] .auth-card {
+  background: #1e293b;
+  border-color: #334155;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+.auth-card h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  letter-spacing: -0.4px;
+  margin-bottom: 5px;
+}
+
+[data-theme="dark"] .auth-card h1 { color: #f1f5f9; }
+
+.auth-tagline {
+  font-size: 0.88rem;
+  color: var(--gray-500);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+[data-theme="dark"] .auth-tagline { color: #94a3b8; }
+
+/* ── Form ─────────────────────────────────── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.auth-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+}
+
+[data-theme="dark"] .auth-label { color: #94a3b8; }
+
+.auth-input {
+  padding: 11px 13px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  color: var(--gray-800);
+  background: var(--white);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.auth-input::placeholder { color: var(--gray-400); }
+
+.auth-input:focus {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+}
+
+.auth-input.error { border-color: #ef4444; }
+
+[data-theme="dark"] .auth-input {
+  background: #0f172a;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .auth-input::placeholder { color: #475569; }
+
+[data-theme="dark"] .auth-input:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.12);
+}
+
+/* ── Submit button ────────────────────────── */
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--green-600);
+  color: white;
+  font-family: var(--font);
+  font-size: 0.97rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.auth-btn:hover  { background: var(--green-700); }
+.auth-btn:active { transform: scale(0.98); }
+
+.auth-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Error box ────────────────────────────── */
+.auth-error {
+  padding: 11px 14px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  color: #b91c1c;
+  line-height: 1.45;
+  margin-bottom: 4px;
+}
+
+.auth-error:empty { display: none; }
+
+[data-theme="dark"] .auth-error {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.25);
+  color: #f87171;
+}
+
+/* ── Switch link ──────────────────────────── */
+.auth-switch {
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--gray-500);
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.auth-switch a {
+  color: var(--green-600);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-switch a:hover { color: var(--green-700); text-decoration: underline; }
+
+[data-theme="dark"] .auth-switch {
+  color: #94a3b8;
+  border-top-color: #1e293b;
+}
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 480px) {
+  .auth-card { padding: 28px 18px; }
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Past Papers — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Past Papers — ReviseIQ" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="papers.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="past-papers.html" class="nav-link active">Past Papers</a></li>
+        <li><a href="quiz.html" class="nav-link">Quiz</a></li>
+        <li><a href="trends.html" class="nav-link">Topic Trends</a></li>
+        <li><a href="quiz.html" class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">Past Exam Papers</h1>
+        <p class="page-subtitle">Official Leaving Certificate papers from the State Examinations Commission, organised by subject and year.</p>
+      </div>
+    </div>
+
+    <div class="container papers-layout">
+
+      <!-- FILTERS -->
+      <aside class="filters-panel">
+        <h3>Filter Papers</h3>
+
+        <div class="filter-group">
+          <label>Subject</label>
+          <select id="filterSubject">
+            <option value="">All Subjects</option>
+            <option value="irish">Irish</option>
+            <option value="english">English</option>
+            <option value="maths">Maths</option>
+            <option value="biology">Biology</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="history">History</option>
+            <option value="geography">Geography</option>
+            <option value="business">Business</option>
+            <option value="french">French</option>
+            <option value="spanish">Spanish</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Level</label>
+          <div class="check-group">
+            <label class="check-label"><input type="checkbox" value="higher" checked /> Higher</label>
+            <label class="check-label"><input type="checkbox" value="ordinary" checked /> Ordinary</label>
+            <label class="check-label"><input type="checkbox" value="foundation" /> Foundation</label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label>Year Range</label>
+          <div class="range-row">
+            <select id="yearFrom">
+              <option value="2003">2003</option>
+              <option value="2005">2005</option>
+              <option value="2010">2010</option>
+              <option value="2015">2015</option>
+              <option value="2018">2018</option>
+              <option value="2020">2020</option>
+            </select>
+            <span>to</span>
+            <select id="yearTo">
+              <option value="2024" selected>2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary filter-btn" id="applyFilters">Apply Filters</button>
+      </aside>
+
+      <!-- PAPERS LIST -->
+      <section class="papers-list" id="papersList">
+        <div class="papers-toolbar">
+          <span class="papers-count" id="papersCount">Showing all papers</span>
+          <div class="sort-row">
+            <label>Sort:</label>
+            <select id="sortPapers">
+              <option value="year-desc">Newest First</option>
+              <option value="year-asc">Oldest First</option>
+              <option value="subject">Subject A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="papers-grid" id="papersGrid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Past exam papers are the property of the State Examinations Commission.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="papers.js"></script>
+</body>
+</html>

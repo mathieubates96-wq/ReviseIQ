@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Keep admin page out of search results
+Disallow: /admin
+Disallow: /admin.html
+
+# Update this URL to match your actual Vercel domain
+Sitemap: https://reviseiq.vercel.app/sitemap.xml

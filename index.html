@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReviseIQ — Ace Your Leaving Cert</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="ReviseIQ — Ace Your Leaving Cert" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ReviseIQ — Ace Your Leaving Cert" />
+  <meta name="twitter:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="papers.html" class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html" class="nav-link">Quiz</a></li>
+        <li><a href="trends.html" class="nav-link">Topic Trends</a></li>
+        <li><a href="quiz.html" class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">Leaving Cert 2025 Ready</div>
+      <h1 class="hero-title">Ace Your<br /><span class="highlight">Leaving Cert</span></h1>
+      <p class="hero-subtitle">
+        Practice with real SEC past papers, discover which topics come up most,
+        and test yourself with smart quizzes — all in one place.
+      </p>
+      <div class="hero-actions">
+        <a href="quiz.html" class="btn btn-primary">Start a Quiz</a>
+        <a href="papers.html" class="btn btn-secondary">Browse Papers</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Subjects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">20+</span>
+          <span class="stat-label">Years of Papers</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-number">100s</span>
+          <span class="stat-label">Practice Questions</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card card-float-1">
+        <div class="mini-card-icon">📈</div>
+        <div class="mini-card-text">
+          <strong>Topic Trends</strong>
+          <span>See what comes up most</span>
+        </div>
+      </div>
+      <div class="hero-card card-float-2">
+        <div class="mini-card-icon">✅</div>
+        <div class="mini-card-text">
+          <strong>Quiz Mode</strong>
+          <span>Test your knowledge</span>
+        </div>
+      </div>
+      <div class="hero-card card-float-3">
+        <div class="mini-card-icon">📄</div>
+        <div class="mini-card-text">
+          <strong>Past Papers</strong>
+          <span>Direct from SEC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POMODORO TIMER -->
+  <section class="pomodoro-section" id="pomodoro">
+    <div class="container">
+      <div class="pomodoro-inner">
+        <div class="pomodoro-text">
+          <h2>🍅 Pomodoro Timer</h2>
+          <p>Stay focused with a 25-minute study session. Work, then take a short break — proven to boost retention and reduce burnout.</p>
+          <div class="timer-controls">
+            <button class="timer-btn timer-btn-start" id="timerBtnStart">▶ Start</button>
+            <button class="timer-btn timer-btn-pause" id="timerBtnPause" disabled>⏸ Pause</button>
+            <button class="timer-btn timer-btn-reset" id="timerBtnReset">↺ Reset</button>
+          </div>
+        </div>
+        <div class="pomodoro-widget">
+          <div class="timer-ring-wrap">
+            <svg class="timer-svg" viewBox="0 0 120 120">
+              <circle class="timer-track" cx="60" cy="60" r="54"/>
+              <circle class="timer-fill" id="timerFill" cx="60" cy="60" r="54"/>
+            </svg>
+            <div class="timer-center">
+              <div class="timer-time" id="timerTime">25:00</div>
+              <div class="timer-label" id="timerLabel">Study Session</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECT GRID -->
+  <section class="subjects" id="subjects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Choose Your Subject</h2>
+        <p class="section-sub">Select a subject to access past papers, quizzes, and topic analysis.</p>
+      </div>
+      <div class="subject-grid">
+
+        <a href="subject.html?s=irish" class="subject-card" data-subject="irish">
+          <div class="subject-emoji">🇮🇪</div>
+          <h3>Irish</h3>
+          <p>Gaeilge</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=english" class="subject-card" data-subject="english">
+          <div class="subject-emoji">📖</div>
+          <h3>English</h3>
+          <p>Language & Literature</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=maths" class="subject-card subject-card--featured" data-subject="maths">
+          <div class="subject-emoji">📐</div>
+          <h3>Maths</h3>
+          <p>Project Maths</p>
+          <div class="subject-meta">
+            <span class="tag">H, O &amp; Foundation</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=biology" class="subject-card" data-subject="biology">
+          <div class="subject-emoji">🧬</div>
+          <h3>Biology</h3>
+          <p>Life Sciences</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=chemistry" class="subject-card" data-subject="chemistry">
+          <div class="subject-emoji">⚗️</div>
+          <h3>Chemistry</h3>
+          <p>Physical Sciences</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=history" class="subject-card" data-subject="history">
+          <div class="subject-emoji">🏛️</div>
+          <h3>History</h3>
+          <p>Irish &amp; European</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=geography" class="subject-card" data-subject="geography">
+          <div class="subject-emoji">🌍</div>
+          <h3>Geography</h3>
+          <p>Physical &amp; Human</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=business" class="subject-card" data-subject="business">
+          <div class="subject-emoji">💼</div>
+          <h3>Business</h3>
+          <p>Enterprise &amp; Economics</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=french" class="subject-card" data-subject="french">
+          <div class="subject-emoji">🥐</div>
+          <h3>French</h3>
+          <p>Français</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+        <a href="subject.html?s=spanish" class="subject-card" data-subject="spanish">
+          <div class="subject-emoji">🇪🇸</div>
+          <h3>Spanish</h3>
+          <p>Español</p>
+          <div class="subject-meta">
+            <span class="tag">Higher & Ordinary</span>
+          </div>
+          <div class="subject-arrow">→</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Everything You Need to Succeed</h2>
+        <p class="section-sub">Built specifically for Leaving Cert students using real SEC exam data.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📄</div>
+          <h3>Real Past Papers</h3>
+          <p>Access official SEC past exam papers going back over 20 years, organised by subject and year.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Topic Trend Analysis</h3>
+          <p>See at a glance which topics appear most frequently and which are overdue — focus your study smarter.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Adaptive Quizzes</h3>
+          <p>Test yourself with questions drawn from real exam papers. Track your score and identify weak areas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Study Anywhere</h3>
+          <p>Fully responsive — revise on your phone on the bus, your tablet at home, or your laptop in school.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Exam Focused</h3>
+          <p>Every feature is built around what actually appears in Leaving Cert exams, not generic textbook content.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🆓</div>
+          <h3>Completely Free</h3>
+          <p>No subscriptions, no paywalls. All features are free for every Leaving Cert student in Ireland.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to start studying smarter?</h2>
+        <p>Pick a subject and take your first quiz today.</p>
+        <a href="#subjects" class="btn btn-white">Choose a Subject</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo footer-logo">
+            <span class="logo-icon">LC</span>
+            <span class="logo-text">Study</span>
+          </a>
+          <p>A free revision platform for Leaving Cert students in Ireland. Past papers sourced from the State Examinations Commission (SEC).</p>
+        </div>
+        <div class="footer-col">
+          <h4>Study</h4>
+          <ul>
+            <li><a href="papers.html">Past Papers</a></li>
+            <li><a href="quiz.html">Quiz Mode</a></li>
+            <li><a href="trends.html">Topic Trends</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Subjects</h4>
+          <ul>
+            <li><a href="subject.html?s=maths">Maths</a></li>
+            <li><a href="subject.html?s=english">English</a></li>
+            <li><a href="subject.html?s=irish">Irish</a></li>
+            <li><a href="subject.html?s=biology">Biology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Info</h4>
+          <ul>
+            <li><a href="https://www.examinations.ie" target="_blank" rel="noopener">SEC Website</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Past exam papers are the property of the State Examinations Commission.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="timer.js"></script>
+</body>
+</html>

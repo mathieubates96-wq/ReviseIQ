@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Past Papers — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Past Papers — ReviseIQ" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Past Papers — ReviseIQ" />
+  <meta name="twitter:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="papers-new.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"   class="nav-link">Home</a></li>
+        <li><a href="papers.html"  class="nav-link active">Past Papers</a></li>
+        <li><a href="quiz.html"    class="nav-link">Quiz</a></li>
+        <li><a href="trends.html"  class="nav-link">Topic Trends</a></li>
+        <li><a href="quiz.html"    class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-main">
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">Past Exam Papers</h1>
+        <p class="page-subtitle">
+          Select a subject, year and level — then open the official SEC paper or mark scheme directly.
+        </p>
+      </div>
+    </div>
+
+    <div class="container papers-new-wrap">
+
+      <!-- ── SELECTOR PANEL ── -->
+      <div class="selector-panel">
+
+        <!-- Subject -->
+        <div class="selector-group">
+          <label class="selector-label" for="selSubject">Subject</label>
+          <div class="select-wrap">
+            <select id="selSubject">
+              <option value="">— Choose subject —</option>
+              <option value="maths">📐 Maths</option>
+              <option value="english">📖 English</option>
+              <option value="irish">🇮🇪 Irish</option>
+              <option value="biology">🧬 Biology</option>
+              <option value="chemistry">⚗️ Chemistry</option>
+              <option value="history">🏛️ History</option>
+              <option value="geography">🌍 Geography</option>
+              <option value="business">💼 Business</option>
+              <option value="french">🥐 French</option>
+              <option value="spanish">🇪🇸 Spanish</option>
+              <option value="physics">🔭 Physics</option>
+              <option value="accounting">🧾 Accounting</option>
+              <option value="economics">📉 Economics</option>
+              <option value="art">🎨 Art</option>
+              <option value="music">🎵 Music</option>
+            </select>
+            <span class="select-arrow">▾</span>
+          </div>
+        </div>
+
+        <!-- Year -->
+        <div class="selector-group">
+          <label class="selector-label" for="selYear">Year</label>
+          <div class="select-wrap">
+            <select id="selYear">
+              <option value="">— Choose year —</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020 (COVID — no exams)</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
+              <option value="2015">2015</option>
+            </select>
+            <span class="select-arrow">▾</span>
+          </div>
+        </div>
+
+        <!-- Level toggle -->
+        <div class="selector-group">
+          <label class="selector-label">Level</label>
+          <div class="level-pill-toggle">
+            <button class="pill-btn active" data-level="higher">Higher Level</button>
+            <button class="pill-btn"        data-level="ordinary">Ordinary Level</button>
+          </div>
+        </div>
+
+        <!-- Search button -->
+        <button class="btn btn-primary search-btn" id="searchBtn">Find Papers</button>
+
+      </div>
+
+      <!-- ── RESULTS AREA ── -->
+      <div id="resultsArea" class="results-area results-hidden">
+
+        <!-- Results header -->
+        <div class="results-meta" id="resultsMeta"></div>
+
+        <!-- Cards grid -->
+        <div class="results-grid" id="resultsGrid"></div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+          <div class="empty-icon">🔍</div>
+          <h3>No paper found</h3>
+          <p id="emptyMsg">We don't have a record of that paper yet, or it may not exist.<br>
+            Try a different year or level, or check the SEC website directly.</p>
+          <a href="https://www.examinations.ie/school-exam-papers/" target="_blank" rel="noopener" class="btn btn-secondary">
+            Browse SEC Website →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Past exam papers are the property of the State Examinations Commission (SEC).</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="papers-new.js"></script>
+</body>
+</html>

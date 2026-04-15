@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Quiz — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta name="keywords" content="Leaving Cert, LC papers, SEC papers, Leaving Certificate study, LC quiz, Irish students" />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="AI Quiz — ReviseIQ" />
+  <meta property="og:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ReviseIQ" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI Quiz — ReviseIQ" />
+  <meta name="twitter:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="quiz.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"  class="nav-link">Home</a></li>
+        <li><a href="papers.html" class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html"   class="nav-link active">Quiz</a></li>
+        <li><a href="trends.html" class="nav-link">Topic Trends</a></li>
+        <li><a href="quiz.html"   class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-main">
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">AI Quiz</h1>
+        <p class="page-subtitle">Pick a subject and topic — Claude generates 5 fresh Leaving Cert questions just for you.</p>
+      </div>
+    </div>
+
+    <div class="container quiz-container">
+
+      <!-- ══════════════════════════════════════
+           SCREEN 1 — SETUP
+           ══════════════════════════════════════ -->
+      <div id="screenSetup" class="quiz-screen">
+
+        <!-- API key warning (shown if key missing) -->
+        <div id="apiKeyWarning" class="api-warning hidden">
+          <span class="api-warning-icon">⚠️</span>
+          <div>
+            <strong>API key not set.</strong>
+            Open <code>config.js</code> and replace <code>sk-ant-YOUR-KEY-HERE</code>
+            with your real key from
+            <a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a>.
+          </div>
+        </div>
+
+        <div class="setup-card">
+          <h2>Set up your quiz</h2>
+          <p class="setup-sub">Claude will generate 5 multiple-choice questions tailored to your selection.</p>
+
+          <div class="setup-grid">
+
+            <!-- Subject -->
+            <div class="setup-field">
+              <label class="setup-label" for="selSubject">Subject</label>
+              <div class="select-wrap">
+                <select id="selSubject">
+                  <option value="maths">📐 Maths</option>
+                  <option value="english">📖 English</option>
+                  <option value="irish">🇮🇪 Irish</option>
+                  <option value="biology">🧬 Biology</option>
+                  <option value="chemistry">⚗️ Chemistry</option>
+                  <option value="history">🏛️ History</option>
+                  <option value="geography">🌍 Geography</option>
+                  <option value="business">💼 Business</option>
+                  <option value="french">🥐 French</option>
+                  <option value="spanish">🇪🇸 Spanish</option>
+                  <option value="physics">🔭 Physics</option>
+                  <option value="accounting">🧾 Accounting</option>
+                </select>
+                <span class="sel-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- Topic (populated dynamically) -->
+            <div class="setup-field">
+              <label class="setup-label" for="selTopic">Topic</label>
+              <div class="select-wrap">
+                <select id="selTopic"></select>
+                <span class="sel-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- Level -->
+            <div class="setup-field">
+              <label class="setup-label">Level</label>
+              <div class="pill-toggle">
+                <button class="pill-btn active" data-level="higher">Higher Level</button>
+                <button class="pill-btn" data-level="ordinary">Ordinary Level</button>
+              </div>
+            </div>
+
+          </div>
+
+          <button class="btn btn-primary generate-btn" id="generateBtn">
+            <span class="btn-icon">✨</span> Generate Quiz
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           SCREEN 2 — LOADING
+           ══════════════════════════════════════ -->
+      <div id="screenLoading" class="quiz-screen hidden">
+        <div class="loading-card">
+          <div class="spinner"></div>
+          <h2>Generating your quiz…</h2>
+          <p id="loadingMsg">Claude is writing 5 questions on <strong id="loadingTopic"></strong></p>
+          <p class="loading-sub">This usually takes 5–10 seconds.</p>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════
+           SCREEN 3 — QUESTION
+           ══════════════════════════════════════ -->
+      <div id="screenQuestion" class="quiz-screen hidden">
+
+        <!-- Progress bar -->
+        <div class="progress-wrap">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-meta">
+            <span id="questionCounter">Question 1 of 5</span>
+            <span id="liveScore">Score: 0 / 5</span>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="topic-badge" id="qTopicBadge">Topic</span>
+            <span class="level-badge" id="qLevelBadge">Higher</span>
+          </div>
+          <h2 class="question-text" id="questionText">Question text</h2>
+
+          <!-- Options -->
+          <div class="options-list" id="optionsList">
+            <!-- injected by JS -->
+          </div>
+
+          <!-- Explanation (shown after answer) -->
+          <div class="explanation-box hidden" id="explanationBox">
+            <div class="explanation-icon" id="explanationIcon">✅</div>
+            <div class="explanation-body">
+              <strong id="explanationVerdict">Correct!</strong>
+              <p id="explanationText"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="question-nav">
+          <button class="btn btn-secondary" id="btnPrev" disabled>← Back</button>
+          <button class="btn btn-primary"   id="btnNext" disabled>Next Question →</button>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════
+           SCREEN 4 — RESULTS
+           ══════════════════════════════════════ -->
+      <div id="screenResults" class="quiz-screen hidden">
+
+        <div class="results-card">
+          <div class="score-ring" id="scoreRing">
+            <svg viewBox="0 0 100 100" class="score-svg">
+              <circle class="score-track" cx="50" cy="50" r="42"/>
+              <circle class="score-arc"   cx="50" cy="50" r="42" id="scoreArc"/>
+            </svg>
+            <div class="score-text">
+              <span class="score-num" id="scoreNum">0</span>
+              <span class="score-denom" id="scoreDenom">/5</span>
+            </div>
+          </div>
+
+          <h2 class="results-title" id="resultsTitle">Well done!</h2>
+          <p class="results-sub" id="resultsSub">You scored 0 out of 5</p>
+
+          <!-- Per-question review -->
+          <div class="review-list" id="reviewList"></div>
+
+          <div class="results-actions">
+            <button class="btn btn-primary"   id="btnRetry">Try Again — Same Topic</button>
+            <button class="btn btn-secondary" id="btnNewTopic">Choose New Topic</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════
+           SCREEN 5 — ERROR
+           ══════════════════════════════════════ -->
+      <div id="screenError" class="quiz-screen hidden">
+        <div class="error-card">
+          <div class="error-icon">⚠️</div>
+          <h2>Something went wrong</h2>
+          <p id="errorMsg">Unable to generate quiz questions.</p>
+          <div class="error-detail" id="errorDetail"></div>
+          <button class="btn btn-primary" id="btnErrorBack">← Go Back</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Questions generated by Claude (Anthropic). Not official SEC content.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Load API key config first, then app logic -->
+  <script src="config.js"></script>
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# API keys — never commit this
+config.js
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

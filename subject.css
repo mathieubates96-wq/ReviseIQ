@@ -1,0 +1,74 @@
+/* Subject page */
+.subject-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.subject-hero-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.subject-layout {
+  padding-top: 40px;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.subject-quick-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.quick-link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  transition: all var(--transition);
+}
+
+.quick-link-card:hover {
+  border-color: var(--green-300);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.ql-icon { font-size: 1.8rem; }
+
+.quick-link-card strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+}
+
+.quick-link-card span {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+
+.subject-papers-block h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 16px;
+}
+
+.recent-papers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+@media (max-width: 700px) {
+  .subject-quick-links { grid-template-columns: 1fr; }
+}
