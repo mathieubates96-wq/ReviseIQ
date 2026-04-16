@@ -272,7 +272,7 @@ let ecoStrandInstance      = null;
 let ecoChapterInstance     = null;
 let ecoByYearChartInstance = null;
 let ecoDeepDiveInstance    = null;
-let selectedStrand         = ECO_STRAND_DATA[0].strand;
+let selectedStrand         = 'Microeconomics';
 let selectedByYearStrand   = 'Microeconomics';
 
 // ─────────────────────────────────────────────
@@ -299,7 +299,13 @@ function renderChart() {
       renderEconomicsChapters(selectedStrand);
     }
     renderEcoPredictions(); // always shown for economics
-    renderSidebar(ECO_STRAND_DATA.map(s => ({ topic: s.strand, yearData: s.yearData })));
+    // Sidebar — build from ECO_SECTION_YEARS so we get real yearly presence
+    const ecoSidebarData = ECO_SECTION_YEARS.sections.map(sec => {
+      const yearData = {};
+      ECO_SECTION_YEARS.years.forEach((y, i) => { yearData[y] = sec.data[i] > 0 ? 1 : 0; });
+      return { topic: sec.name, yearData };
+    });
+    renderSidebar(ecoSidebarData);
     return;
   }
 
@@ -334,26 +340,28 @@ function renderChart() {
   renderSidebar(data.map(t => ({ topic: t.topic, yearData: t.yearData })));
 }
 
-// ── ECONOMICS: Strand frequency chart ──
+// ── ECONOMICS: Section frequency chart (uses real ECO_SECTION_YEARS data) ──
 function renderEconomicsStrands() {
   if (ecoStrandInstance) { ecoStrandInstance.destroy(); ecoStrandInstance = null; }
   const canvas = document.getElementById('ecoStrandChart');
   if (!canvas) return;
 
-  const sorted  = [...ECO_STRAND_DATA].sort((a, b) => b.total - a.total);
-  const labels  = sorted.map(s => s.strand);
-  const counts  = sorted.map(s => s.total);
-  const maxYrs  = YEARS.filter(y => y !== 2020).length;
+  // Compute total questions per section from ECO_SECTION_YEARS
+  const sections = ECO_SECTION_YEARS.sections.map((sec, i) => ({
+    name:  sec.name,
+    total: sec.data.reduce((s, v) => s + v, 0),
+    color: PALETTE[i % PALETTE.length],
+  })).sort((a, b) => b.total - a.total);
 
   ecoStrandInstance = new Chart(canvas.getContext('2d'), {
     type: 'bar',
     data: {
-      labels,
+      labels: sections.map(s => s.name),
       datasets: [{
-        label: 'Years appeared',
-        data: counts,
-        backgroundColor: sorted.map((_, i) => PALETTE[i % PALETTE.length].bg),
-        borderColor:     sorted.map((_, i) => PALETTE[i % PALETTE.length].border),
+        label: 'Total questions',
+        data:  sections.map(s => s.total),
+        backgroundColor: sections.map(s => s.color.bg),
+        borderColor:     sections.map(s => s.color.border),
         borderWidth: 2,
         borderRadius: 6,
         borderSkipped: false,
@@ -369,18 +377,20 @@ function renderEconomicsStrands() {
         tooltip: {
           callbacks: {
             label(ctx) {
-              const pct = Math.round((ctx.parsed.x / maxYrs) * 100);
-              return ` Appeared in ${ctx.parsed.x} of ${maxYrs} sittings (${pct}%)`;
+              const total = ctx.parsed.x;
+              const allTotal = sections.reduce((s, v) => s + v.total, 0);
+              const pct = Math.round((total / allTotal) * 100);
+              return ` ${total} questions (${pct}% of all past-paper questions)`;
             },
           },
         },
       },
       scales: {
         x: {
-          min: 0, max: maxYrs,
+          min: 0,
           grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Number of exam years', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+          ticks: { stepSize: 10, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Total questions in past papers (2015–2025)', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
         },
         y: {
           grid: { display: false },
@@ -390,12 +400,11 @@ function renderEconomicsStrands() {
     },
   });
 
-  // Build strand selector pills
+  // Build section selector pills using ECO_STRAND_YEARS keys
   const selector = document.getElementById('ecoStrandSelector');
   if (selector) {
-    selector.innerHTML = ECO_STRAND_DATA.map(s => `
-      <button class="eco-strand-pill${s.strand === selectedStrand ? ' active' : ''}"
-              data-strand="${s.strand}">${s.strand}</button>
+    selector.innerHTML = Object.keys(ECO_STRAND_YEARS).map(name => `
+      <button class="eco-strand-pill${name === selectedStrand ? ' active' : ''}" data-strand="${name}">${name}</button>
     `).join('');
     selector.querySelectorAll('.eco-strand-pill').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -408,61 +417,76 @@ function renderEconomicsStrands() {
   }
 }
 
-// ── ECONOMICS: Chapter breakdown (styled list) ──
-function renderEconomicsChapters(strandName) {
-  ecoChapterInstance = null; // no longer a chart instance
+// ── ECONOMICS: Chapter breakdown (styled list with real data + percentages) ──
+function renderEconomicsChapters(sectionName) {
+  ecoChapterInstance = null;
   const el = document.getElementById('ecoChapterChart');
   if (!el) return;
 
-  const strand = ECO_STRAND_DATA.find(s => s.strand === strandName);
-  if (!strand) return;
+  const sectionData = ECO_STRAND_YEARS[sectionName];
+  if (!sectionData) return;
 
-  const strandIdx = ECO_STRAND_DATA.findIndex(s => s.strand === strandName);
-  const color     = PALETTE[strandIdx % PALETTE.length];
+  const years     = ECO_SECTION_YEARS.years; // [2015..2025]
+  const n         = years.length;            // 11
+  const recent4Idx = [2022, 2023, 2024, 2025].map(y => years.indexOf(y)); // indices 7-10
 
-  const chapters = [...strand.chapters].sort((a, b) => b.recent - a.recent || b.total - a.total);
-  const maxTotal  = Math.max(...chapters.map(c => c.total), 1);
+  // Compute stats for each chapter from real year-by-year data
+  const chapters = sectionData.chapters.map(ch => {
+    const total         = ch.data.reduce((s, v) => s + v, 0);
+    const yearsAppeared = ch.data.filter(v => v > 0).length;
+    const pct           = Math.round((yearsAppeared / n) * 100);
+    const recent4       = recent4Idx.reduce((s, i) => s + ch.data[i], 0);
+    const older         = total - recent4;
+
+    let lastYearIdx = -1;
+    for (let i = ch.data.length - 1; i >= 0; i--) {
+      if (ch.data[i] > 0) { lastYearIdx = i; break; }
+    }
+    const lastYear = lastYearIdx >= 0 ? years[lastYearIdx] : null;
+    const gap      = lastYear ? 2025 - lastYear : 99;
+
+    return { name: ch.name, total, yearsAppeared, pct, recent4, older, lastYear, gap };
+  }).filter(c => c.total > 0).sort((a, b) => b.total - a.total);
+
+  const maxTotal   = Math.max(...chapters.map(c => c.total), 1);
+  const sectionIdx = Object.keys(ECO_STRAND_YEARS).indexOf(sectionName);
+  const color      = PALETTE[sectionIdx % PALETTE.length];
 
   el.innerHTML = chapters.map((ch, i) => {
-    const older      = ch.total - ch.recent;
-    const recentPct  = Math.round((ch.recent / maxTotal) * 100);
-    const olderPct   = Math.round((older      / maxTotal) * 100);
+    const recent4Pct = Math.round((ch.recent4 / maxTotal) * 100);
+    const olderPct   = Math.round((ch.older   / maxTotal) * 100);
 
-    // Tag logic
+    // Tag
     let tagHtml = '';
-    if (ch.recent >= 3) {
-      tagHtml = `<span class="likely-tag tag-hot">Trending</span>`;
-    } else if (ch.recent === 0 && ch.total >= 3) {
-      tagHtml = `<span class="likely-tag tag-due">Overdue</span>`;
-    } else if (older > ch.recent && ch.total >= 4) {
-      tagHtml = `<span class="likely-tag tag-due">Cooling</span>`;
-    }
+    if (ch.recent4 >= 4)                            tagHtml = `<span class="likely-tag tag-hot">Trending ↑</span>`;
+    else if (ch.gap >= 3 && ch.yearsAppeared >= 3)  tagHtml = `<span class="likely-tag tag-due">Overdue</span>`;
+    else if (ch.pct >= 80)                          tagHtml = `<span class="likely-tag tag-hot">Staple</span>`;
 
     return `
       <div class="chapter-item">
         <div class="chapter-item-top">
           <span class="chapter-num">${i + 1}</span>
           <span class="chapter-name">${ch.name}</span>
-          <div class="chapter-counts">
-            <span class="count-recent" style="color:${color.border}">${ch.recent} recent</span>
-            <span class="count-sep">·</span>
-            <span class="count-older">${older} older</span>
-          </div>
+          <span class="chapter-pct-badge" style="color:${color.border}; border-color:${color.border}">${ch.pct}%</span>
           ${tagHtml}
         </div>
         <div class="chapter-bar-track">
-          <div class="chapter-bar-fill chapter-bar-recent"
-               style="width:${recentPct}%; background:${color.bg}; border-right:${recentPct > 0 && olderPct > 0 ? '2px solid white' : 'none'}"></div>
+          <div class="chapter-bar-fill" style="width:${recent4Pct}%; background:${color.bg};${recent4Pct > 0 && olderPct > 0 ? ' border-right:2px solid #fff' : ''}"></div>
           <div class="chapter-bar-fill chapter-bar-older" style="width:${olderPct}%"></div>
         </div>
-        ${i === 0 ? `
-        <div class="chapter-bar-legend">
-          <span style="color:${color.border}">■ Recent (2020–2025)</span>
-          <span style="color:var(--gray-400)">■ Older (2015–2019)</span>
-        </div>` : ''}
+        <div class="chapter-stats">
+          <span>Appeared in <strong>${ch.yearsAppeared}/${n}</strong> past papers</span>
+          <span style="color:${color.border}"><strong>${ch.recent4}</strong> questions in last 4 exams</span>
+        </div>
       </div>
     `;
-  }).join('');
+  }).join('') + `
+    <div class="chapter-bar-legend" style="margin-top:12px; padding-top:10px; border-top:1px solid var(--gray-100)">
+      <span style="color:${color.border}">■ Recent (2022–2025)</span>
+      <span style="color:var(--gray-400)">■ Older (2015–2021)</span>
+      <span style="color:var(--gray-400); margin-left:auto">% = proportion of the 11 past papers where topic appeared</span>
+    </div>
+  `;
 }
 
 // ── ECONOMICS: Sections stacked bar by year ──
@@ -660,7 +684,8 @@ function computeEcoPredictions() {
         reason = `${yearsAppeared} past-paper appearances. A solid topic to have covered.`;
       }
 
-      candidates.push({ strand: strandName, chapter: ch.name, score, tag, tagLabel, reason, yearsAppeared, recent3, lastYear, gap });
+      const pct = Math.round((yearsAppeared / n) * 100);
+      candidates.push({ strand: strandName, chapter: ch.name, score, tag, tagLabel, reason, yearsAppeared, pct, recent3, lastYear, gap });
     }
   }
 
@@ -685,6 +710,7 @@ function renderEcoPredictions() {
           <span class="pred-name">${p.chapter}</span>
           <span class="pred-strand-badge">${p.strand}</span>
           <span class="likely-tag ${tagClass[p.tag] || 'tag-due'}">${p.tagLabel}</span>
+          <span class="pred-pct">${p.pct}%</span>
         </div>
         <p class="pred-reason">${p.reason}</p>
       </div>
