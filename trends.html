@@ -142,32 +142,68 @@
           <!-- ── ECONOMICS two-chart section ── -->
           <div id="ecoChartSection" style="display:none;">
 
-            <!-- Chart 1: Strand frequency -->
-            <div class="chart-card">
-              <div class="chart-card-header">
-                <div>
-                  <h2 class="chart-heading">Strand Frequency — Economics HL (2015–2025)</h2>
-                  <p class="chart-sub">How often each strand appeared in SEC past papers</p>
+            <!-- FREQUENCY mode: strand bar + chapter breakdown -->
+            <div id="ecoFreqSection">
+
+              <!-- Chart 1: Strand frequency -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h2 class="chart-heading">Strand Frequency — Economics HL (2015–2025)</h2>
+                    <p class="chart-sub">How often each strand appeared in SEC past papers</p>
+                  </div>
+                </div>
+                <div class="chart-canvas-wrap" style="height:380px;">
+                  <canvas id="ecoStrandChart"></canvas>
                 </div>
               </div>
-              <div class="chart-canvas-wrap" style="height:380px;">
-                <canvas id="ecoStrandChart"></canvas>
+
+              <!-- Chart 2: Chapter breakdown -->
+              <div class="chart-card" style="margin-top:1.5rem;">
+                <div class="chart-card-header">
+                  <div>
+                    <h2 class="chart-heading">Chapter Breakdown</h2>
+                    <p class="chart-sub">Select a strand to see which chapters come up most in recent years (2020–2025)</p>
+                  </div>
+                </div>
+                <div class="eco-strand-selector" id="ecoStrandSelector"></div>
+                <div class="chart-canvas-wrap" style="height:260px; margin-top:1rem;">
+                  <canvas id="ecoChapterChart"></canvas>
+                </div>
               </div>
+
             </div>
 
-            <!-- Chart 2: Chapter breakdown -->
-            <div class="chart-card" style="margin-top:1.5rem;">
-              <div class="chart-card-header">
-                <div>
-                  <h2 class="chart-heading">Chapter Breakdown</h2>
-                  <p class="chart-sub">Select a strand to see which chapters come up most in recent years (2020–2025)</p>
+            <!-- VIEW BY YEAR mode: sections stacked bar + strand deep dive -->
+            <div id="ecoByYearSection" style="display:none;">
+
+              <!-- Graph 1: Sections Overview (stacked bar, X=year, Y=questions) -->
+              <div class="chart-card">
+                <div class="chart-card-header">
+                  <div>
+                    <h2 class="chart-heading">Sections Overview — Economics HL (2015–2025)</h2>
+                    <p class="chart-sub">Total questions per year, coloured by syllabus section</p>
+                  </div>
+                </div>
+                <div class="chart-canvas-wrap" style="height:340px;">
+                  <canvas id="ecoSectionYearChart"></canvas>
                 </div>
               </div>
-              <!-- Strand selector -->
-              <div class="eco-strand-selector" id="ecoStrandSelector"></div>
-              <div class="chart-canvas-wrap" style="height:260px; margin-top:1rem;">
-                <canvas id="ecoChapterChart"></canvas>
+
+              <!-- Graph 2: Strand Deep Dive (grouped bar per chapter, X=year) -->
+              <div class="chart-card" style="margin-top:1.5rem;">
+                <div class="chart-card-header">
+                  <div>
+                    <h2 class="chart-heading" id="ecoDeepDiveHeading">Strand Deep Dive — Microeconomics</h2>
+                    <p class="chart-sub">Questions per chapter per year — select a strand below</p>
+                  </div>
+                </div>
+                <div class="eco-strand-selector" id="ecoByYearStrandSelector"></div>
+                <div class="chart-canvas-wrap" style="height:280px; margin-top:1rem;">
+                  <canvas id="ecoDeepDiveChart"></canvas>
+                </div>
               </div>
+
             </div>
 
           </div>

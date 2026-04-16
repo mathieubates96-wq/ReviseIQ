@@ -41,6 +41,54 @@ const ECO_STRAND_DATA = [
 ];
 
 // ─────────────────────────────────────────────
+// Economics per-year data (from gen_year_data.py)
+// ─────────────────────────────────────────────
+const ECO_SECTION_YEARS = {
+  years: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
+  sections: [
+    {name:'Economic Concepts',       data:[4,  0,  1,  0,  3,  1,  3,  2,  6,  1,  2]},
+    {name:'Microeconomics',          data:[7, 12,  9,  9,  6,  3, 10, 11,  8, 11,  7]},
+    {name:'Macroeconomics',          data:[4,  8,  6,  7,  7,  8,  7,  7,  7, 10, 10]},
+    {name:'International Economics', data:[2,  0,  1,  1,  1,  0,  2,  2,  1,  2,  4]},
+    {name:'Irish Economy',           data:[0,  0,  0,  2,  0,  2,  0,  4,  0,  2,  0]},
+    {name:'Economic Development',    data:[1,  0,  0,  0,  1,  1,  3,  2,  0,  1,  1]},
+  ],
+};
+
+const ECO_STRAND_YEARS = {
+  'Microeconomics': {chapters:[
+    {name:'Supply & Demand',    data:[4, 2, 2, 3, 3, 2, 0, 1, 1, 2, 0]},
+    {name:'Elasticity',         data:[1, 5, 2, 0, 0, 0, 0, 1, 2, 0, 1]},
+    {name:'Market Structures',  data:[2, 3, 3, 4, 3, 1, 7, 3, 1, 2, 1]},
+    {name:'Production & Costs', data:[0, 2, 0, 2, 0, 0, 0, 2, 3, 3, 0]},
+    {name:'Market Failure',     data:[0, 0, 2, 0, 0, 0, 3, 4, 1, 3, 3]},
+  ]},
+  'Macroeconomics': {chapters:[
+    {name:'National Income', data:[0, 0, 0, 3, 0, 0, 0, 3, 1, 5, 1]},
+    {name:'Inflation',       data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3]},
+    {name:'Unemployment',    data:[0, 4, 1, 1, 3, 4, 0, 0, 0, 3, 2]},
+    {name:'Monetary Policy', data:[0, 2, 1, 1, 0, 2, 4, 3, 2, 0, 3]},
+    {name:'Fiscal Policy',   data:[4, 2, 4, 2, 4, 2, 3, 1, 4, 2, 1]},
+  ]},
+  'International Economics': {chapters:[
+    {name:'International Trade',    data:[0, 0, 1, 1, 1, 0, 2, 1, 1, 0, 4]},
+    {name:'Balance of Payments',    data:[0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0]},
+    {name:'Exchange Rates',         data:[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
+  ]},
+  'Economic Concepts': {chapters:[
+    {name:'Consumer Theory',       data:[2, 0, 0, 0, 2, 1, 2, 0, 4, 0, 0]},
+    {name:'Economic Fundamentals', data:[2, 0, 1, 0, 1, 0, 1, 2, 2, 1, 3]},
+  ]},
+  'Irish Economy': {chapters:[
+    {name:'Regional Development', data:[0, 0, 0, 2, 0, 2, 0, 4, 0, 2, 0]},
+  ]},
+  'Economic Development': {chapters:[
+    {name:'Development Economics',     data:[1, 0, 0, 0, 1, 1, 3, 0, 0, 1, 1]},
+    {name:'Demographics & Population', data:[0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0]},
+  ]},
+};
+
+// ─────────────────────────────────────────────
 // Trend data
 // yearData[year] = 1 if topic appeared, 0 if not
 // ─────────────────────────────────────────────
@@ -216,13 +264,16 @@ function appearedInYear(topicObj, year) {
 // ─────────────────────────────────────────────
 // State
 // ─────────────────────────────────────────────
-let currentSubject    = 'economics';
-let currentLevel      = 'higher';
-let currentMode       = 'bar';
-let chartInstance     = null;
-let ecoStrandInstance = null;
-let ecoChapterInstance= null;
-let selectedStrand    = ECO_STRAND_DATA[0].strand;
+let currentSubject         = 'economics';
+let currentLevel           = 'higher';
+let currentMode            = 'bar';
+let chartInstance          = null;
+let ecoStrandInstance      = null;
+let ecoChapterInstance     = null;
+let ecoByYearChartInstance = null;
+let ecoDeepDiveInstance    = null;
+let selectedStrand         = ECO_STRAND_DATA[0].strand;
+let selectedByYearStrand   = 'Microeconomics';
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
@@ -232,9 +283,21 @@ function renderChart() {
   if (currentSubject === 'economics') {
     document.getElementById('genericChartSection').style.display = 'none';
     document.getElementById('ecoChartSection').style.display     = 'block';
-    document.querySelector('.trends-mode-wrap').style.display    = 'none';
-    renderEconomicsStrands();
-    renderEconomicsChapters(selectedStrand);
+    document.querySelector('.trends-mode-wrap').style.display    = ''; // show mode toggle
+
+    if (currentMode === 'line') {
+      // "View by Year" mode → per-year stacked + deep dive
+      document.getElementById('ecoFreqSection').style.display    = 'none';
+      document.getElementById('ecoByYearSection').style.display  = 'block';
+      renderEcoByYear();
+      renderEcoStrandDeepDive(selectedByYearStrand);
+    } else {
+      // "Frequency" mode → strand bar + chapter breakdown
+      document.getElementById('ecoFreqSection').style.display    = 'block';
+      document.getElementById('ecoByYearSection').style.display  = 'none';
+      renderEconomicsStrands();
+      renderEconomicsChapters(selectedStrand);
+    }
     renderSidebar(ECO_STRAND_DATA.map(s => ({ topic: s.strand, yearData: s.yearData })));
     return;
   }
@@ -422,6 +485,154 @@ function renderEconomicsChapters(strandName) {
       },
     },
   });
+}
+
+// ── ECONOMICS: Sections stacked bar by year ──
+function renderEcoByYear() {
+  if (ecoByYearChartInstance) { ecoByYearChartInstance.destroy(); ecoByYearChartInstance = null; }
+  const canvas = document.getElementById('ecoSectionYearChart');
+  if (!canvas) return;
+
+  const labels   = ECO_SECTION_YEARS.years.map(String);
+  const datasets = ECO_SECTION_YEARS.sections.map((sec, i) => {
+    const color = PALETTE[i % PALETTE.length];
+    return {
+      label:           sec.name,
+      data:            sec.data,
+      backgroundColor: color.bg,
+      borderColor:     color.border,
+      borderWidth:     1,
+      borderRadius:    3,
+      borderSkipped:   false,
+    };
+  });
+
+  ecoByYearChartInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 700, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 16 },
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label(ctx) {
+              if (ctx.parsed.y === 0) return null;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y} q`;
+            },
+            footer(items) {
+              const total = items.reduce((s, i) => s + i.parsed.y, 0);
+              return `Total: ${total} questions`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+        },
+        y: {
+          stacked: true,
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 5, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Number of questions', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+        },
+      },
+    },
+  });
+}
+
+// ── ECONOMICS: Strand deep dive by year ──
+function renderEcoStrandDeepDive(strandName) {
+  if (ecoDeepDiveInstance) { ecoDeepDiveInstance.destroy(); ecoDeepDiveInstance = null; }
+  const canvas = document.getElementById('ecoDeepDiveChart');
+  if (!canvas) return;
+
+  const strandData = ECO_STRAND_YEARS[strandName];
+  if (!strandData) return;
+
+  const heading = document.getElementById('ecoDeepDiveHeading');
+  if (heading) heading.textContent = `Strand Deep Dive — ${strandName}`;
+
+  const labels   = ECO_SECTION_YEARS.years.map(String);
+  const datasets = strandData.chapters.map((ch, i) => {
+    const color = PALETTE[i % PALETTE.length];
+    return {
+      label:           ch.name,
+      data:            ch.data,
+      backgroundColor: color.bg,
+      borderColor:     color.border,
+      borderWidth:     1.5,
+      borderRadius:    3,
+      borderSkipped:   false,
+    };
+  });
+
+  ecoDeepDiveInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 500, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 14 },
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label(ctx) {
+              if (ctx.parsed.y === 0) return null;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y} question${ctx.parsed.y !== 1 ? 's' : ''}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+        },
+        y: {
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Number of questions', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+        },
+      },
+    },
+  });
+
+  // Build strand selector pills
+  const selector = document.getElementById('ecoByYearStrandSelector');
+  if (selector) {
+    selector.innerHTML = Object.keys(ECO_STRAND_YEARS).map(s => `
+      <button class="eco-strand-pill${s === strandName ? ' active' : ''}" data-strand="${s}">${s}</button>
+    `).join('');
+    selector.querySelectorAll('.eco-strand-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selector.querySelectorAll('.eco-strand-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedByYearStrand = btn.dataset.strand;
+        renderEcoStrandDeepDive(selectedByYearStrand);
+      });
+    });
+  }
 }
 
 // ── BAR CHART ──
