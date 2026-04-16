@@ -291,7 +291,6 @@ function renderChart() {
       document.getElementById('ecoByYearSection').style.display  = 'block';
       renderEcoByYear();
       renderEcoStrandDeepDive(selectedByYearStrand);
-      renderEcoPredictions();
     } else {
       // "Frequency" mode → strand bar + chapter breakdown
       document.getElementById('ecoFreqSection').style.display    = 'block';
@@ -299,6 +298,7 @@ function renderChart() {
       renderEconomicsStrands();
       renderEconomicsChapters(selectedStrand);
     }
+    renderEcoPredictions(); // always shown for economics
     renderSidebar(ECO_STRAND_DATA.map(s => ({ topic: s.strand, yearData: s.yearData })));
     return;
   }
@@ -408,84 +408,61 @@ function renderEconomicsStrands() {
   }
 }
 
-// ── ECONOMICS: Chapter breakdown chart ──
+// ── ECONOMICS: Chapter breakdown (styled list) ──
 function renderEconomicsChapters(strandName) {
-  if (ecoChapterInstance) { ecoChapterInstance.destroy(); ecoChapterInstance = null; }
-  const canvas = document.getElementById('ecoChapterChart');
-  if (!canvas) return;
+  ecoChapterInstance = null; // no longer a chart instance
+  const el = document.getElementById('ecoChapterChart');
+  if (!el) return;
 
   const strand = ECO_STRAND_DATA.find(s => s.strand === strandName);
   if (!strand) return;
 
-  // Sort by recent first, then total
-  const chapters = [...strand.chapters].sort((a, b) => b.recent - a.recent || b.total - a.total);
-  const labels   = chapters.map(c => c.name);
-  const recent   = chapters.map(c => c.recent);
-  const older    = chapters.map(c => c.total - c.recent);
-
   const strandIdx = ECO_STRAND_DATA.findIndex(s => s.strand === strandName);
   const color     = PALETTE[strandIdx % PALETTE.length];
 
-  ecoChapterInstance = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'Recent (2020–2025)',
-          data: recent,
-          backgroundColor: color.bg,
-          borderColor: color.border,
-          borderWidth: 2,
-          borderRadius: 4,
-          borderSkipped: false,
-        },
-        {
-          label: 'Older (2015–2019)',
-          data: older,
-          backgroundColor: 'rgba(156,163,175,0.4)',
-          borderColor: '#9ca3af',
-          borderWidth: 1,
-          borderRadius: 4,
-          borderSkipped: false,
-        },
-      ],
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 500, easing: 'easeOutQuart' },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14 },
-        },
-        tooltip: {
-          callbacks: {
-            label(ctx) {
-              return ` ${ctx.dataset.label}: ${ctx.parsed.x} question${ctx.parsed.x !== 1 ? 's' : ''}`;
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          stacked: true,
-          min: 0,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Number of questions', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
-        },
-        y: {
-          stacked: true,
-          grid: { display: false },
-          ticks: { font: { family: 'Inter', size: 12 }, color: '#374151' },
-        },
-      },
-    },
-  });
+  const chapters = [...strand.chapters].sort((a, b) => b.recent - a.recent || b.total - a.total);
+  const maxTotal  = Math.max(...chapters.map(c => c.total), 1);
+
+  el.innerHTML = chapters.map((ch, i) => {
+    const older      = ch.total - ch.recent;
+    const recentPct  = Math.round((ch.recent / maxTotal) * 100);
+    const olderPct   = Math.round((older      / maxTotal) * 100);
+
+    // Tag logic
+    let tagHtml = '';
+    if (ch.recent >= 3) {
+      tagHtml = `<span class="likely-tag tag-hot">Trending</span>`;
+    } else if (ch.recent === 0 && ch.total >= 3) {
+      tagHtml = `<span class="likely-tag tag-due">Overdue</span>`;
+    } else if (older > ch.recent && ch.total >= 4) {
+      tagHtml = `<span class="likely-tag tag-due">Cooling</span>`;
+    }
+
+    return `
+      <div class="chapter-item">
+        <div class="chapter-item-top">
+          <span class="chapter-num">${i + 1}</span>
+          <span class="chapter-name">${ch.name}</span>
+          <div class="chapter-counts">
+            <span class="count-recent" style="color:${color.border}">${ch.recent} recent</span>
+            <span class="count-sep">·</span>
+            <span class="count-older">${older} older</span>
+          </div>
+          ${tagHtml}
+        </div>
+        <div class="chapter-bar-track">
+          <div class="chapter-bar-fill chapter-bar-recent"
+               style="width:${recentPct}%; background:${color.bg}; border-right:${recentPct > 0 && olderPct > 0 ? '2px solid white' : 'none'}"></div>
+          <div class="chapter-bar-fill chapter-bar-older" style="width:${olderPct}%"></div>
+        </div>
+        ${i === 0 ? `
+        <div class="chapter-bar-legend">
+          <span style="color:${color.border}">■ Recent (2020–2025)</span>
+          <span style="color:var(--gray-400)">■ Older (2015–2019)</span>
+        </div>` : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 // ── ECONOMICS: Sections stacked bar by year ──

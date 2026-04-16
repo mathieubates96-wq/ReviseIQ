@@ -163,13 +163,11 @@
                 <div class="chart-card-header">
                   <div>
                     <h2 class="chart-heading">Chapter Breakdown</h2>
-                    <p class="chart-sub">Select a strand to see which chapters come up most in recent years (2020–2025)</p>
+                    <p class="chart-sub">Select a strand to see how often each chapter has appeared — recent vs older papers</p>
                   </div>
                 </div>
                 <div class="eco-strand-selector" id="ecoStrandSelector"></div>
-                <div class="chart-canvas-wrap" style="height:260px; margin-top:1rem;">
-                  <canvas id="ecoChapterChart"></canvas>
-                </div>
+                <div id="ecoChapterChart" class="chapter-breakdown-list"></div>
               </div>
 
             </div>
@@ -204,17 +202,17 @@
                 </div>
               </div>
 
-              <!-- Predictions card -->
-              <div class="chart-card pred-card" style="margin-top:1.5rem;">
-                <div class="chart-card-header">
-                  <div>
-                    <h2 class="chart-heading">Most Likely Topics for the Upcoming Exam</h2>
-                    <p class="chart-sub">Ranked by historical frequency, recent trend, and how long since each topic last appeared</p>
-                  </div>
-                </div>
-                <div id="ecoPredictionsList"></div>
-              </div>
+            </div>
 
+            <!-- PREDICTIONS — always shown for Economics regardless of mode -->
+            <div class="chart-card pred-card" style="margin-top:1.5rem;">
+              <div class="chart-card-header">
+                <div>
+                  <h2 class="chart-heading">Most Likely Topics for the Upcoming Exam</h2>
+                  <p class="chart-sub">Ranked by historical frequency, recent trend, and how long since each topic last appeared</p>
+                </div>
+              </div>
+              <div id="ecoPredictionsList"></div>
             </div>
 
           </div>
