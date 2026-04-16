@@ -291,6 +291,7 @@ function renderChart() {
       document.getElementById('ecoByYearSection').style.display  = 'block';
       renderEcoByYear();
       renderEcoStrandDeepDive(selectedByYearStrand);
+      renderEcoPredictions();
     } else {
       // "Frequency" mode → strand bar + chapter breakdown
       document.getElementById('ecoFreqSection').style.display    = 'block';
@@ -633,6 +634,85 @@ function renderEcoStrandDeepDive(strandName) {
       });
     });
   }
+}
+
+// ── ECONOMICS: Compute exam predictions ──
+function computeEcoPredictions() {
+  const years = ECO_SECTION_YEARS.years; // 2015–2025
+  const n     = years.length;
+  const recent3Idx = [2023, 2024, 2025].map(y => years.indexOf(y));
+
+  const candidates = [];
+
+  for (const [strandName, strandObj] of Object.entries(ECO_STRAND_YEARS)) {
+    for (const ch of strandObj.chapters) {
+      const total = ch.data.reduce((s, v) => s + v, 0);
+      if (total === 0) continue;
+
+      const yearsAppeared = ch.data.filter(v => v > 0).length;
+      const recent3       = recent3Idx.reduce((s, i) => s + (ch.data[i] > 0 ? 1 : 0), 0);
+
+      let lastYearIdx = -1;
+      for (let i = ch.data.length - 1; i >= 0; i--) {
+        if (ch.data[i] > 0) { lastYearIdx = i; break; }
+      }
+      const lastYear = lastYearIdx >= 0 ? years[lastYearIdx] : null;
+      const gap      = lastYear ? 2025 - lastYear : 99;
+
+      // Base score: historical frequency + recent presence
+      let score = (yearsAppeared / n) * 60 + recent3 * 13;
+      // Overdue boost: lots of history but absent recently
+      if (gap >= 2 && yearsAppeared >= 4) score += gap * 4;
+
+      // Tag
+      let tag, tagLabel;
+      if      (yearsAppeared >= 8)                       { tag = 'staple';   tagLabel = 'Staple';    }
+      else if (recent3 >= 2)                             { tag = 'hot';      tagLabel = 'Hot streak'; }
+      else if (gap >= 2 && yearsAppeared >= 4)           { tag = 'due';      tagLabel = 'Overdue';   }
+      else                                               { tag = 'watch';    tagLabel = 'Watch';     }
+
+      // Reason
+      let reason;
+      if (tag === 'staple') {
+        reason = `A core topic — appeared in ${yearsAppeared} of ${n} past papers. Expect it every year.`;
+      } else if (tag === 'hot') {
+        reason = `Appeared in ${recent3} of the last 3 exams — a clear upward trend worth prioritising.`;
+      } else if (tag === 'due') {
+        reason = `${yearsAppeared} historical appearances but not seen since ${lastYear} — statistically due for a return.`;
+      } else {
+        reason = `${yearsAppeared} past-paper appearances. A solid topic to have covered.`;
+      }
+
+      candidates.push({ strand: strandName, chapter: ch.name, score, tag, tagLabel, reason, yearsAppeared, recent3, lastYear, gap });
+    }
+  }
+
+  candidates.sort((a, b) => b.score - a.score);
+  return candidates.slice(0, 5);
+}
+
+// ── ECONOMICS: Render predictions card ──
+function renderEcoPredictions() {
+  const container = document.getElementById('ecoPredictionsList');
+  if (!container) return;
+
+  const predictions = computeEcoPredictions();
+  const tagClass = { staple: 'tag-hot', hot: 'tag-hot', due: 'tag-due', watch: 'tag-due' };
+  const rankBg   = ['#f59e0b', 'var(--gray-400)', '#a16207', 'var(--gray-400)', 'var(--gray-400)'];
+
+  container.innerHTML = predictions.map((p, i) => `
+    <div class="pred-item">
+      <span class="pred-rank" style="background:${rankBg[i]}">${i + 1}</span>
+      <div class="pred-info">
+        <div class="pred-header">
+          <span class="pred-name">${p.chapter}</span>
+          <span class="pred-strand-badge">${p.strand}</span>
+          <span class="likely-tag ${tagClass[p.tag] || 'tag-due'}">${p.tagLabel}</span>
+        </div>
+        <p class="pred-reason">${p.reason}</p>
+      </div>
+    </div>
+  `).join('');
 }
 
 // ── BAR CHART ──

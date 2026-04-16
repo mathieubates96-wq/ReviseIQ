@@ -388,6 +388,64 @@
 
 .disclaimer-card strong { font-weight: 700; }
 
+/* ── PREDICTIONS ── */
+.pred-card { padding-bottom: 8px; }
+
+.pred-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.pred-item:last-child { border-bottom: none; }
+
+.pred-rank {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: white;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pred-info  { flex: 1; min-width: 0; }
+
+.pred-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.pred-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.pred-strand-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+
+.pred-reason {
+  font-size: 0.82rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .trends-body {
