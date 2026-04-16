@@ -115,40 +115,63 @@
 
         <!-- LEFT — Chart area -->
         <div class="chart-area">
-          <div class="chart-card">
-            <div class="chart-card-header">
-              <div>
-                <h2 class="chart-heading" id="chartHeading">Topic Frequency — Maths Higher (2015–2024)</h2>
-                <p class="chart-sub" id="chartSub">Total appearances across 9 exam sittings</p>
+
+          <!-- ── GENERIC chart (Maths / Biology / History) ── -->
+          <div id="genericChartSection">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <div>
+                  <h2 class="chart-heading" id="chartHeading">Topic Frequency</h2>
+                  <p class="chart-sub" id="chartSub">Total appearances across exam sittings</p>
+                </div>
+                <button class="btn btn-secondary download-chart-btn" id="downloadChartBtn" title="Save chart as PNG">
+                  <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px">
+                    <path d="M7.5 1v9M4 7l3.5 3.5L11 7"/>
+                    <path d="M1 11v2a1 1 0 001 1h11a1 1 0 001-1v-2"/>
+                  </svg>
+                  Download PNG
+                </button>
               </div>
-              <button class="btn btn-secondary download-chart-btn" id="downloadChartBtn" title="Save chart as PNG">
-                <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;vertical-align:-2px">
-                  <path d="M7.5 1v9M4 7l3.5 3.5L11 7"/>
-                  <path d="M1 11v2a1 1 0 001 1h11a1 1 0 001-1v-2"/>
-                </svg>
-                Download PNG
-              </button>
-            </div>
-            <div class="chart-canvas-wrap">
-              <canvas id="trendsChart"></canvas>
-            </div>
-          </div>
-
-          <!-- Legend -->
-          <div class="chart-legend" id="chartLegend"></div>
-
-          <!-- Subtopics drill-down (Economics only) -->
-          <div class="chart-card subtopics-card" id="subtopicsPanel" style="display:none; margin-top:1.5rem;">
-            <div class="chart-card-header">
-              <div>
-                <h2 class="chart-heading" id="subtopicsHeading">Subtopics</h2>
-                <p class="chart-sub">Most common subtopics within this unit across all past papers</p>
+              <div class="chart-canvas-wrap">
+                <canvas id="trendsChart"></canvas>
               </div>
             </div>
-            <div class="chart-canvas-wrap" style="height:200px;">
-              <canvas id="subtopicsChart"></canvas>
-            </div>
+            <div class="chart-legend" id="chartLegend"></div>
           </div>
+
+          <!-- ── ECONOMICS two-chart section ── -->
+          <div id="ecoChartSection" style="display:none;">
+
+            <!-- Chart 1: Strand frequency -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <div>
+                  <h2 class="chart-heading">Strand Frequency — Economics HL (2015–2025)</h2>
+                  <p class="chart-sub">How often each strand appeared in SEC past papers</p>
+                </div>
+              </div>
+              <div class="chart-canvas-wrap" style="height:380px;">
+                <canvas id="ecoStrandChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Chart 2: Chapter breakdown -->
+            <div class="chart-card" style="margin-top:1.5rem;">
+              <div class="chart-card-header">
+                <div>
+                  <h2 class="chart-heading">Chapter Breakdown</h2>
+                  <p class="chart-sub">Select a strand to see which chapters come up most in recent years (2020–2025)</p>
+                </div>
+              </div>
+              <!-- Strand selector -->
+              <div class="eco-strand-selector" id="ecoStrandSelector"></div>
+              <div class="chart-canvas-wrap" style="height:260px; margin-top:1rem;">
+                <canvas id="ecoChapterChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         <!-- RIGHT — Sidebar -->
