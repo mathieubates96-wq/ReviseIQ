@@ -572,16 +572,19 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 16px 24px 0;
+  padding: 16px 0 0;
 }
 
 .eco-strand-pill {
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1.5px solid var(--border);
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px 8px 8px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-600);
+  font-size: 0.83rem;
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   cursor: pointer;
@@ -589,13 +592,39 @@
   white-space: nowrap;
 }
 
+.eco-strand-num {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--gray-200);
+  color: var(--gray-500);
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
 .eco-strand-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--green-300);
+  color: var(--green-700);
+  background: var(--green-50);
+}
+
+.eco-strand-pill:hover .eco-strand-num {
+  background: var(--green-100);
+  color: var(--green-700);
 }
 
 .eco-strand-pill.active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+  background: var(--green-600);
+  border-color: var(--green-600);
+  color: white;
+}
+
+.eco-strand-pill.active .eco-strand-num {
+  background: rgba(255,255,255,0.22);
+  color: white;
 }

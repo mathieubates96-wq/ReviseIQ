@@ -55,36 +55,34 @@ const ECO_SECTION_YEARS = {
   ],
 };
 
+// Official LC Economics syllabus strands (5 strands)
 const ECO_STRAND_YEARS = {
-  'Microeconomics': {chapters:[
-    {name:'Supply & Demand',    data:[4, 2, 2, 3, 3, 2, 0, 1, 1, 2, 0]},
-    {name:'Elasticity',         data:[1, 5, 2, 0, 0, 0, 0, 1, 2, 0, 1]},
-    {name:'Market Structures',  data:[2, 3, 3, 4, 3, 1, 7, 3, 1, 2, 1]},
-    {name:'Production & Costs', data:[0, 2, 0, 2, 0, 0, 0, 2, 3, 3, 0]},
-    {name:'Market Failure',     data:[0, 0, 2, 0, 0, 0, 3, 4, 1, 3, 3]},
+  'Strand 1 — Foundations': { chapters: [
+    { name: '1.1 Economic Thinking & Methodology', data: [2, 0, 1, 0, 1, 0, 1, 2, 2, 1, 3] },
+    { name: '1.2 Scarcity, Choice & PPF',          data: [2, 0, 0, 0, 2, 1, 2, 0, 4, 0, 0] },
   ]},
-  'Macroeconomics': {chapters:[
-    {name:'National Income', data:[0, 0, 0, 3, 0, 0, 0, 3, 1, 5, 1]},
-    {name:'Inflation',       data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3]},
-    {name:'Unemployment',    data:[0, 4, 1, 1, 3, 4, 0, 0, 0, 3, 2]},
-    {name:'Monetary Policy', data:[0, 2, 1, 1, 0, 2, 4, 3, 2, 0, 3]},
-    {name:'Fiscal Policy',   data:[4, 2, 4, 2, 4, 2, 3, 1, 4, 2, 1]},
+  'Strand 2 — Decision Making': { chapters: [
+    { name: '2.1 Supply, Demand & Equilibrium',    data: [4, 2, 2, 3, 3, 2, 0, 1, 1, 2, 0] },
+    { name: '2.2 Elasticity',                      data: [1, 5, 2, 0, 0, 0, 0, 1, 2, 0, 1] },
+    { name: '2.3 Costs of Production',             data: [0, 2, 0, 2, 0, 0, 0, 2, 3, 3, 0] },
+    { name: '2.4 Govt Intervention & Prices',      data: [0, 0, 2, 0, 0, 0, 3, 4, 1, 3, 3] },
   ]},
-  'International Economics': {chapters:[
-    {name:'International Trade',    data:[0, 0, 1, 1, 1, 0, 2, 1, 1, 0, 4]},
-    {name:'Balance of Payments',    data:[0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 0]},
-    {name:'Exchange Rates',         data:[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]},
+  'Strand 3 — Markets': { chapters: [
+    { name: '3.1 Market Structures',               data: [2, 3, 3, 4, 3, 1, 7, 3, 1, 2, 1] },
+    { name: '3.2 Labour Market',                   data: [0, 4, 1, 1, 3, 4, 0, 0, 0, 3, 2] },
+    { name: '3.3 Market Failure & Externalities',  data: [0, 0, 2, 0, 0, 0, 3, 4, 1, 3, 3] },
   ]},
-  'Economic Concepts': {chapters:[
-    {name:'Consumer Theory',       data:[2, 0, 0, 0, 2, 1, 2, 0, 4, 0, 0]},
-    {name:'Economic Fundamentals', data:[2, 0, 1, 0, 1, 0, 1, 2, 2, 1, 3]},
+  'Strand 4 — Macro Policy': { chapters: [
+    { name: '4.1 National Income & Circular Flow', data: [0, 0, 0, 3, 0, 0, 0, 3, 1, 5, 1] },
+    { name: '4.2 Fiscal Policy & Taxation',        data: [4, 2, 4, 2, 4, 2, 3, 1, 4, 2, 1] },
+    { name: '4.3 Employment & Unemployment',       data: [0, 4, 1, 1, 3, 4, 0, 0, 0, 3, 2] },
+    { name: '4.4 Monetary Policy & ECB',           data: [0, 2, 1, 1, 0, 2, 4, 3, 2, 0, 3] },
+    { name: '4.5 Inflation & Price Level',         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3] },
   ]},
-  'Irish Economy': {chapters:[
-    {name:'Regional Development', data:[0, 0, 0, 2, 0, 2, 0, 4, 0, 2, 0]},
-  ]},
-  'Economic Development': {chapters:[
-    {name:'Development Economics',     data:[1, 0, 0, 0, 1, 1, 3, 0, 0, 1, 1]},
-    {name:'Demographics & Population', data:[0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0]},
+  'Strand 5 — International': { chapters: [
+    { name: '5.1 Economic Growth & Development',   data: [1, 0, 0, 0, 1, 1, 3, 0, 0, 1, 1] },
+    { name: '5.2 Globalisation & Trade Blocs',     data: [0, 0, 0, 2, 0, 2, 0, 4, 0, 2, 0] },
+    { name: '5.3 International Trade & BOP',       data: [2, 0, 1, 1, 1, 0, 2, 2, 1, 2, 4] },
   ]},
 };
 
@@ -272,8 +270,8 @@ let ecoStrandInstance      = null;
 let ecoChapterInstance     = null;
 let ecoByYearChartInstance = null;
 let ecoDeepDiveInstance    = null;
-let selectedStrand         = 'Microeconomics';
-let selectedByYearStrand   = 'Microeconomics';
+let selectedStrand         = 'Strand 2 — Decision Making';
+let selectedByYearStrand   = 'Strand 4 — Macro Policy';
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
@@ -340,6 +338,28 @@ function renderChart() {
   renderSidebar(data.map(t => ({ topic: t.topic, yearData: t.yearData })));
 }
 
+// ── Helper: build numbered strand pills ──
+function buildStrandPills(containerId, activeStrand, onSelect) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = Object.keys(ECO_STRAND_YEARS).map(name => {
+    const m   = name.match(/Strand\s*(\d+)\s*[—\-]\s*(.+)/i);
+    const num = m ? m[1] : '?';
+    const lbl = m ? m[2] : name;
+    return `
+      <button class="eco-strand-pill${name === activeStrand ? ' active' : ''}" data-strand="${name}">
+        <span class="eco-strand-num">${num}</span>${lbl}
+      </button>`;
+  }).join('');
+  el.querySelectorAll('.eco-strand-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      el.querySelectorAll('.eco-strand-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      onSelect(btn.dataset.strand);
+    });
+  });
+}
+
 // ── ECONOMICS: Section frequency chart (uses real ECO_SECTION_YEARS data) ──
 function renderEconomicsStrands() {
   if (ecoStrandInstance) { ecoStrandInstance.destroy(); ecoStrandInstance = null; }
@@ -400,21 +420,11 @@ function renderEconomicsStrands() {
     },
   });
 
-  // Build section selector pills using ECO_STRAND_YEARS keys
-  const selector = document.getElementById('ecoStrandSelector');
-  if (selector) {
-    selector.innerHTML = Object.keys(ECO_STRAND_YEARS).map(name => `
-      <button class="eco-strand-pill${name === selectedStrand ? ' active' : ''}" data-strand="${name}">${name}</button>
-    `).join('');
-    selector.querySelectorAll('.eco-strand-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        selector.querySelectorAll('.eco-strand-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedStrand = btn.dataset.strand;
-        renderEconomicsChapters(selectedStrand);
-      });
-    });
-  }
+  // Build section selector pills
+  buildStrandPills('ecoStrandSelector', selectedStrand, name => {
+    selectedStrand = name;
+    renderEconomicsChapters(selectedStrand);
+  });
 }
 
 // ── ECONOMICS: Chapter breakdown (styled list with real data + percentages) ──
@@ -621,20 +631,10 @@ function renderEcoStrandDeepDive(strandName) {
   });
 
   // Build strand selector pills
-  const selector = document.getElementById('ecoByYearStrandSelector');
-  if (selector) {
-    selector.innerHTML = Object.keys(ECO_STRAND_YEARS).map(s => `
-      <button class="eco-strand-pill${s === strandName ? ' active' : ''}" data-strand="${s}">${s}</button>
-    `).join('');
-    selector.querySelectorAll('.eco-strand-pill').forEach(btn => {
-      btn.addEventListener('click', () => {
-        selector.querySelectorAll('.eco-strand-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectedByYearStrand = btn.dataset.strand;
-        renderEcoStrandDeepDive(selectedByYearStrand);
-      });
-    });
-  }
+  buildStrandPills('ecoByYearStrandSelector', strandName, name => {
+    selectedByYearStrand = name;
+    renderEcoStrandDeepDive(selectedByYearStrand);
+  });
 }
 
 // ── ECONOMICS: Compute exam predictions ──
