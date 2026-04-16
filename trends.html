@@ -53,7 +53,7 @@
       <div class="container">
         <h1 class="page-title">Topic Trends</h1>
         <p class="page-subtitle">
-          See which topics appear most often in past Leaving Cert papers (2015–2024)
+          See which topics appear most often in past Leaving Cert papers (2015–2025)
           and find out what's likely to come up next.
         </p>
       </div>
@@ -69,6 +69,7 @@
           <label class="ctrl-label" for="selSubject">Subject</label>
           <div class="select-wrap">
             <select id="selSubject">
+              <option value="economics">📉 Economics</option>
               <option value="maths">📐 Maths</option>
               <option value="biology">🧬 Biology</option>
               <option value="history">🏛️ History</option>
@@ -135,6 +136,19 @@
 
           <!-- Legend -->
           <div class="chart-legend" id="chartLegend"></div>
+
+          <!-- Subtopics drill-down (Economics only) -->
+          <div class="chart-card subtopics-card" id="subtopicsPanel" style="display:none; margin-top:1.5rem;">
+            <div class="chart-card-header">
+              <div>
+                <h2 class="chart-heading" id="subtopicsHeading">Subtopics</h2>
+                <p class="chart-sub">Most common subtopics within this unit across all past papers</p>
+              </div>
+            </div>
+            <div class="chart-canvas-wrap" style="height:200px;">
+              <canvas id="subtopicsChart"></canvas>
+            </div>
+          </div>
         </div>
 
         <!-- RIGHT — Sidebar -->
@@ -146,7 +160,7 @@
               <span class="sidebar-icon">🎯</span>
               <h3>Likely to Come Up</h3>
             </div>
-            <p class="sidebar-intro">Top 3 topics by total appearances (2015–2024)</p>
+            <p class="sidebar-intro">Top 3 units by total appearances (2015–2025)</p>
             <div class="likely-list" id="likelyList">
               <!-- injected by JS -->
             </div>
@@ -156,7 +170,7 @@
           <div class="sidebar-card glance-card">
             <div class="sidebar-card-header">
               <span class="sidebar-icon">📅</span>
-              <h3>2024 at a Glance</h3>
+              <h3>2025 at a Glance</h3>
             </div>
             <div class="glance-list" id="glanceList">
               <!-- injected by JS -->

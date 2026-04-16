@@ -17,10 +17,10 @@ const PALETTE = [
 ];
 
 // ─────────────────────────────────────────────
-// Years axis — 2015 to 2024 (2020 = COVID, 0)
+// Years axis — 2015 to 2025 (2020 = COVID, 0)
 // ─────────────────────────────────────────────
-const YEARS = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
-const LATEST_YEAR = 2024;
+const YEARS = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025];
+const LATEST_YEAR = 2025;
 
 // ─────────────────────────────────────────────
 // Trend data
@@ -124,6 +124,25 @@ const TREND_DATA = {
     ],
   },
 
+  // ── ECONOMICS ─────────────────────────────
+  economics: {
+    higher: [
+      { topic: 'Market Structures',        yearData: { 2015:1, 2016:1, 2017:1, 2018:1, 2019:1, 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'Market Structures':8, 'Perfect Competition':7, 'Monopoly':3, 'Price Discrimination':3, 'Oligopoly':3 } },
+      { topic: 'Government & Fiscal Policy',yearData: { 2015:1, 2016:1, 2017:1, 2018:1, 2019:1, 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'Taxation':9, 'Fiscal Policy':5, 'Government Intervention':4, 'Govt Finance & Employment':3, 'National Debt':3 } },
+      { topic: 'Consumer Theory',           yearData: { 2015:1, 2016:1, 2017:1, 2018:1, 2019:1, 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'Consumer Behaviour':4, 'Production & Costs':4, 'Cost Curves':3, 'Consumer Utility':2, 'PPF':2 } },
+      { topic: 'Supply & Demand',           yearData: { 2015:1, 2016:1, 2017:1, 2018:1, 2019:1, 2020:1, 2021:0, 2022:1, 2023:1, 2024:1, 2025:0 }, subtopics: { 'Market Equilibrium':6, 'Supply & Demand':6, 'Demand Analysis':4, 'Market Equilibrium':2, 'Law of Demand':1 } },
+      { topic: 'International Trade',       yearData: { 2015:1, 2016:0, 2017:1, 2018:1, 2019:1, 2020:0, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'International Trade':6, 'Balance of Payments':3, 'Exchange Rates':2, 'Trade & Exchange Rates':1, 'Supply Chain':1 } },
+      { topic: 'Money & Banking',           yearData: { 2015:0, 2016:1, 2017:1, 2018:1, 2019:0, 2020:1, 2021:1, 2022:1, 2023:1, 2024:0, 2025:1 }, subtopics: { 'Monetary Policy':5, 'European Central Bank':3, 'Banking & Financial Services':2, 'Central Bank Regulation':2, 'Interest Rates':2 } },
+      { topic: 'Economic Development',      yearData: { 2015:1, 2016:0, 2017:0, 2018:1, 2019:1, 2020:1, 2021:1, 2022:1, 2023:0, 2024:1, 2025:1 }, subtopics: { 'Regional Development':3, 'HDI':3, 'Income Inequality':2, 'Economic Development':1, 'Growth & Development':1 } },
+      { topic: 'Unemployment & Labour',     yearData: { 2015:0, 2016:1, 2017:1, 2018:1, 2019:1, 2020:1, 2021:0, 2022:0, 2023:0, 2024:1, 2025:1 }, subtopics: { 'Labour Market & Employment':5, 'Unemployment':3, 'Demographic Change':2, 'Gig Economy':2, 'Employment':2 } },
+      { topic: 'Market Failure',            yearData: { 2015:0, 2016:0, 2017:1, 2018:0, 2019:0, 2020:0, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'Demerit Goods':3, 'Externalities':3, 'Price Controls & Housing':2, 'Market Failure':2, 'Price Controls':1 } },
+      { topic: 'Elasticity',                yearData: { 2015:1, 2016:1, 2017:1, 2018:0, 2019:0, 2020:0, 2021:0, 2022:1, 2023:1, 2024:0, 2025:1 }, subtopics: { 'Elasticity of Demand':9, 'Price Elasticity':3 } },
+      { topic: 'National Income',           yearData: { 2015:0, 2016:0, 2017:0, 2018:1, 2019:0, 2020:0, 2021:0, 2022:1, 2023:1, 2024:1, 2025:1 }, subtopics: { 'National Income':6, 'Circular Flow':3, 'Consumption':1, 'Investment':1, 'Tourism & Circular Flow':1 } },
+      { topic: 'Inflation',                 yearData: { 2015:0, 2016:0, 2017:0, 2018:0, 2019:0, 2020:0, 2021:0, 2022:0, 2023:0, 2024:0, 2025:1 }, subtopics: { 'CPI':1, 'Cost of Living':1, 'Types of Inflation':1 } },
+    ],
+    ordinary: [],
+  },
+
   // ── HISTORY ───────────────────────────────
   history: {
     higher: [
@@ -179,10 +198,12 @@ function appearedInYear(topicObj, year) {
 // ─────────────────────────────────────────────
 // State
 // ─────────────────────────────────────────────
-let currentSubject = 'maths';
-let currentLevel   = 'higher';
-let currentMode    = 'bar';
-let chartInstance  = null;
+let currentSubject   = 'economics';
+let currentLevel     = 'higher';
+let currentMode      = 'bar';
+let chartInstance    = null;
+let subtopicInstance = null;
+let selectedUnit     = null;
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
@@ -198,16 +219,22 @@ function renderChart() {
     chartInstance = null;
   }
 
-  const subjectLabel  = document.getElementById('selSubject').selectedOptions[0]?.text?.replace(/^\S+\s/, '') ?? currentSubject;
-  const levelLabel    = currentLevel === 'higher' ? 'Higher' : 'Ordinary';
-  const validYearCount = YEARS.filter(y => y !== 2020).length; // 9 sittings
+  const subjectLabel   = document.getElementById('selSubject').selectedOptions[0]?.text?.replace(/^\S+\s/, '') ?? currentSubject;
+  const levelLabel     = currentLevel === 'higher' ? 'Higher' : 'Ordinary';
+  const validYearCount = YEARS.filter(y => y !== 2020).length;
+
+  // Hide subtopics panel when switching subjects
+  const panel = document.getElementById('subtopicsPanel');
+  if (panel && currentSubject !== 'economics') panel.style.display = 'none';
 
   // Update headings
   if (currentMode === 'bar') {
     document.getElementById('chartHeading').textContent =
-      `Topic Frequency — ${subjectLabel} ${levelLabel} (2015–2024)`;
+      `Unit Frequency — ${subjectLabel} ${levelLabel} (2015–2025)`;
     document.getElementById('chartSub').textContent =
-      `Total appearances across ${validYearCount} exam sittings (2020 excluded — no written exams)`;
+      currentSubject === 'economics'
+        ? `Based on real SEC past papers (2015–2025) — click a bar to see subtopics`
+        : `Total appearances across ${validYearCount} exam sittings (2020 excluded — no written exams)`;
   } else {
     document.getElementById('chartHeading').textContent =
       `Year-by-Year Appearances — ${subjectLabel} ${levelLabel}`;
@@ -230,18 +257,20 @@ function renderChart() {
 
 // ── BAR CHART ──
 function renderBarChart(ctx, data) {
-  const sorted  = [...data].sort((a, b) => totalAppearances(b) - totalAppearances(a));
-  const labels  = sorted.map(t => t.topic);
-  const counts  = sorted.map(t => totalAppearances(t));
-  const colors  = sorted.map((_, i) => PALETTE[i % PALETTE.length].bg);
-  const borders = sorted.map((_, i) => PALETTE[i % PALETTE.length].border);
+  const sorted   = [...data].sort((a, b) => totalAppearances(b) - totalAppearances(a));
+  const labels   = sorted.map(t => t.topic);
+  const counts   = sorted.map(t => totalAppearances(t));
+  const maxYears = YEARS.filter(y => y !== 2020).length;
+  const colors   = sorted.map((_, i) => PALETTE[i % PALETTE.length].bg);
+  const borders  = sorted.map((_, i) => PALETTE[i % PALETTE.length].border);
+  const hasSubtopics = currentSubject === 'economics';
 
   chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
       labels,
       datasets: [{
-        label: 'Appearances (2015–2024)',
+        label: 'Appearances',
         data: counts,
         backgroundColor: colors,
         borderColor: borders,
@@ -251,21 +280,27 @@ function renderBarChart(ctx, data) {
       }],
     },
     options: {
-      indexAxis: 'y',         // horizontal bars
+      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
-      animation: {
-        duration: 900,
-        easing: 'easeOutQuart',
-      },
+      animation: { duration: 900, easing: 'easeOutQuart' },
+      onClick: hasSubtopics ? (evt, elements) => {
+        if (!elements.length) return;
+        const idx   = elements[0].index;
+        const unit  = sorted[idx];
+        if (unit.subtopics && Object.keys(unit.subtopics).length) {
+          renderSubtopics(unit);
+        }
+      } : undefined,
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
             label(ctx) {
               const total = ctx.parsed.x;
-              const pct   = Math.round((total / 9) * 100);
-              return ` Appeared ${total} / 9 times (${pct}%)`;
+              const pct   = Math.round((total / maxYears) * 100);
+              const hint  = hasSubtopics ? ' — click to see subtopics' : '';
+              return ` Appeared ${total} / ${maxYears} times (${pct}%)${hint}`;
             },
           },
         },
@@ -273,7 +308,7 @@ function renderBarChart(ctx, data) {
       scales: {
         x: {
           min: 0,
-          max: 9,
+          max: maxYears,
           grid: { color: 'rgba(0,0,0,0.05)' },
           ticks: {
             stepSize: 1,
@@ -298,6 +333,84 @@ function renderBarChart(ctx, data) {
       },
     },
   });
+
+  // Show/hide subtopics panel
+  const panel = document.getElementById('subtopicsPanel');
+  if (panel) panel.style.display = hasSubtopics ? 'block' : 'none';
+  if (hasSubtopics) {
+    // Auto-show the top unit
+    renderSubtopics(sorted[0]);
+  }
+}
+
+// ── SUBTOPICS PANEL ──
+function renderSubtopics(unit) {
+  selectedUnit = unit.topic;
+  const panel = document.getElementById('subtopicsPanel');
+  if (!panel) return;
+
+  const heading = document.getElementById('subtopicsHeading');
+  if (heading) heading.textContent = `${unit.topic} — What Comes Up Most`;
+
+  const canvas = document.getElementById('subtopicsChart');
+  if (!canvas) return;
+
+  if (subtopicInstance) { subtopicInstance.destroy(); subtopicInstance = null; }
+
+  const subs    = Object.entries(unit.subtopics).sort((a, b) => b[1] - a[1]);
+  const labels  = subs.map(s => s[0]);
+  const counts  = subs.map(s => s[1]);
+  const total   = counts.reduce((a, b) => a + b, 0);
+  const unitIdx = (TREND_DATA[currentSubject]?.[currentLevel] ?? [])
+    .sort((a,b) => totalAppearances(b) - totalAppearances(a))
+    .findIndex(u => u.topic === unit.topic);
+  const color   = PALETTE[unitIdx >= 0 ? unitIdx % PALETTE.length : 0];
+
+  subtopicInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Total questions',
+        data: counts,
+        backgroundColor: color.bg,
+        borderColor: color.border,
+        borderWidth: 2,
+        borderRadius: 5,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 600, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) {
+              const pct = Math.round((ctx.parsed.x / total) * 100);
+              return ` ${ctx.parsed.x} questions (${pct}% of unit)`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+        },
+        y: {
+          grid: { display: false },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#374151' },
+        },
+      },
+    },
+  });
+
+  panel.style.display = 'block';
 }
 
 // ── LINE CHART ──
@@ -411,6 +524,7 @@ function renderSidebar(data) {
   // ── Likely to Come Up ──
   const likelyList = document.getElementById('likelyList');
   likelyList.innerHTML = top3.map((t, i) => {
+    const maxYears  = YEARS.filter(y => y !== 2020).length;
     const pct       = Math.round((t.total / maxTotal) * 100);
     const appearedLast = appearedInYear(t, LATEST_YEAR);
     const tagCls    = appearedLast ? 'tag-hot' : 'tag-due';
@@ -422,7 +536,7 @@ function renderSidebar(data) {
         <span class="likely-rank rank-${i + 1}">${i + 1}</span>
         <div class="likely-info">
           <div class="likely-name">${t.topic}</div>
-          <div class="likely-count">${t.total} / 9 years</div>
+          <div class="likely-count">${t.total} / ${maxYears} years</div>
           <span class="likely-tag ${tagCls}">${tagText}</span>
         </div>
         <div class="likely-bar-wrap">
