@@ -140,6 +140,100 @@ const TOPICS = {
 };
 
 // ─────────────────────────────────────────────
+// Economics topic → JSON bank topic mapping
+// ─────────────────────────────────────────────
+const ECO_TOPIC_MAP = {
+  'Supply & Demand': [
+    'Supply and Demand','Demand and Supply','Demand and Market Equilibrium',
+    'Law of Demand','Market Equilibrium','Supply and Price Discrimination',
+  ],
+  'Market Structures & Competition': [
+    'Market Structures','Market Structures - Monopoly','Market Structures - Oligopoly',
+    'Market Structures - Perfect Competition','Market Structures / Oligopoly',
+    'Market Structures and Price Controls','Perfect Competition',
+    'Price Discrimination','Pricing Strategies',
+  ],
+  'National Income & GDP': [
+    'National Income','Circular Flow of Income','National Income/Household Savings',
+    'Tourism and Circular Flow','Consumption','Investment','Multiplier',
+  ],
+  'Inflation & Deflation': [
+    'Inflation/Consumer Price Index','Inflation/Cost of Living','Types of Inflation',
+  ],
+  'Unemployment': [
+    'Unemployment','Employment','Labour Market and Employment','Labour Economics',
+    'Labour Market / Gig Economy','Labour Economics and Demographic Change',
+    'Labour Demand','Labour Force, Economic Rent, Bonds, Capital',
+    'Labour Market/Price Controls',
+  ],
+  'International Trade & Balance of Payments': [
+    'International Trade','International Trade and Exchange Rates','Balance of Payments',
+    'Exchange Rates','Trade Protection/Tariffs','Trade Protectionism',
+    'Specialisation and Cost Advantages','Supply Chain',
+  ],
+  'Money, Banking & Interest Rates': [
+    'Monetary Policy','Monetary Policy and Eurozone','Monetary Policy and Interest Rates',
+    'Banking / Financial Services','Banking and Credit','Central Bank and Financial Regulation',
+    'European Central Bank','Household Savings',
+  ],
+  'Government & Fiscal Policy': [
+    'Fiscal Policy','Government Finance','Government Finance and Employment',
+    'Government Finance and National Debt','Government Intervention',
+    'Government Policy Objectives','Government Policy and Ageing Population','Taxation',
+  ],
+  'Economic Growth & Development': [
+    'Economic Growth','Economic Growth and Development','Development Economics',
+    'Development Economics - HDI','Economic Development','Economic Aims',
+    'Ageing Population','Demographics and Population','Regional Development',
+    'Housing and Regional Development','Foreign Direct Investment',
+    'Income Inequality and Government Policy','Hidden Economy','Tourism',
+  ],
+  'Irish Economy & EU': [
+    'Housing Market and Government Intervention','Environmental Sustainability',
+    'Education Economics','Economic Impact of Events/Cost-Benefit Analysis',
+  ],
+  'Price Elasticity': [
+    'Elasticity of Demand','Price Elasticity of Demand','Price Controls',
+    'Price Controls and Housing Market','Price Controls and Market Failure',
+  ],
+  'Consumer & Producer Surplus': [
+    'Consumer Behaviour','Consumer Behaviour / Price Effects','Consumer Utility and Demand',
+    'Utility and Consumer Behaviour','Equi-Marginal Principle',
+    'Law of Diminishing Marginal Utility','Law of Diminishing Marginal Returns',
+    'Cost Analysis','Cost Curves','Cost-Benefit Analysis','Production and Costs',
+    'Short Run Production Decisions','Capital and Labour','Land Economics',
+    'Production Possibilities Frontier','Production Possibility Frontier',
+    'Fundamental Economic Concepts','Opportunity Cost','Opportunity Cost and Externalities',
+    'Externalities','Market Failure','Market Failure - Demerit Goods','Merit Goods',
+    'Greenwashing/Market Failure','Economic Theory','Economic Thought',
+    'Economic Statements/Methodology','Methodology - Positive and Normative Statements',
+  ],
+};
+
+// Cache for loaded economics bank
+let ecoBank = null;
+
+async function loadEcoBank() {
+  if (ecoBank) return ecoBank;
+  const res = await fetch('/data/economics_mcq.json');
+  if (!res.ok) throw new Error('Could not load question bank.');
+  ecoBank = await res.json();
+  return ecoBank;
+}
+
+function pickFromBank(bank, topic, count) {
+  const mappedTopics = ECO_TOPIC_MAP[topic] || [];
+  const pool = bank.filter(q => mappedTopics.includes(q.topic));
+  if (pool.length === 0) throw new Error(`No questions found for topic: ${topic}`);
+  // Shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, Math.min(count, pool.length));
+}
+
+// ─────────────────────────────────────────────
 // State
 // ─────────────────────────────────────────────
 let state = {
@@ -175,9 +269,14 @@ function populateTopics(subject) {
 }
 
 // ─────────────────────────────────────────────
-// Call /api/quiz serverless function
+// Generate questions — bank for economics, API for all others
 // ─────────────────────────────────────────────
 async function generateQuestions(subject, topic, level, count) {
+  if (subject === 'economics') {
+    const bank = await loadEcoBank();
+    return pickFromBank(bank, topic, count);
+  }
+
   const res = await fetch('/api/quiz', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -227,9 +326,11 @@ function updateTimerDisplay() {
   const badge = document.getElementById('qTimerBadge');
   if (!badge) return;
   badge.classList.remove('hidden', 'timer-badge--low', 'timer-badge--critical');
-  badge.textContent = timerRemaining;
-  if (timerRemaining <= 5)       badge.classList.add('timer-badge--critical');
-  else if (timerRemaining <= 15) badge.classList.add('timer-badge--low');
+  const m = Math.floor(timerRemaining / 60);
+  const s = timerRemaining % 60;
+  badge.textContent = m > 0 ? `${m}:${String(s).padStart(2,'0')}` : `${s}`;
+  if (timerRemaining <= 10)      badge.classList.add('timer-badge--critical');
+  else if (timerRemaining <= 30) badge.classList.add('timer-badge--low');
 }
 
 function timeOutQuestion() {
