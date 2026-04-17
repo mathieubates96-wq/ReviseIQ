@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marking Scheme Viewer — ReviseIQ</title>
-  <meta name="description" content="ReviseIQ — View past paper questions side-by-side with official marking scheme breakdowns." />
+  <title>Question Bank — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ — Browse past paper questions by topic and reveal official marking schemes." />
   <meta name="author" content="ReviseIQ" />
   <meta name="robots" content="index, follow" />
   <link rel="stylesheet" href="styles.css" />
@@ -27,9 +27,9 @@
         <li><a href="papers.html"      class="nav-link">Past Papers</a></li>
         <li><a href="quiz.html"        class="nav-link">Quiz</a></li>
         <li><a href="flashcards.html"  class="nav-link">Flashcards</a></li>
-        <li><a href="markscheme.html"  class="nav-link">Mark Scheme</a></li>
+        <li><a href="markscheme.html"  class="nav-link">Mark Guide</a></li>
         <li><a href="trends.html"      class="nav-link">Topic Trends</a></li>
-        <li><a href="msviewer.html"    class="nav-link active">MS Viewer</a></li>
+        <li><a href="msviewer.html"    class="nav-link active">Question Bank</a></li>
         <li><a href="quiz.html"        class="nav-link nav-cta">Start Studying</a></li>
       </ul>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
@@ -43,81 +43,41 @@
 
     <div class="page-header-band">
       <div class="container">
-        <h1 class="page-title">Marking Scheme Viewer</h1>
-        <p class="page-subtitle">Pick a subject and topic, read the question, attempt it — then reveal the official marking scheme.</p>
+        <h1 class="page-title">Question Bank</h1>
+        <p class="page-subtitle">Pick a subject and topic to see all questions. Attempt each one, then tap to reveal the marking scheme.</p>
       </div>
     </div>
 
     <div class="container msv-page">
 
-      <!-- ── FILTER ROWS ── -->
+      <!-- ── FILTERS ── -->
       <div class="msv-filters">
 
-        <!-- Row 1: Subjects -->
         <div class="msv-filter-row">
           <span class="msv-filter-label">Subject</span>
           <div class="msv-filter-pills" id="msvSubjectRow"></div>
         </div>
 
-        <!-- Row 2: Topics -->
-        <div class="msv-filter-row" id="msvTopicRowWrap">
+        <div class="msv-filter-row">
           <span class="msv-filter-label">Topic</span>
-          <div class="msv-filter-pills" id="msvTopicRow"></div>
+          <div class="msv-filter-pills" id="msvTopicRow">
+            <span class="msv-filter-hint">Select a subject first</span>
+          </div>
         </div>
 
-        <!-- Row 3: Question list -->
-        <div class="msv-filter-row" id="msvQListWrap">
-          <span class="msv-filter-label">Question</span>
-          <div class="msv-q-list" id="msvQList"></div>
+        <div class="msv-filter-row" id="msvYearRowWrap" style="display:none;">
+          <span class="msv-filter-label">Year</span>
+          <div class="msv-filter-pills" id="msvYearRow"></div>
         </div>
 
       </div>
 
-      <!-- ── SPLIT-PANEL VIEWER ── -->
-
-      <!-- Empty state shown when no question is selected -->
-      <div class="msv-viewer-empty" id="msvViewerEmpty">
-        <div class="msv-empty-icon">📝</div>
-        <p>Select a subject and topic above to load questions.</p>
-      </div>
-
-      <!-- Viewer shown once a question is loaded -->
-      <div class="msv-wrap" id="msvWrap" style="display:none;">
-
-        <!-- LEFT / TOP: Question -->
-        <div class="msv-question-panel">
-
-          <div class="msv-panel-header">
-            <span class="msv-badge">📝 Question</span>
-            <div class="msv-meta" id="msvMeta"></div>
-          </div>
-
-          <div class="msv-question-body">
-            <div class="msv-question-section" id="msvQuestionSection"></div>
-            <p class="msv-question-text" id="msvQuestionText"></p>
-          </div>
-
-          <div class="msv-panel-footer">
-            <button class="msv-toggle-btn" id="msvToggleBtn" aria-expanded="false">
-              <span class="msv-toggle-icon">👁</span>
-              Show Marking Scheme
-            </button>
-            <span class="msv-hint">Attempt the question first!</span>
-          </div>
-
+      <!-- ── QUESTION LIST ── -->
+      <div id="msvQuestionList">
+        <div class="msv-list-empty" id="msvListEmpty">
+          <div class="msv-empty-icon">📚</div>
+          <p>Select a subject and topic above to load questions.</p>
         </div>
-
-        <!-- RIGHT / BOTTOM: Marking Scheme -->
-        <div class="msv-scheme-panel" id="msvSchemePanel" aria-hidden="true">
-          <div class="msv-scheme-inner">
-            <div class="msv-scheme-header">
-              <span class="msv-badge msv-badge-scheme">✅ Marking Scheme</span>
-              <button class="msv-close-btn" id="msvCloseBtn" title="Close" aria-label="Close">✕</button>
-            </div>
-            <div id="msvSchemeContent"></div>
-          </div>
-        </div>
-
       </div>
 
     </div>
