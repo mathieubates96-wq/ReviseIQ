@@ -1,0 +1,577 @@
+{
+  "subject": "Economics",
+  "level": "HL",
+  "lastUpdated": "2025",
+  "topics": [
+    {
+      "id": "supply-demand",
+      "topic": "Supply and Demand",
+      "strand": "Strand 2 — Decision Making",
+      "overview": "Questions ask you to explain price changes, shifts in demand or supply, and calculate/identify equilibrium. Diagrams are almost always rewarded.",
+      "keyPhrases": [
+        "ceteris paribus",
+        "inverse relationship between price and quantity demanded",
+        "direct relationship between price and quantity supplied",
+        "shift of the demand/supply curve",
+        "movement along the curve",
+        "excess demand / excess supply",
+        "market clears at equilibrium"
+      ],
+      "fullMarks": [
+        "State the law clearly and precisely (e.g. 'As price rises, quantity demanded falls, ceteris paribus')",
+        "Identify the cause of the shift and name the factor (income, tastes, prices of related goods, expectations)",
+        "Draw a fully labelled demand/supply diagram showing the shift and new equilibrium",
+        "Explain the effect on both price and quantity",
+        "Give a specific, relevant real-world example"
+      ],
+      "partialMarks": [
+        "Correct law stated but no diagram or explanation",
+        "Correct diagram drawn but not labelled (axes, curves, equilibrium point)",
+        "Explanation of direction without stating reason"
+      ],
+      "commonMistakes": [
+        "Confusing a shift of the demand curve with a movement along it — a price change causes movement along the curve, not a shift",
+        "Saying 'demand increases because price falls' — this is the wrong causality; demand increases due to non-price factors",
+        "Unlabelled or incorrectly labelled axes on diagrams",
+        "Confusing 'demand' (the whole curve) with 'quantity demanded' (a point on the curve)"
+      ],
+      "examTip": "Any question on demand or supply almost always awards marks for a labelled diagram. Always draw one, even if not explicitly asked. Label axes (Price/Quantity), both curves, the original and new equilibrium."
+    },
+    {
+      "id": "elasticity",
+      "topic": "Elasticity of Demand",
+      "strand": "Strand 2 — Decision Making",
+      "overview": "Examiner wants you to define PED precisely, calculate it correctly, classify whether demand is elastic/inelastic, and explain implications for revenue.",
+      "keyPhrases": [
+        "responsiveness of quantity demanded to a change in price",
+        "% change in quantity demanded ÷ % change in price",
+        "PED > 1 = elastic (price sensitive)",
+        "PED < 1 = inelastic (price insensitive)",
+        "total revenue rises/falls with a price change",
+        "availability of substitutes",
+        "proportion of income spent on the good",
+        "luxury vs necessity"
+      ],
+      "fullMarks": [
+        "Precise formula: PED = % ΔQd ÷ % ΔP",
+        "Correct numerical calculation showing working",
+        "Correct classification as elastic or inelastic with reference to the calculated value",
+        "Explanation of the revenue implication (elastic: price up → revenue falls; inelastic: price up → revenue rises)",
+        "State a factor that determines PED and explain why (e.g. 'many substitutes → more elastic')"
+      ],
+      "partialMarks": [
+        "Correct formula stated but calculation error",
+        "Correct answer without showing working",
+        "Definition without formula"
+      ],
+      "commonMistakes": [
+        "Getting the formula upside down (ΔP ÷ ΔQd instead of ΔQd ÷ ΔP)",
+        "Ignoring the negative sign — PED is always negative for normal goods; marks may be lost if sign is omitted where required",
+        "Confusing PED with YED or XED in multi-part questions",
+        "Saying 'elastic' without referring to the numerical value being > 1"
+      ],
+      "examTip": "Always show the formula, then substitute values, then state whether elastic/inelastic. Two-mark questions usually want: formula + value. Four-mark questions also want: classification + revenue implication."
+    },
+    {
+      "id": "consumer-behaviour",
+      "topic": "Consumer Behaviour / Utility",
+      "strand": "Strand 2 — Decision Making",
+      "overview": "Questions focus on the Equi-Marginal Principle and the Law of Diminishing Marginal Utility. Numerical calculations testing MU/P ratios are very common.",
+      "keyPhrases": [
+        "satisfaction derived from consuming a good",
+        "marginal utility decreases as consumption increases",
+        "consumer equilibrium: MU₁/P₁ = MU₂/P₂",
+        "utility is maximised when MU per euro is equal for all goods",
+        "allocate spending to equalise marginal utility per euro"
+      ],
+      "fullMarks": [
+        "State the Law of Diminishing Marginal Utility with an example",
+        "State the Equi-Marginal Principle formula: MU_A/P_A = MU_B/P_B",
+        "Set up and solve the calculation correctly, showing each MU/P ratio",
+        "Conclude which good to buy more/less of and why",
+        "Link back to utility maximisation"
+      ],
+      "partialMarks": [
+        "Correct principle stated but calculation not attempted",
+        "Correct MU/P ratio for one good only",
+        "Correct calculation but wrong conclusion"
+      ],
+      "commonMistakes": [
+        "Forgetting to divide MU by price — comparing raw MU values instead of MU/P",
+        "Getting the direction of adjustment wrong (should buy more of the good with higher MU/P)",
+        "Not stating units — utils per euro must be compared"
+      ],
+      "examTip": "Calculation questions almost always use MU/P = MU/P. Show both ratios, state which is higher, state what the consumer should do to restore equilibrium. Full marks usually require the conclusion."
+    },
+    {
+      "id": "production-costs",
+      "topic": "Production and Costs",
+      "strand": "Strand 2 — Decision Making",
+      "overview": "Examiner tests the Law of Diminishing Returns, types of costs (fixed/variable/marginal), and economies/diseconomies of scale. Short-run vs long-run distinction is important.",
+      "keyPhrases": [
+        "short run: at least one fixed factor",
+        "long run: all factors variable",
+        "law of diminishing returns applies in the short run",
+        "as variable inputs increase, marginal product eventually falls",
+        "fixed costs do not change with output",
+        "average cost = total cost ÷ output",
+        "marginal cost = change in total cost ÷ change in output",
+        "economies of scale reduce long-run average cost"
+      ],
+      "fullMarks": [
+        "State the Law of Diminishing Returns precisely, mentioning fixed and variable factors",
+        "Distinguish clearly between short run and long run",
+        "Correctly define and calculate TC, AC, MC, TFC, TVC from a table",
+        "Name and explain at least two internal economies of scale with examples",
+        "Explain why diseconomies of scale occur with a specific example (e.g. communication breakdown)"
+      ],
+      "partialMarks": [
+        "Correct definition without example",
+        "Correct calculation of one cost measure but errors in others",
+        "Economies of scale listed but not explained"
+      ],
+      "commonMistakes": [
+        "Applying the Law of Diminishing Returns to the long run — it only applies in the short run",
+        "Confusing average cost (AC) with marginal cost (MC)",
+        "Saying fixed costs are zero — they are constant, not zero"
+      ],
+      "examTip": "Table questions: always calculate MC before AC. When the question asks you to 'explain' an economy of scale, you must name it, define it, and give a specific example — three separate elements."
+    },
+    {
+      "id": "market-structures",
+      "topic": "Market Structures",
+      "strand": "Strand 3 — Markets",
+      "overview": "Examiner expects you to compare features of different market structures and analyse firm behaviour. Essay-style questions require comparison across structures.",
+      "keyPhrases": [
+        "many buyers and sellers (perfect competition)",
+        "homogeneous product / price taker",
+        "freedom of entry and exit",
+        "single seller / price maker (monopoly)",
+        "barriers to entry",
+        "interdependence (oligopoly)",
+        "non-price competition",
+        "supernormal profit in short run",
+        "normal profit in long run (perfect competition)",
+        "concentration ratio",
+        "kinked demand curve (oligopoly)"
+      ],
+      "fullMarks": [
+        "Name all four features of the structure being asked about",
+        "Explain each feature with a sentence — not just list them",
+        "For comparison questions: explicitly compare named structures across each feature",
+        "Explain short-run vs long-run profit for perfect competition",
+        "Give a real Irish or international example of each market structure"
+      ],
+      "partialMarks": [
+        "Features listed without explanation",
+        "Correct features but no example",
+        "Only 2 of 4 features identified"
+      ],
+      "commonMistakes": [
+        "Saying 'no competition' for monopoly — a monopolist still faces some indirect competition",
+        "Confusing oligopoly with monopolistic competition — oligopoly has interdependence and few firms",
+        "Not mentioning barriers to entry for monopoly questions",
+        "Forgetting that in perfect competition only normal profit is earned in the long run due to freedom of entry"
+      ],
+      "examTip": "A 16-mark market structures question almost always rewards: 4 features × 2 marks each + example + diagram. The diagram for perfect competition must show price = MC = AC at the minimum of AC in long run."
+    },
+    {
+      "id": "price-discrimination",
+      "topic": "Price Discrimination",
+      "strand": "Strand 3 — Markets",
+      "overview": "Examiner tests conditions necessary for price discrimination and its effects on consumers/producers. Must explain why different prices can be charged.",
+      "keyPhrases": [
+        "same good sold at different prices to different consumers",
+        "not based on cost differences",
+        "market must be segmentable — markets must be kept separate",
+        "different price elasticities in each market",
+        "charge higher price in inelastic market",
+        "charge lower price in elastic market",
+        "increases producer surplus / reduces consumer surplus"
+      ],
+      "fullMarks": [
+        "Define price discrimination precisely",
+        "State three conditions necessary: monopoly power, separable markets, different PED in each market",
+        "Explain that higher price is charged where demand is more inelastic",
+        "Give a real-world example with two different prices clearly identified",
+        "Evaluate effect on consumers and producer"
+      ],
+      "partialMarks": [
+        "Definition only with no conditions",
+        "Example given but conditions not explained",
+        "Conditions listed without explaining why they are necessary"
+      ],
+      "commonMistakes": [
+        "Not stating that markets must be kept separate (arbitrage must be prevented)",
+        "Saying the monopolist can 'charge any price' — price depends on demand in each segment",
+        "Giving an example without identifying the two price segments"
+      ],
+      "examTip": "The three conditions are the core of any price discrimination question. Memorise: (1) price-setting power, (2) separable markets, (3) different PED values. Examiners award up to 3 marks for conditions alone."
+    },
+    {
+      "id": "market-failure",
+      "topic": "Market Failure and Externalities",
+      "strand": "Strand 3 — Markets",
+      "overview": "Examiner wants the definition and types of externality, a diagram showing divergence between private and social cost/benefit, and government policy responses.",
+      "keyPhrases": [
+        "cost or benefit falling on third parties",
+        "private cost vs social cost",
+        "marginal private cost (MPC) vs marginal social cost (MSC)",
+        "deadweight welfare loss",
+        "overproduction at market equilibrium (negative externality)",
+        "underproduction (positive externality)",
+        "government intervention to internalise the externality",
+        "Pigouvian tax / subsidy"
+      ],
+      "fullMarks": [
+        "Define externality precisely — cost or benefit on third parties not reflected in the market price",
+        "Distinguish between positive and negative externality with an example of each",
+        "Draw a correctly labelled diagram: MPC, MSC (or MPB, MSB), showing the market output vs optimal output and the deadweight loss",
+        "Identify at least two government policy responses (tax, subsidy, regulation, cap-and-trade)",
+        "Explain why each policy corrects the market failure"
+      ],
+      "partialMarks": [
+        "Definition only with no diagram",
+        "Correct diagram but not labelled",
+        "Policy responses listed but not explained"
+      ],
+      "commonMistakes": [
+        "Confusing negative externality with a demerit good — they are related but distinct concepts",
+        "Drawing the diagram with MSC below MPC for a negative externality — MSC must be above MPC (includes external cost)",
+        "Forgetting to label the deadweight loss triangle on the diagram",
+        "Not specifying which type of externality when explaining policy"
+      ],
+      "examTip": "Diagram marks are available even in short questions. For a negative externality: MSC is above MPC, market produces too much (Qm > Q*), deadweight loss is the triangle between Qm and Q*. Always show the socially optimal output Q*."
+    },
+    {
+      "id": "national-income",
+      "topic": "National Income (GDP, GNP, GNI*)",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests the distinction between GDP, GNP, and Ireland's modified GNI*. Calculations involving net factor income from abroad are common.",
+      "keyPhrases": [
+        "total monetary value of all final goods and services",
+        "produced within borders (GDP) vs by residents (GNP)",
+        "GNP = GDP + net factor income from abroad",
+        "GNI* adjusts for distortions from multinationals",
+        "repatriated profits of foreign multinationals",
+        "aircraft leasing and IP transfers distort Ireland's GDP",
+        "double counting is avoided by using value added or final goods only"
+      ],
+      "fullMarks": [
+        "Define GDP precisely — within borders, all final goods/services, given time period",
+        "Distinguish GDP from GNP: GDP + NFIA = GNP",
+        "Explain why GNI* is used for Ireland — distortion from MNC profit repatriation",
+        "Perform calculations: GNP = GDP ± NFIA; provide correct formula and value",
+        "Identify at least two uses of national income statistics and evaluate one limitation"
+      ],
+      "partialMarks": [
+        "Correct definition but wrong formula",
+        "Correct GDP definition but no GNP distinction",
+        "Calculation with correct formula but arithmetic error"
+      ],
+      "commonMistakes": [
+        "Saying GNP is always greater than GDP — for Ireland, GNP < GDP because foreign firms repatriate profits",
+        "Forgetting to state 'final' goods — intermediate goods are excluded to avoid double counting",
+        "Not specifying a time period (usually 'in a given year')",
+        "Confusing NFIA (net factor income from abroad) with FDI"
+      ],
+      "examTip": "For Ireland questions: always mention that GDP overstates living standards due to MNC profit repatriation, and that GNI* is a better measure of actual domestic income. The 2015 GDP spike ('leprechaun economics') is a strong current affairs example."
+    },
+    {
+      "id": "circular-flow",
+      "topic": "Circular Flow of Income",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests injections, leakages, and the multiplier. Numerical multiplier calculations are frequently tested.",
+      "keyPhrases": [
+        "injections: investment (I), government spending (G), exports (X)",
+        "leakages: savings (S), taxation (T), imports (M)",
+        "equilibrium: injections = leakages",
+        "multiplier = 1 ÷ (1 − MPC) = 1 ÷ MPS",
+        "an injection creates a larger final increase in income",
+        "induced consumption at each round of spending"
+      ],
+      "fullMarks": [
+        "Name all three injections and all three leakages",
+        "State condition for equilibrium: injections = withdrawals",
+        "State the multiplier formula correctly: K = 1 ÷ (1 − MPC) or 1 ÷ MPS",
+        "Correct numerical calculation of the multiplier and final change in income",
+        "Explain why the multiplier effect occurs (induced re-spending at each stage)"
+      ],
+      "partialMarks": [
+        "Two injections and two leakages named but not all",
+        "Multiplier formula stated but not applied",
+        "Correct multiplier value but incorrect final income change"
+      ],
+      "commonMistakes": [
+        "Using MPC instead of MPS in the multiplier formula: K = 1/MPS, not 1/MPC",
+        "Forgetting that MPC + MPS = 1, so MPS = 1 − MPC",
+        "Confusing leakages (which reduce the flow) with injections",
+        "Not multiplying the initial injection by the multiplier to get total income change"
+      ],
+      "examTip": "Multiplier calculation: always write the formula first. If MPC = 0.8, then MPS = 0.2, multiplier = 1/0.2 = 5. Final income change = injection × multiplier. Show every step for full marks."
+    },
+    {
+      "id": "fiscal-policy",
+      "topic": "Fiscal Policy",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests the difference between expansionary and contractionary fiscal policy, automatic stabilisers, and fiscal policy trade-offs.",
+      "keyPhrases": [
+        "use of government taxation and expenditure",
+        "expansionary: increase G or reduce T to stimulate demand",
+        "contractionary: reduce G or increase T to cool demand",
+        "automatic stabilisers reduce cyclical fluctuations without deliberate action",
+        "budget deficit / surplus",
+        "crowding out of private investment",
+        "time lags in fiscal policy"
+      ],
+      "fullMarks": [
+        "Define fiscal policy precisely: government taxation and expenditure to manage aggregate demand",
+        "Distinguish expansionary from contractionary with specific examples",
+        "Explain two automatic stabilisers (e.g. unemployment benefits, progressive taxes) and how each stabilises the economy",
+        "Evaluate one limitation of fiscal policy (time lags, crowding out, political constraints)",
+        "Link fiscal policy decisions to macroeconomic objectives (employment, growth, stability)"
+      ],
+      "partialMarks": [
+        "Definition only with no examples",
+        "Types named but not explained",
+        "One automatic stabiliser explained instead of two"
+      ],
+      "commonMistakes": [
+        "Confusing fiscal policy (government spending/tax) with monetary policy (interest rates/money supply)",
+        "Saying automatic stabilisers require government decisions — they operate automatically without discretionary action",
+        "Not explaining the mechanism: how does raising income tax reduce demand?"
+      ],
+      "examTip": "For automatic stabilisers: explain the mechanism. 'During a recession, unemployment rises → welfare payments increase automatically → disposable income is maintained → consumption does not fall as much → economy is stabilised.'"
+    },
+    {
+      "id": "taxation",
+      "topic": "Taxation",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests types of taxes (direct/indirect, progressive/regressive/proportional), canons of taxation, and the economic effects of specific taxes.",
+      "keyPhrases": [
+        "direct tax: levied on income or wealth (income tax, CGT, CAT)",
+        "indirect tax: levied on expenditure (VAT, excise duty)",
+        "progressive: higher % on higher incomes",
+        "regressive: lower % on higher incomes",
+        "proportional: same % at all income levels",
+        "canons of taxation (Adam Smith): equity, certainty, convenience, economy",
+        "Laffer curve: beyond optimal tax rate, revenue falls"
+      ],
+      "fullMarks": [
+        "Distinguish direct and indirect taxes with two examples of each",
+        "Define progressive, regressive, and proportional with income examples",
+        "State and explain at least three canons of taxation",
+        "Evaluate the economic effects of a tax change: consumer spending, inflation, revenue",
+        "Mention one specific Irish tax and its effect"
+      ],
+      "partialMarks": [
+        "Types listed without being defined",
+        "Canons listed but not explained",
+        "Direct/indirect distinction correct but no examples"
+      ],
+      "commonMistakes": [
+        "Saying VAT is progressive — VAT is regressive because lower earners spend a higher proportion of income",
+        "Confusing equity (fairness) with equality (same amount) in canons of taxation",
+        "Not distinguishing between the tax rate and the tax take"
+      ],
+      "examTip": "The canons of taxation question is very predictable. Know all four: Equity (fair), Certainty (clear), Convenience (easy to pay), Economy (cheap to collect). For full marks, explain each and give an example."
+    },
+    {
+      "id": "monetary-policy",
+      "topic": "Monetary Policy and the ECB",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner focuses on the ECB's role, how interest rate changes affect the Irish economy, and the limitations of monetary policy for Ireland as a Eurozone member.",
+      "keyPhrases": [
+        "ECB sets interest rates for all Eurozone members",
+        "primary objective: price stability (inflation close to 2%)",
+        "main refinancing rate (MRO)",
+        "transmission mechanism: interest rate → investment → output",
+        "higher interest rates: reduce borrowing, increase savings, reduce investment",
+        "Ireland has no independent monetary policy",
+        "one-size-fits-all problem for Eurozone"
+      ],
+      "fullMarks": [
+        "State the ECB's primary objective precisely: maintain price stability, defined as inflation 'close to but below 2%'",
+        "Explain the transmission mechanism: ECB raises rate → commercial banks raise rates → borrowing falls → investment falls → aggregate demand falls → inflation falls",
+        "Identify the 'one size fits all' problem for Ireland: ECB policy may not suit Ireland's economic cycle",
+        "Evaluate two advantages and two disadvantages of Ireland's loss of monetary sovereignty",
+        "Give a specific recent example (e.g. ECB rate hikes 2022–2024)"
+      ],
+      "partialMarks": [
+        "ECB objective stated without precision",
+        "Effect of rate change stated but mechanism not explained",
+        "One size fits all problem identified but not developed"
+      ],
+      "commonMistakes": [
+        "Saying Ireland sets its own interest rates — Ireland lost this power when joining the Eurozone",
+        "Confusing the ECB (monetary policy) with the Irish Central Bank (financial regulation)",
+        "Not explaining the transmission mechanism — just saying 'rates go up, spending falls' is insufficient"
+      ],
+      "examTip": "Ireland-specific angle is almost always rewarded. 'Since Ireland joined the Eurozone in 1999, the ECB sets interest rates. This means Ireland cannot use monetary policy to address domestic inflation or recession independently.' Always contextualise."
+    },
+    {
+      "id": "inflation",
+      "topic": "Inflation",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests types of inflation, measurement via CPI, causes, effects on different groups, and remedies.",
+      "keyPhrases": [
+        "sustained increase in the general price level",
+        "fall in the purchasing power of money",
+        "measured by the Consumer Price Index (CPI)",
+        "demand-pull inflation: excess aggregate demand",
+        "cost-push inflation: rise in production costs",
+        "hyperinflation: extremely rapid price increases",
+        "effects on debtors, creditors, exporters, workers on fixed incomes"
+      ],
+      "fullMarks": [
+        "Define inflation precisely — sustained increase in general price level, purchasing power falls",
+        "Explain demand-pull with cause and Irish example",
+        "Explain cost-push with cause and example (energy prices, wage costs)",
+        "Explain how CPI is calculated (weighted basket of goods, base year)",
+        "Evaluate the effect of inflation on different groups: gains (debtors, asset owners), loses (creditors, fixed-income workers, exporters)"
+      ],
+      "partialMarks": [
+        "Types named but not explained",
+        "Definition correct but no measurement or effect",
+        "One group affected discussed instead of two or more"
+      ],
+      "commonMistakes": [
+        "Confusing inflation (price level rising) with deflation (price level falling) — deflation has its own distinct effects",
+        "Saying exporters always benefit from inflation — Irish exports become less competitive if Irish inflation > EU average",
+        "Not mentioning that debtors benefit from inflation (real value of debt falls)"
+      ],
+      "examTip": "Always address who WINS and who LOSES from inflation in evaluation questions. Debtors, governments, and asset holders tend to win. Creditors, savers, pensioners, and exporters tend to lose."
+    },
+    {
+      "id": "labour-market",
+      "topic": "Labour Market and Unemployment",
+      "strand": "Strand 4 — Macro Policy",
+      "overview": "Examiner tests types of unemployment, causes, consequences, and government remedies. Distinguish types clearly and match remedies to causes.",
+      "keyPhrases": [
+        "frictional: between jobs, short-term, inevitable",
+        "structural: industry decline due to technology or demand shift",
+        "cyclical / demand-deficient: caused by recession",
+        "seasonal: certain times of year",
+        "natural rate of unemployment (NRU)",
+        "derived demand for labour",
+        "labour force participation rate"
+      ],
+      "fullMarks": [
+        "Define unemployment precisely: willing and able to work at current wage but cannot find employment",
+        "Name all four types with a clear definition and real example for each",
+        "Match each government remedy to the correct type (e.g. retraining for structural; demand stimulus for cyclical)",
+        "Evaluate the economic and social consequences of high unemployment",
+        "Reference Irish unemployment data if relevant (e.g. peak 2012, recent lows)"
+      ],
+      "partialMarks": [
+        "Types named without being defined or distinguished",
+        "Remedies given but not matched to cause type",
+        "Example given but type not correctly identified"
+      ],
+      "commonMistakes": [
+        "Saying frictional unemployment is avoidable — it is considered natural and unavoidable in any economy",
+        "Prescribing demand-stimulus for structural unemployment — the correct remedy is retraining/reskilling",
+        "Confusing cyclical (demand-deficient) unemployment with structural (supply-side) unemployment"
+      ],
+      "examTip": "The most important distinction: structural unemployment requires SUPPLY-SIDE policies (retraining, education); cyclical unemployment requires DEMAND-SIDE policies (fiscal/monetary stimulus). Getting this distinction correct earns significant marks."
+    },
+    {
+      "id": "international-trade",
+      "topic": "International Trade and Comparative Advantage",
+      "strand": "Strand 5 — International",
+      "overview": "Examiner tests comparative advantage, reasons for trade, protectionism methods, and the impact of trade barriers. Numerical opportunity cost calculations are common.",
+      "keyPhrases": [
+        "comparative advantage: lower opportunity cost",
+        "absolute advantage: more output per unit of resource",
+        "specialisation and trade increases total output",
+        "terms of trade: export prices relative to import prices",
+        "tariff: tax on imports",
+        "quota: physical limit on imports",
+        "protectionism: infant industry, strategic industry, employment protection",
+        "free trade vs protectionism debate"
+      ],
+      "fullMarks": [
+        "Distinguish absolute advantage from comparative advantage clearly",
+        "Calculate opportunity cost for both countries and identify who has comparative advantage in each good",
+        "Show how both countries gain from specialisation and trade using numerical output",
+        "Name and explain three methods of protectionism with their effects",
+        "Evaluate one argument for and one against protectionism with examples"
+      ],
+      "partialMarks": [
+        "Correct identification of comparative advantage but no calculation",
+        "Calculation attempted but no conclusion drawn",
+        "Methods of protection listed without explanation"
+      ],
+      "commonMistakes": [
+        "Confusing absolute advantage (more output) with comparative advantage (lower opportunity cost)",
+        "Concluding the country with absolute advantage in both goods cannot gain from trade — it can and should specialise in the good with lower opportunity cost",
+        "Not expressing opportunity cost as a ratio (units of one good forgone per unit of another)"
+      ],
+      "examTip": "Opportunity cost table questions: calculate what each country gives up for 1 unit of each good. The country with the lower opportunity cost for Good A should specialise in A, even if less efficient overall."
+    },
+    {
+      "id": "balance-of-payments",
+      "topic": "Balance of Payments",
+      "strand": "Strand 5 — International",
+      "overview": "Examiner tests the components of the BOP, the causes and consequences of current account deficits/surpluses, and policy remedies.",
+      "keyPhrases": [
+        "current account: visible trade (goods) + invisible trade (services) + income + transfers",
+        "capital and financial account: investment flows, FDI",
+        "overall BOP always balances",
+        "current account deficit: importing more than exporting",
+        "J-curve effect after currency depreciation",
+        "Marshall-Lerner condition"
+      ],
+      "fullMarks": [
+        "Define BOP and its main sections clearly",
+        "Distinguish visible (goods) and invisible (services) trade in the current account",
+        "Explain causes of a current account deficit: lack of competitiveness, high domestic demand, overvalued currency",
+        "Identify consequences: exchange rate pressure, borrowing, loss of reserves",
+        "Evaluate at least two policies to reduce a deficit: devaluation, deflation, import controls"
+      ],
+      "partialMarks": [
+        "Definition only with no breakdown of accounts",
+        "Causes identified but not explained",
+        "One remedy given instead of two"
+      ],
+      "commonMistakes": [
+        "Saying the balance of payments can be 'in deficit' overall — the overall BOP always balances; only sub-accounts show deficits",
+        "Confusing trade balance (goods only) with current account balance (goods + services + income + transfers)",
+        "Forgetting that Ireland's current account is distorted by multinational profit repatriation"
+      ],
+      "examTip": "A strong answer on Ireland's BOP always mentions the distortion effect of MNC profits. Ireland may show a current account surplus on paper while domestic firms and workers benefit far less than the headline figure suggests."
+    },
+    {
+      "id": "economic-development",
+      "topic": "Economic Growth and Development",
+      "strand": "Strand 5 — International",
+      "overview": "Examiner distinguishes economic growth from development, tests the HDI, and analyses barriers to development in less developed countries.",
+      "keyPhrases": [
+        "economic growth: increase in real GDP/GNP over time",
+        "economic development: improvement in living standards and wellbeing",
+        "HDI: life expectancy + education + per capita income",
+        "development involves distributional equity, not just growth",
+        "barriers: debt burden, lack of infrastructure, poor governance, brain drain",
+        "FDI, aid, and trade as vehicles for development"
+      ],
+      "fullMarks": [
+        "Distinguish economic growth (quantitative) from economic development (qualitative/broader)",
+        "Define HDI and its three components precisely",
+        "Identify and explain three barriers to development with country-specific examples",
+        "Evaluate two strategies for development (FDI, fair trade, debt relief, education investment)",
+        "Reference a specific developing region or country"
+      ],
+      "partialMarks": [
+        "Growth and development conflated or poorly distinguished",
+        "HDI defined but components not listed",
+        "Barriers listed without explanation"
+      ],
+      "commonMistakes": [
+        "Saying economic growth always leads to development — growth can occur without improving inequality or living standards",
+        "Describing HDI as measuring only income — it is a composite of income, health, and education",
+        "Not giving specific country examples when discussing barriers"
+      ],
+      "examTip": "The distinction between growth and development is a guaranteed 2–4 marks in any development question. Always state it explicitly: 'Economic growth refers to... whereas economic development refers to a broader improvement in...'"
+    }
+  ]
+}

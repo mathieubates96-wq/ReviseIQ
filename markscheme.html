@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marking Scheme Guide — ReviseIQ</title>
+  <meta name="description" content="What examiners look for in each topic — key phrases, full mark criteria, common mistakes." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="markscheme.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"       class="nav-link">Home</a></li>
+        <li><a href="papers.html"      class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html"        class="nav-link">Quiz</a></li>
+        <li><a href="flashcards.html"  class="nav-link">Flashcards</a></li>
+        <li><a href="trends.html"      class="nav-link">Topic Trends</a></li>
+        <li><a href="markscheme.html"  class="nav-link active">Mark Scheme</a></li>
+        <li><a href="quiz.html"        class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-main">
+
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">Marking Scheme Guide</h1>
+        <p class="page-subtitle">What examiners are looking for — key phrases, full mark criteria, and common mistakes for every topic.</p>
+      </div>
+    </div>
+
+    <div class="container ms-wrap">
+
+      <!-- ── SUBJECT PICKER ── -->
+      <div class="ms-subject-row">
+        <button class="ms-subject-btn active" data-subject="economics">
+          <span class="ms-subject-emoji">📉</span>
+          <span>Economics HL</span>
+        </button>
+        <button class="ms-subject-btn ms-subject-soon" disabled>
+          <span class="ms-subject-emoji">📐</span>
+          <span>Maths HL</span>
+          <span class="ms-soon-badge">Soon</span>
+        </button>
+        <button class="ms-subject-btn ms-subject-soon" disabled>
+          <span class="ms-subject-emoji">🧬</span>
+          <span>Biology HL</span>
+          <span class="ms-soon-badge">Soon</span>
+        </button>
+        <button class="ms-subject-btn ms-subject-soon" disabled>
+          <span class="ms-subject-emoji">🏛️</span>
+          <span>History HL</span>
+          <span class="ms-soon-badge">Soon</span>
+        </button>
+        <button class="ms-subject-btn ms-subject-soon" disabled>
+          <span class="ms-subject-emoji">💼</span>
+          <span>Business HL</span>
+          <span class="ms-soon-badge">Soon</span>
+        </button>
+      </div>
+
+      <!-- ── MAIN LAYOUT ── -->
+      <div class="ms-layout">
+
+        <!-- LEFT: topic list -->
+        <div class="ms-topic-nav">
+          <div class="ms-topic-nav-header">Topics</div>
+          <input type="text" class="ms-topic-search" id="msTopicSearch" placeholder="Search topics…" autocomplete="off" />
+          <div class="ms-topic-list" id="msTopicList">
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <!-- RIGHT: topic detail -->
+        <div class="ms-detail-panel" id="msDetailPanel">
+
+          <!-- Empty state -->
+          <div class="ms-detail-empty" id="msDetailEmpty">
+            <div style="font-size:2.4rem;margin-bottom:12px;">👈</div>
+            <p>Select a topic to see what the examiner is looking for</p>
+          </div>
+
+          <!-- Content (injected) -->
+          <div id="msDetailContent" style="display:none;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Guidance based on SEC marking scheme patterns (2015–2025).</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="markscheme.js"></script>
+</body>
+</html>
