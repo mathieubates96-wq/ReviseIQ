@@ -231,6 +231,12 @@
 }
 
 /* ── DETAIL CONTENT ── */
+#msDetailContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .ms-detail-header {
   display: flex;
   align-items: flex-start;
