@@ -85,14 +85,14 @@ img { display: block; max-width: 100%; }
 }
 
 .nav-container {
-  max-width: 1160px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
-  height: 60px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 8px;
 }
 
 .nav-logo {
@@ -124,16 +124,17 @@ img { display: block; max-width: 100%; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   margin-left: auto;
 }
 
 .nav-link {
-  padding: 8px 14px;
+  padding: 6px 10px;
   border-radius: var(--radius-sm);
-  font-size: 0.95rem;
+  font-size: 0.86rem;
   font-weight: 500;
   color: var(--gray-600);
+  white-space: nowrap;
   transition: color var(--transition), background var(--transition);
 }
 
@@ -147,8 +148,8 @@ img { display: block; max-width: 100%; }
   background: var(--green-600);
   color: white;
   font-weight: 600;
-  padding: 8px 18px;
-  margin-left: 8px;
+  padding: 7px 14px;
+  margin-left: 6px;
 }
 
 .nav-link.nav-cta:hover {

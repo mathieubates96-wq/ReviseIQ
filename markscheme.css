@@ -206,7 +206,7 @@
 .ms-detail-panel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
   min-height: 500px;
 }
 
@@ -345,7 +345,7 @@
 .ms-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 20px;
 }
 
 /* Cards */
