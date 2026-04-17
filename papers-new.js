@@ -443,6 +443,40 @@ function renderTopicList(index, filter = '') {
   });
 }
 
+// ─────────────────────────────────────────────
+// Practice set selection state
+// ─────────────────────────────────────────────
+const practiceSet = new Map(); // key: "year|question" → question object
+
+function practiceSetChanged() {
+  const bar   = document.getElementById('practiceBar');
+  const count = document.getElementById('practiceCount');
+  const n = practiceSet.size;
+  if (n === 0) {
+    bar.classList.remove('visible');
+  } else {
+    bar.classList.add('visible');
+    count.textContent = n + ' question' + (n !== 1 ? 's' : '') + ' selected';
+  }
+  // sync all checkboxes
+  document.querySelectorAll('.tq-checkbox').forEach(cb => {
+    const key = cb.dataset.key;
+    cb.checked = practiceSet.has(key);
+    cb.closest('.tq-card').classList.toggle('tq-selected', practiceSet.has(key));
+  });
+}
+
+function qKey(q) {
+  return `${q.year}|${q.question.slice(0, 60)}`;
+}
+
+function toggleQuestion(q) {
+  const k = qKey(q);
+  if (practiceSet.has(k)) practiceSet.delete(k);
+  else practiceSet.set(k, q);
+  practiceSetChanged();
+}
+
 function showTopicQuestions(topic, questions) {
   const empty   = document.getElementById('topicQsEmpty');
   const content = document.getElementById('topicQsContent');
@@ -454,17 +488,21 @@ function showTopicQuestions(topic, questions) {
 
   const years = [...new Set(questions.map(q => q.year))].sort((a,b) => b - a);
   const totalMarks = questions.reduce((s, q) => s + (q.marks || 0), 0);
+  const sortedQs = [...questions].sort((a, b) => b.year - a.year);
 
   header.innerHTML = `
     <div>
       <div class="topic-qs-name">${topic}</div>
       <div class="topic-qs-meta">${questions.length} question${questions.length !== 1 ? 's' : ''} · ${years.length} year${years.length !== 1 ? 's' : ''} · ${totalMarks} marks total</div>
     </div>
+    <div class="tq-random-wrap">
+      <span class="tq-random-label">Pick random</span>
+      <input type="number" class="tq-random-input" id="randomCount" min="1" max="${questions.length}" value="5" />
+      <button class="tq-random-btn" id="randomPickBtn">Add to set</button>
+    </div>
   `;
 
-  const sortedQs = [...questions].sort((a, b) => b.year - a.year);
-
-  list.innerHTML = sortedQs.map(q => {
+  list.innerHTML = sortedQs.map((q, i) => {
     const paperKey = `economics-${q.year}`;
     const local = LOCAL_PAPERS[paperKey];
     const paperLink = local?.paper
@@ -473,21 +511,147 @@ function showTopicQuestions(topic, questions) {
     const msLink = local?.ms
       ? `<a href="${local.ms}" target="_blank" rel="noopener" class="tq-ms-link">📝 Mark Scheme</a>`
       : '';
+    const k = qKey(q);
+    const checked = practiceSet.has(k) ? 'checked' : '';
 
     return `
-      <div class="tq-card">
-        <div class="tq-year">${q.year}</div>
-        <div class="tq-body">
-          <div class="tq-text">${q.question}</div>
-          <div class="tq-footer">
+      <div class="tq-card${practiceSet.has(k) ? ' tq-selected' : ''}" data-idx="${i}">
+        <label class="tq-select-wrap" title="Add to practice set">
+          <input type="checkbox" class="tq-checkbox" data-key="${k}" data-idx="${i}" ${checked} />
+          <span class="tq-checkbox-custom"></span>
+        </label>
+        <div class="tq-main">
+          <div class="tq-card-header">
+            <span class="tq-year-badge">${q.year}</span>
             ${q.marks ? `<span class="tq-marks">${q.marks} marks</span>` : ''}
             ${paperLink}
             ${msLink}
           </div>
+          <div class="tq-text">${q.question}</div>
         </div>
       </div>
     `;
   }).join('');
+
+  // bind checkboxes
+  list.querySelectorAll('.tq-checkbox').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const idx  = parseInt(cb.dataset.idx);
+      toggleQuestion(sortedQs[idx]);
+    });
+  });
+
+  // random pick
+  document.getElementById('randomPickBtn').addEventListener('click', () => {
+    const n = Math.min(parseInt(document.getElementById('randomCount').value) || 5, questions.length);
+    const shuffled = [...questions].sort(() => Math.random() - 0.5).slice(0, n);
+    shuffled.forEach(q => { const k = qKey(q); if (!practiceSet.has(k)) practiceSet.set(k, q); });
+    // re-render to sync checkboxes
+    showTopicQuestions(topic, questions);
+    practiceSetChanged();
+  });
+}
+
+// ─────────────────────────────────────────────
+// Generate practice sheet (print window)
+// ─────────────────────────────────────────────
+function generatePracticeSheet() {
+  const qs = [...practiceSet.values()].sort((a, b) => a.year - b.year || a.topic.localeCompare(b.topic));
+  if (!qs.length) return;
+
+  // Group marking scheme links by year
+  const msYears = {};
+  qs.forEach(q => {
+    if (!msYears[q.year]) {
+      const local = LOCAL_PAPERS[`economics-${q.year}`];
+      msYears[q.year] = local?.ms || null;
+    }
+  });
+
+  const questionsHtml = qs.map((q, i) => `
+    <div class="ps-question">
+      <div class="ps-q-header">
+        <span class="ps-q-num">Q${i + 1}</span>
+        <span class="ps-q-meta">${q.topic} &nbsp;·&nbsp; ${q.year} &nbsp;·&nbsp; ${q.marks || '?'} marks</span>
+      </div>
+      <div class="ps-q-text">${q.question}</div>
+      <div class="ps-answer-space">
+        <div class="ps-answer-label">Answer:</div>
+        <div class="ps-lines">${Array(8).fill('<div class="ps-line"></div>').join('')}</div>
+      </div>
+    </div>
+  `).join('');
+
+  const msRefs = qs.map((q, i) => {
+    const msPath = msYears[q.year];
+    return `
+      <div class="ps-ms-row">
+        <span class="ps-ms-qnum">Q${i + 1}</span>
+        <span class="ps-ms-topic">${q.topic} (${q.year})</span>
+        <span class="ps-ms-ref">${msPath
+          ? `<a href="${window.location.origin}/${msPath}" target="_blank">${q.year} Economics Marking Scheme</a>`
+          : `${q.year} Economics Marking Scheme — see examinations.ie`
+        }</span>
+      </div>
+    `;
+  }).join('');
+
+  const dateStr = new Date().toLocaleDateString('en-IE', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Practice Set — ReviseIQ</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Segoe UI',Arial,sans-serif;font-size:12pt;color:#1a1a1a;background:#fff;padding:0}
+  @page{margin:22mm 20mm 20mm 20mm}
+  .sheet-header{border-bottom:2px solid #16a34a;padding-bottom:10px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:flex-end}
+  .sheet-title{font-size:18pt;font-weight:700;color:#16a34a}
+  .sheet-meta{font-size:9pt;color:#555}
+  .ps-question{margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid #e5e7eb;page-break-inside:avoid}
+  .ps-question:last-child{border-bottom:none}
+  .ps-q-header{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+  .ps-q-num{font-size:13pt;font-weight:800;color:#16a34a;min-width:32px}
+  .ps-q-meta{font-size:9pt;color:#6b7280;font-weight:500;border-left:1px solid #d1d5db;padding-left:12px}
+  .ps-q-text{font-size:11.5pt;line-height:1.65;color:#111;margin-bottom:16px;padding-left:44px}
+  .ps-answer-space{padding-left:44px}
+  .ps-answer-label{font-size:9pt;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+  .ps-lines{display:flex;flex-direction:column;gap:10px}
+  .ps-line{height:1px;background:#d1d5db;width:100%}
+  .ms-section{margin-top:32px;padding-top:24px;border-top:2px solid #16a34a;page-break-before:always}
+  .ms-section-title{font-size:14pt;font-weight:700;color:#16a34a;margin-bottom:6px}
+  .ms-section-sub{font-size:9pt;color:#6b7280;margin-bottom:18px}
+  .ps-ms-row{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid #f3f4f6;font-size:10.5pt}
+  .ps-ms-row:last-child{border-bottom:none}
+  .ps-ms-qnum{font-weight:800;color:#16a34a;min-width:32px}
+  .ps-ms-topic{flex:1;color:#374151}
+  .ps-ms-ref{font-size:9.5pt;color:#2563eb;text-decoration:underline}
+  .ps-ms-ref a{color:#2563eb}
+  @media print{.no-print{display:none}body{padding:0}}
+  .print-btn{position:fixed;top:16px;right:16px;padding:10px 20px;background:#16a34a;color:white;border:none;border-radius:8px;font-size:11pt;font-weight:700;cursor:pointer;font-family:inherit}
+  .print-btn:hover{background:#15803d}
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">🖨️ Save as PDF</button>
+<div class="sheet-header">
+  <div class="sheet-title">Economics Practice Set</div>
+  <div class="sheet-meta">LC Higher Level &nbsp;·&nbsp; ReviseIQ &nbsp;·&nbsp; ${dateStr}</div>
+</div>
+${questionsHtml}
+<div class="ms-section">
+  <div class="ms-section-title">Marking Scheme Answers</div>
+  <div class="ms-section-sub">Open the marking scheme for each question to check your answers.</div>
+  ${msRefs}
+</div>
+</body>
+</html>`;
+
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
 }
 
 async function initTopicBrowser() {
@@ -533,6 +697,15 @@ document.addEventListener('DOMContentLoaded', () => {
       topicBrowserInitialised = true;
       initTopicBrowser();
     }
+  });
+
+  // Practice bar
+  document.getElementById('practiceGenerateBtn').addEventListener('click', generatePracticeSheet);
+  document.getElementById('practiceClearBtn').addEventListener('click', () => {
+    practiceSet.clear();
+    practiceSetChanged();
+    document.querySelectorAll('.tq-checkbox').forEach(cb => { cb.checked = false; });
+    document.querySelectorAll('.tq-card').forEach(c => c.classList.remove('tq-selected'));
   });
 
   // Level toggle
