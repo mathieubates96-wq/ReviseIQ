@@ -57,7 +57,7 @@ function renderTopicList(topics, filter = '') {
 
 function renderDetail(t) {
   document.getElementById('msDetailEmpty').style.display   = 'none';
-  document.getElementById('msDetailContent').style.display = 'block';
+  document.getElementById('msDetailContent').style.display = 'flex';
 
   const keyPhrasesHtml = t.keyPhrases.map(p =>
     `<span class="ms-phrase-pill">${p}</span>`
