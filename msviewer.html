@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marking Scheme Viewer — ReviseIQ</title>
+  <meta name="description" content="ReviseIQ — View past paper questions side-by-side with official marking scheme breakdowns." />
+  <meta name="author" content="ReviseIQ" />
+  <meta name="robots" content="index, follow" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="msviewer.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-icon">R</span>
+        <span class="logo-text">ReviseIQ</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"       class="nav-link">Home</a></li>
+        <li><a href="papers.html"      class="nav-link">Past Papers</a></li>
+        <li><a href="quiz.html"        class="nav-link">Quiz</a></li>
+        <li><a href="flashcards.html"  class="nav-link">Flashcards</a></li>
+        <li><a href="markscheme.html"  class="nav-link">Mark Scheme</a></li>
+        <li><a href="trends.html"      class="nav-link">Topic Trends</a></li>
+        <li><a href="msviewer.html"    class="nav-link active">MS Viewer</a></li>
+        <li><a href="quiz.html"        class="nav-link nav-cta">Start Studying</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <span class="theme-icon-light">🌙</span>
+        <span class="theme-icon-dark">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="page-main">
+
+    <div class="page-header-band">
+      <div class="container">
+        <h1 class="page-title">Marking Scheme Viewer</h1>
+        <p class="page-subtitle">Read the question, attempt an answer in your head, then reveal the official marking scheme with a single click.</p>
+      </div>
+    </div>
+
+    <div class="container msv-page">
+
+      <!-- Question navigator -->
+      <div class="msv-nav-bar" id="msvNavBar" role="tablist" aria-label="Select question"></div>
+
+      <!-- Split-panel viewer -->
+      <div class="msv-wrap" id="msvWrap">
+
+        <!-- LEFT / TOP: Question -->
+        <div class="msv-question-panel">
+
+          <div class="msv-panel-header">
+            <span class="msv-badge">📝 Question</span>
+            <div class="msv-meta" id="msvMeta"></div>
+          </div>
+
+          <div class="msv-question-body">
+            <div class="msv-question-section" id="msvQuestionSection"></div>
+            <p class="msv-question-text" id="msvQuestionText"></p>
+          </div>
+
+          <div class="msv-panel-footer">
+            <button class="msv-toggle-btn" id="msvToggleBtn" aria-expanded="false">
+              <span class="msv-toggle-icon">👁</span>
+              Show Marking Scheme
+            </button>
+            <span class="msv-hint">Attempt the question first!</span>
+          </div>
+
+        </div>
+
+        <!-- RIGHT / BOTTOM: Marking Scheme -->
+        <div class="msv-scheme-panel" id="msvSchemePanel" aria-hidden="true">
+          <div class="msv-scheme-inner">
+
+            <div class="msv-scheme-header">
+              <span class="msv-badge msv-badge-scheme">✅ Marking Scheme</span>
+              <button class="msv-close-btn" id="msvCloseBtn" title="Close marking scheme" aria-label="Close">✕</button>
+            </div>
+
+            <!-- Points + full marks box injected here -->
+            <div id="msvSchemeContent"></div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- /.msv-wrap -->
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 ReviseIQ. Marking scheme content based on SEC past papers. Not official SEC material.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="auth.js"></script>
+  <script src="main.js"></script>
+  <script src="msviewer.js"></script>
+</body>
+</html>
