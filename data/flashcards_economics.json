@@ -1,0 +1,682 @@
+[
+  {
+    "id": 1,
+    "term": "Scarcity",
+    "definition": "The fundamental economic problem that arises because human wants are unlimited, but the resources available to satisfy those wants are limited.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "A country has a finite supply of oil but unlimited demand for energy."
+  },
+  {
+    "id": 2,
+    "term": "Opportunity Cost",
+    "definition": "The value of the next best alternative forgone when making an economic choice.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "The opportunity cost of going to college full-time is the wage income forgone."
+  },
+  {
+    "id": 3,
+    "term": "Production Possibility Frontier (PPF)",
+    "definition": "A curve showing all the maximum combinations of two goods or services an economy can produce when all resources are fully and efficiently employed.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "A PPF showing combinations of consumer goods and capital goods an economy can produce."
+  },
+  {
+    "id": 4,
+    "term": "Positive Economics",
+    "definition": "Statements about the economy that are objective, factual, and can be tested against evidence.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "'Unemployment rose by 2% last year' — this is a positive statement that can be verified."
+  },
+  {
+    "id": 5,
+    "term": "Normative Economics",
+    "definition": "Statements about the economy that are based on value judgements and opinions about what ought to be, and cannot be tested against evidence.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "'The government should raise the minimum wage' — this is a normative statement."
+  },
+  {
+    "id": 6,
+    "term": "Division of Labour",
+    "definition": "The breaking down of the production process into a series of separate tasks, each carried out by a specialist worker.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "In a car factory, one worker fits doors while another installs the engine."
+  },
+  {
+    "id": 7,
+    "term": "Factors of Production",
+    "definition": "The resources used in the production of goods and services: Land, Labour, Capital, and Enterprise.",
+    "topic": "Economic Methodology",
+    "strand": "Strand 1 — Foundations",
+    "example": "A bakery uses land (premises), labour (bakers), capital (ovens), and enterprise (the owner)."
+  },
+  {
+    "id": 8,
+    "term": "Law of Demand",
+    "definition": "As the price of a good rises, the quantity demanded falls, ceteris paribus (all other things being equal).",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "When the price of coffee rises from €2 to €3, consumers buy fewer cups per day."
+  },
+  {
+    "id": 9,
+    "term": "Law of Supply",
+    "definition": "As the price of a good rises, the quantity supplied increases, ceteris paribus.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "When the price of wheat rises, farmers plant more wheat to increase profit."
+  },
+  {
+    "id": 10,
+    "term": "Market Equilibrium",
+    "definition": "The point where the quantity demanded equals the quantity supplied, resulting in a stable market price with no tendency to change.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "If the market price of apples is €1.50/kg, and supply equals demand at that price, equilibrium exists."
+  },
+  {
+    "id": 11,
+    "term": "Consumer Surplus",
+    "definition": "The difference between the maximum price a consumer is willing to pay for a good and the price they actually pay.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "A consumer willing to pay €10 for a book but pays €6 has a consumer surplus of €4."
+  },
+  {
+    "id": 12,
+    "term": "Producer Surplus",
+    "definition": "The difference between the price a producer receives for a good and the minimum price they would have accepted.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "A farmer willing to sell grain for €2/kg but receives €3/kg has a producer surplus of €1/kg."
+  },
+  {
+    "id": 13,
+    "term": "Price Elasticity of Demand (PED)",
+    "definition": "A measure of the responsiveness of the quantity demanded of a good to a change in its price. PED = % change in quantity demanded ÷ % change in price.",
+    "topic": "Elasticity of Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "If a 10% price rise causes a 20% fall in demand, PED = −2 (elastic demand)."
+  },
+  {
+    "id": 14,
+    "term": "Elastic Demand",
+    "definition": "Demand is elastic when a percentage change in price causes a greater percentage change in quantity demanded (PED > 1). Demand is sensitive to price changes.",
+    "topic": "Elasticity of Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Luxury goods, goods with many substitutes, e.g. a specific brand of crisps."
+  },
+  {
+    "id": 15,
+    "term": "Inelastic Demand",
+    "definition": "Demand is inelastic when a percentage change in price causes a smaller percentage change in quantity demanded (PED < 1). Demand is relatively insensitive to price changes.",
+    "topic": "Elasticity of Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Necessities like petrol or insulin — consumers buy roughly the same amount regardless of price."
+  },
+  {
+    "id": 16,
+    "term": "Income Elasticity of Demand (YED)",
+    "definition": "A measure of the responsiveness of demand to a change in consumer income. YED = % change in quantity demanded ÷ % change in income.",
+    "topic": "Elasticity of Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "If income rises 10% and demand for foreign holidays rises 30%, YED = +3 (luxury good)."
+  },
+  {
+    "id": 17,
+    "term": "Cross Elasticity of Demand (XED)",
+    "definition": "A measure of the responsiveness of demand for one good to a change in the price of another good. XED = % change in quantity demanded of Good A ÷ % change in price of Good B.",
+    "topic": "Elasticity of Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "If the price of butter rises and demand for margarine rises, XED is positive (substitutes)."
+  },
+  {
+    "id": 18,
+    "term": "Normal Good",
+    "definition": "A good for which demand increases as consumer income rises (positive YED).",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Restaurants, new cars, foreign holidays."
+  },
+  {
+    "id": 19,
+    "term": "Inferior Good",
+    "definition": "A good for which demand decreases as consumer income rises (negative YED), as consumers switch to higher-quality alternatives.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Own-brand supermarket goods, second-hand clothes."
+  },
+  {
+    "id": 20,
+    "term": "Giffen Good",
+    "definition": "An inferior good for which demand increases as price rises, violating the law of demand. The negative income effect outweighs the substitution effect.",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Historically, staple foods like bread or rice among very poor households."
+  },
+  {
+    "id": 21,
+    "term": "Substitute Goods",
+    "definition": "Goods that can replace one another in consumption. A rise in the price of one leads to an increase in demand for the other (positive XED).",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Tea and coffee, butter and margarine."
+  },
+  {
+    "id": 22,
+    "term": "Complementary Goods",
+    "definition": "Goods that are consumed together. A rise in the price of one leads to a fall in demand for the other (negative XED).",
+    "topic": "Supply and Demand",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Cars and petrol, printers and ink cartridges."
+  },
+  {
+    "id": 23,
+    "term": "Marginal Utility",
+    "definition": "The additional satisfaction or utility gained by a consumer from consuming one extra unit of a good or service.",
+    "topic": "Consumer Behaviour",
+    "strand": "Strand 2 — Decision Making",
+    "example": "The 1st cup of water on a hot day provides high marginal utility; the 10th provides very little."
+  },
+  {
+    "id": 24,
+    "term": "Law of Diminishing Marginal Utility",
+    "definition": "As a consumer consumes successive units of a good, the marginal utility (extra satisfaction) gained from each additional unit decreases.",
+    "topic": "Consumer Behaviour",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Each additional slice of pizza eaten gives less satisfaction than the slice before."
+  },
+  {
+    "id": 25,
+    "term": "Equi-Marginal Principle",
+    "definition": "A consumer maximises utility by allocating income so that the marginal utility per euro spent is equal for all goods purchased: MU₁/P₁ = MU₂/P₂.",
+    "topic": "Consumer Behaviour",
+    "strand": "Strand 2 — Decision Making",
+    "example": "A consumer in equilibrium when the last euro spent on tea gives the same utility as the last euro on coffee."
+  },
+  {
+    "id": 26,
+    "term": "Law of Diminishing Returns",
+    "definition": "In the short run, as more units of a variable factor (e.g. labour) are added to a fixed factor, marginal product will eventually decrease.",
+    "topic": "Production and Costs",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Adding more chefs to a restaurant with a fixed kitchen eventually produces less extra output per chef."
+  },
+  {
+    "id": 27,
+    "term": "Economies of Scale",
+    "definition": "The cost advantages a firm gains as it increases its scale of production, resulting in a fall in long-run average costs.",
+    "topic": "Production and Costs",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Bulk buying discounts, specialisation of labour, spreading fixed costs over more output."
+  },
+  {
+    "id": 28,
+    "term": "Diseconomies of Scale",
+    "definition": "The disadvantages of large-scale production that cause long-run average costs to rise as output increases beyond an optimal level.",
+    "topic": "Production and Costs",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Communication problems, poor worker motivation, and managerial inefficiencies in very large firms."
+  },
+  {
+    "id": 29,
+    "term": "Perfect Competition",
+    "definition": "A market structure with many buyers and sellers, a homogeneous product, freedom of entry/exit, and perfect information. Firms are price takers.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "The market for agricultural commodities like wheat or potatoes approximates perfect competition."
+  },
+  {
+    "id": 30,
+    "term": "Monopoly",
+    "definition": "A market structure in which a single firm is the sole producer of a good or service with no close substitutes and significant barriers to entry.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "Irish Water as the sole provider of water services in Ireland."
+  },
+  {
+    "id": 31,
+    "term": "Oligopoly",
+    "definition": "A market structure dominated by a small number of large, interdependent firms producing similar or differentiated products, with significant barriers to entry.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "The Irish banking sector, dominated by a few large banks (AIB, Bank of Ireland, PTSB)."
+  },
+  {
+    "id": 32,
+    "term": "Concentration Ratio",
+    "definition": "A measure of the market share held by the largest firms in an industry. A high concentration ratio indicates an oligopolistic or monopolistic market.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "If the top 3 supermarkets hold 80% of the market, the 3-firm concentration ratio is 80%."
+  },
+  {
+    "id": 33,
+    "term": "Price Discrimination",
+    "definition": "When a firm charges different prices to different consumers for the same good or service, not based on cost differences.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "Airlines charging higher prices to business travellers who book last minute than leisure travellers who book early."
+  },
+  {
+    "id": 34,
+    "term": "Collusion",
+    "definition": "An agreement (formal or informal) between competing firms to fix prices, output levels, or market share in order to reduce competition and increase profits.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "A cartel of oil producers agreeing to restrict supply to keep oil prices high."
+  },
+  {
+    "id": 35,
+    "term": "Natural Monopoly",
+    "definition": "A market where the minimum efficient scale of production is so large that only one firm can profitably operate; average costs fall continuously as output increases.",
+    "topic": "Market Structures",
+    "strand": "Strand 3 — Markets",
+    "example": "Rail infrastructure, electricity grid — it would be wasteful to have multiple competing networks."
+  },
+  {
+    "id": 36,
+    "term": "Market Failure",
+    "definition": "A situation where the free market fails to allocate resources efficiently, leading to an under- or over-provision of goods and services.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Pollution — the free market overproduces goods that generate negative externalities."
+  },
+  {
+    "id": 37,
+    "term": "Externality",
+    "definition": "A cost or benefit that falls on a third party (not the buyer or seller) as a result of an economic transaction.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Negative: factory pollution affecting local residents. Positive: vaccination protecting the wider community."
+  },
+  {
+    "id": 38,
+    "term": "Negative Externality",
+    "definition": "A cost imposed on a third party who is not involved in the transaction. Leads to overproduction relative to the socially optimal level.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Carbon emissions from cars causing air pollution and health costs to society."
+  },
+  {
+    "id": 39,
+    "term": "Positive Externality",
+    "definition": "A benefit enjoyed by a third party who is not involved in the transaction. Leads to underproduction relative to the socially optimal level.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Education benefits the wider economy through a more productive workforce."
+  },
+  {
+    "id": 40,
+    "term": "Public Good",
+    "definition": "A good that is non-excludable (cannot prevent non-payers from consuming it) and non-rival (one person's use does not reduce availability to others).",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "National defence, street lighting, public fireworks displays."
+  },
+  {
+    "id": 41,
+    "term": "Merit Good",
+    "definition": "A good that is underprovided by the free market because its full social benefits are not recognised by consumers. The government encourages consumption.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Education, healthcare, vaccination programmes."
+  },
+  {
+    "id": 42,
+    "term": "Demerit Good",
+    "definition": "A good that is overprovided by the free market because its full social costs are not recognised by consumers. The government discourages consumption.",
+    "topic": "Market Failure",
+    "strand": "Strand 3 — Markets",
+    "example": "Cigarettes, alcohol, illegal drugs."
+  },
+  {
+    "id": 43,
+    "term": "Gross Domestic Product (GDP)",
+    "definition": "The total monetary value of all final goods and services produced within a country's borders in a given time period.",
+    "topic": "National Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's GDP includes the output of all firms operating in Ireland, including foreign multinationals."
+  },
+  {
+    "id": 44,
+    "term": "Gross National Product (GNP)",
+    "definition": "The total monetary value of all final goods and services produced by a country's residents (nationals) in a given time period, regardless of location. GNP = GDP + Net Factor Income from Abroad.",
+    "topic": "National Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's GNP excludes profits repatriated by foreign multinationals operating here."
+  },
+  {
+    "id": 45,
+    "term": "Modified Gross National Income (GNI*)",
+    "definition": "A modified measure of national income for Ireland that adjusts GNP to remove the distorting effects of globalisation (e.g. aircraft leasing, IP transfers by multinationals).",
+    "topic": "National Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's GNI* is significantly lower than GDP due to large multinational profits recorded here."
+  },
+  {
+    "id": 46,
+    "term": "Circular Flow of Income",
+    "definition": "A model showing the flow of income, output, and expenditure between households and firms in an economy, with injections (I, G, X) and leakages (S, T, M).",
+    "topic": "Circular Flow of Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Firms pay wages to households; households spend on goods; firms receive revenue — the flow continues."
+  },
+  {
+    "id": 47,
+    "term": "Multiplier Effect",
+    "definition": "The process by which an initial injection of spending into the economy leads to a larger final increase in national income. Multiplier = 1 ÷ (1 − MPC) or 1 ÷ MPS.",
+    "topic": "Circular Flow of Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "A €100m government infrastructure spend creates more than €100m of additional income as money circulates."
+  },
+  {
+    "id": 48,
+    "term": "Marginal Propensity to Consume (MPC)",
+    "definition": "The proportion of additional income that is spent on consumption. MPC = Change in consumption ÷ Change in income.",
+    "topic": "National Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "If income rises by €100 and consumption rises by €80, MPC = 0.8."
+  },
+  {
+    "id": 49,
+    "term": "Marginal Propensity to Save (MPS)",
+    "definition": "The proportion of additional income that is saved. MPS = Change in savings ÷ Change in income. MPC + MPS = 1.",
+    "topic": "National Income",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "If income rises by €100 and savings rise by €20, MPS = 0.2."
+  },
+  {
+    "id": 50,
+    "term": "Fiscal Policy",
+    "definition": "The use of government taxation and expenditure to manage the level of economic activity and achieve macroeconomic objectives.",
+    "topic": "Fiscal Policy",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Cutting income tax to stimulate consumer spending during a recession (expansionary fiscal policy)."
+  },
+  {
+    "id": 51,
+    "term": "Expansionary Fiscal Policy",
+    "definition": "A government policy of increasing spending and/or cutting taxes to stimulate aggregate demand and boost economic growth.",
+    "topic": "Fiscal Policy",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Used during the 2008 recession — governments increased spending on public works to create jobs."
+  },
+  {
+    "id": 52,
+    "term": "Contractionary Fiscal Policy",
+    "definition": "A government policy of decreasing spending and/or raising taxes to reduce aggregate demand and control inflation.",
+    "topic": "Fiscal Policy",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's austerity measures post-2008 — tax hikes and spending cuts to reduce the deficit."
+  },
+  {
+    "id": 53,
+    "term": "Budget Deficit",
+    "definition": "When government expenditure exceeds government revenue in a given year.",
+    "topic": "Government Finance and National Debt",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland ran significant budget deficits after the 2008 financial crisis."
+  },
+  {
+    "id": 54,
+    "term": "Budget Surplus",
+    "definition": "When government revenue exceeds government expenditure in a given year.",
+    "topic": "Government Finance and National Debt",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland recorded budget surpluses in the Celtic Tiger years and again from 2023."
+  },
+  {
+    "id": 55,
+    "term": "National Debt",
+    "definition": "The total accumulated amount of money owed by the government to domestic and foreign creditors, built up from past budget deficits.",
+    "topic": "Government Finance and National Debt",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's national debt rose sharply after the banking crisis of 2008."
+  },
+  {
+    "id": 56,
+    "term": "Automatic Stabilisers",
+    "definition": "Elements of fiscal policy that automatically act to reduce fluctuations in economic activity without deliberate government action, e.g. unemployment benefits and progressive taxation.",
+    "topic": "Fiscal Policy",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "In a recession, tax revenues fall and social welfare payments rise — cushioning the fall in demand automatically."
+  },
+  {
+    "id": 57,
+    "term": "Progressive Tax",
+    "definition": "A tax where the proportion of income paid in tax increases as income rises. Higher earners pay a higher percentage of their income in tax.",
+    "topic": "Taxation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Ireland's income tax system — lower earners pay 20%; higher earners pay 40%."
+  },
+  {
+    "id": 58,
+    "term": "Regressive Tax",
+    "definition": "A tax where the proportion of income paid in tax decreases as income rises. Lower earners pay a higher percentage of their income in tax.",
+    "topic": "Taxation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "VAT — a 23% VAT on goods takes a larger share of income from low earners than high earners."
+  },
+  {
+    "id": 59,
+    "term": "Proportional Tax",
+    "definition": "A tax where every taxpayer pays the same percentage of their income, regardless of earnings.",
+    "topic": "Taxation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "A flat 20% income tax applied to all income earners equally."
+  },
+  {
+    "id": 60,
+    "term": "Monetary Policy",
+    "definition": "The management of the money supply and interest rates by a central bank (e.g. the ECB) to achieve macroeconomic objectives such as price stability.",
+    "topic": "Monetary Policy",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "The ECB raising interest rates in 2022–2023 to reduce inflation across the Eurozone."
+  },
+  {
+    "id": 61,
+    "term": "European Central Bank (ECB)",
+    "definition": "The central bank of the Eurozone, responsible for maintaining price stability (inflation close to but below 2%) and conducting monetary policy for all Eurozone members.",
+    "topic": "European Central Bank",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "The ECB sets the key interest rates for the 20 Eurozone countries, including Ireland."
+  },
+  {
+    "id": 62,
+    "term": "Inflation",
+    "definition": "A sustained increase in the general price level of goods and services in an economy over a period of time, resulting in a fall in the purchasing power of money.",
+    "topic": "Inflation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "If inflation is 5%, a basket of goods costing €100 today will cost €105 next year."
+  },
+  {
+    "id": 63,
+    "term": "Consumer Price Index (CPI)",
+    "definition": "A measure of the average change in prices paid by consumers for a representative basket of goods and services over time. Used to measure inflation.",
+    "topic": "Inflation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "The CSO calculates the Irish CPI monthly by tracking the prices of a fixed basket of goods and services."
+  },
+  {
+    "id": 64,
+    "term": "Demand-Pull Inflation",
+    "definition": "Inflation caused by an increase in aggregate demand in the economy, where demand outstrips the productive capacity of the economy.",
+    "topic": "Inflation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "During the Celtic Tiger, strong economic growth and rising consumer spending pushed prices upward."
+  },
+  {
+    "id": 65,
+    "term": "Cost-Push Inflation",
+    "definition": "Inflation caused by an increase in the costs of production (e.g. wages, raw materials), which firms pass on as higher prices.",
+    "topic": "Inflation",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "The 1973 oil crisis caused cost-push inflation globally as energy costs surged."
+  },
+  {
+    "id": 66,
+    "term": "Unemployment",
+    "definition": "The situation where people who are willing and able to work at the current wage rate cannot find employment.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Measured in Ireland by the Live Register and the Quarterly National Household Survey (QNHS)."
+  },
+  {
+    "id": 67,
+    "term": "Frictional Unemployment",
+    "definition": "Temporary unemployment that occurs when workers are between jobs and searching for new employment. It is short-term and inevitable.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "A worker who has resigned from one job but has not yet started their next role."
+  },
+  {
+    "id": 68,
+    "term": "Structural Unemployment",
+    "definition": "Long-term unemployment caused by a permanent decline in demand for workers in a particular industry due to technological change or shifts in consumer demand.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Coal miners becoming unemployed as coal power plants close due to the shift to renewables."
+  },
+  {
+    "id": 69,
+    "term": "Cyclical Unemployment",
+    "definition": "Unemployment caused by a fall in aggregate demand during an economic recession or downturn. Also called demand-deficient unemployment.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Mass redundancies during the 2008–2012 recession in Ireland as businesses cut costs."
+  },
+  {
+    "id": 70,
+    "term": "Seasonal Unemployment",
+    "definition": "Unemployment that occurs at certain times of the year due to the seasonal nature of some industries.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Tourism workers laid off during winter months in coastal towns."
+  },
+  {
+    "id": 71,
+    "term": "Derived Demand",
+    "definition": "Demand for a factor of production (e.g. labour) that arises indirectly from the demand for the goods or services it produces.",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "Demand for electricians rises because demand for new houses is rising."
+  },
+  {
+    "id": 72,
+    "term": "Economic Rent",
+    "definition": "The payment made to a factor of production over and above its transfer earnings (the minimum needed to keep it in its current use).",
+    "topic": "Labour Market and Employment",
+    "strand": "Strand 4 — Macro Policy",
+    "example": "A top footballer earning €5m/year when they would accept €50,000 earns economic rent of €4.95m."
+  },
+  {
+    "id": 73,
+    "term": "Absolute Advantage",
+    "definition": "A country has an absolute advantage in producing a good if it can produce more of it using the same amount of resources than another country.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "Ireland has an absolute advantage in dairy production compared to desert countries."
+  },
+  {
+    "id": 74,
+    "term": "Comparative Advantage",
+    "definition": "A country has a comparative advantage in producing a good if it can produce it at a lower opportunity cost than another country.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "Even if Ireland is more efficient at producing both beef and technology, it should specialise in whichever has the lower opportunity cost."
+  },
+  {
+    "id": 75,
+    "term": "Balance of Payments",
+    "definition": "A record of all economic transactions between residents of a country and the rest of the world over a period of time. It comprises the Current Account and the Capital & Financial Account.",
+    "topic": "Balance of Payments",
+    "strand": "Strand 5 — International",
+    "example": "Ireland's balance of payments records exports, imports, investment flows, and transfers."
+  },
+  {
+    "id": 76,
+    "term": "Current Account",
+    "definition": "Part of the Balance of Payments that records trade in goods (visible trade), trade in services (invisible trade), income flows, and current transfers.",
+    "topic": "Balance of Payments",
+    "strand": "Strand 5 — International",
+    "example": "Ireland typically has a current account surplus due to high exports of pharmaceutical and tech services."
+  },
+  {
+    "id": 77,
+    "term": "Trade Deficit",
+    "definition": "When the value of a country's imports of goods and services exceeds the value of its exports over a given period.",
+    "topic": "Balance of Payments",
+    "strand": "Strand 5 — International",
+    "example": "The UK often runs a trade deficit — it imports more goods than it exports."
+  },
+  {
+    "id": 78,
+    "term": "Tariff",
+    "definition": "A tax imposed on imported goods to raise their price, making domestic goods more competitive and protecting domestic industries.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "A 25% tariff on imported cars raises their price, encouraging consumers to buy domestically produced cars."
+  },
+  {
+    "id": 79,
+    "term": "Quota",
+    "definition": "A physical limit on the quantity of a particular good that can be imported into a country over a given period.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "A quota of 10,000 cars per year from Japan restricts the number that can be imported."
+  },
+  {
+    "id": 80,
+    "term": "Foreign Direct Investment (FDI)",
+    "definition": "Investment by a company or individual in one country in business interests located in another country, usually involving establishing business operations or acquiring business assets.",
+    "topic": "Foreign Direct Investment",
+    "strand": "Strand 5 — International",
+    "example": "Apple, Google, and Meta establishing their European headquarters in Ireland."
+  },
+  {
+    "id": 81,
+    "term": "Human Development Index (HDI)",
+    "definition": "A composite statistic used to rank countries by level of human development, combining three dimensions: life expectancy, education, and per capita income.",
+    "topic": "Economic Development",
+    "strand": "Strand 5 — International",
+    "example": "Norway consistently ranks highest on the HDI; many Sub-Saharan African nations rank lowest."
+  },
+  {
+    "id": 82,
+    "term": "Exchange Rate",
+    "definition": "The price at which one country's currency can be exchanged for another's. Determined by supply and demand in the foreign exchange market.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "If €1 = $1.10, the exchange rate of the euro against the dollar is 1.10."
+  },
+  {
+    "id": 83,
+    "term": "Depreciation (Currency)",
+    "definition": "A fall in the value of a country's currency relative to other currencies in a floating exchange rate system.",
+    "topic": "International Trade",
+    "strand": "Strand 5 — International",
+    "example": "If €1 falls from $1.20 to $1.05, the euro has depreciated — Irish exports become cheaper abroad."
+  },
+  {
+    "id": 84,
+    "term": "Price Floor",
+    "definition": "A minimum price set by the government above the equilibrium price, preventing the market price from falling below it. Creates a surplus.",
+    "topic": "Government Intervention",
+    "strand": "Strand 2 — Decision Making",
+    "example": "The EU Common Agricultural Policy sets minimum prices for agricultural products."
+  },
+  {
+    "id": 85,
+    "term": "Price Ceiling",
+    "definition": "A maximum price set by the government below the equilibrium price, preventing the market price from rising above it. Creates a shortage.",
+    "topic": "Government Intervention",
+    "strand": "Strand 2 — Decision Making",
+    "example": "Rent controls in cities set a maximum monthly rent to keep housing affordable."
+  }
+]
