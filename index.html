@@ -16,6 +16,7 @@
   <meta name="twitter:title" content="ReviseIQ — Ace Your Leaving Cert" />
   <meta name="twitter:description" content="ReviseIQ - Free Leaving Cert study tool with past papers, AI quizzes and topic trends" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="planner.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -104,6 +105,67 @@
           <strong>Past Papers</strong>
           <span>Direct from SEC</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAM COUNTDOWN & STUDY PLANNER -->
+  <section class="planner-section" id="planner">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Exam Countdown &amp; Study Planner</h2>
+        <p class="section-sub">See exactly how long you have left and build a personalised weekly revision timetable.</p>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown-band">
+        <div class="countdown-label">Leaving Cert starts in</div>
+        <div class="countdown-digits">
+          <div class="cd-block">
+            <span id="cdDays">00</span>
+            <span class="cd-unit">Days</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block">
+            <span id="cdHours">00</span>
+            <span class="cd-unit">Hours</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block">
+            <span id="cdMins">00</span>
+            <span class="cd-unit">Mins</span>
+          </div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block">
+            <span id="cdSecs">00</span>
+            <span class="cd-unit">Secs</span>
+          </div>
+        </div>
+        <div class="countdown-date" id="cdExamDate"></div>
+      </div>
+
+      <!-- Planner body -->
+      <div class="planner-body">
+
+        <!-- Left: subject picker -->
+        <div class="planner-setup">
+          <h3 class="planner-setup-title">Your Subjects</h3>
+          <p class="planner-setup-sub">Tick the subjects you're sitting. Hit <strong>★</strong> on any you find difficult — they'll get extra slots.</p>
+          <div class="subject-checklist" id="subjectChecklist"></div>
+          <button class="btn btn-primary planner-gen-btn" id="plannerGenBtn">
+            📅 Generate Timetable
+          </button>
+        </div>
+
+        <!-- Right: timetable -->
+        <div class="planner-timetable" id="plannerTimetable">
+          <div class="planner-empty" id="plannerEmpty">
+            <div class="planner-empty-icon">📅</div>
+            <p>Select your subjects and click <strong>Generate Timetable</strong> to build your personalised revision schedule.</p>
+          </div>
+          <div id="timetableContent" style="display:none;"></div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -352,5 +414,6 @@
   <script src="auth.js"></script>
   <script src="main.js"></script>
   <script src="timer.js"></script>
+  <script src="planner.js"></script>
 </body>
 </html>
