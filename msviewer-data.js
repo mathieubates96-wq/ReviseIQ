@@ -854,4 +854,723 @@ const MSV_QUESTIONS = [
       'Express the final tangent equation in the form ax + by + c = 0 with integer coefficients.',
     ],
   },
+
+  /* ══════════════════════════════════════════
+     ADDITIONAL YEARS — ECONOMICS
+  ══════════════════════════════════════════ */
+
+  // ── 2024 ─────────────────────────────────
+  {
+    id: 'eco-sd-2024',
+    subject: 'economics', topic: 'supply-demand', topicLabel: 'Supply & Demand',
+    year: 2024, level: 'Higher Level', section: 'Section A — Q1', marks: 10,
+    question: 'Explain, using a diagram, the effect of a reduction in the cost of production on the equilibrium price and quantity in a market.\n(10 marks)',
+    markingScheme: [
+      'Fall in production cost: Lower costs mean firms can supply more at every price level — supply curve shifts rightward from S1 to S2. (3M)',
+      'New equilibrium: The rightward shift in supply leads to a lower equilibrium price (P2 < P1) and a higher equilibrium quantity (Q2 > Q1). (4M)',
+      'Diagram: Well-labelled diagram showing original S1, D curve, initial equilibrium (P1, Q1), shifted S2, and new equilibrium (P2, Q2). (3M)',
+    ],
+    fullMarksTips: [
+      'Make clear that demand does not change — only the supply curve shifts.',
+      'Use subscript notation (S1 → S2, P1 → P2, Q1 → Q2) on your diagram — unlabelled shifts lose marks.',
+      'State the direction of both price and quantity changes explicitly in your written answer.',
+    ],
+  },
+  {
+    id: 'eco-mf-2024',
+    subject: 'economics', topic: 'market-failure', topicLabel: 'Market Failure',
+    year: 2024, level: 'Higher Level', section: 'Section B — Q5', marks: 25,
+    question: '(a) Explain the concept of a negative externality and illustrate it with a diagram.\n(12 marks)\n\n(b) Discuss TWO methods by which the government can correct a negative externality.\n(13 marks)',
+    markingScheme: [
+      'Negative externality defined: A cost imposed on a third party who is not involved in the transaction between buyer and seller — a cost that spills over to society. (3M)',
+      'Example: Factory emitting pollution imposes health costs on local residents who bear no part in the production/consumption decision. (2M)',
+      'Diagram: MPC (marginal private cost) below MSC (marginal social cost); market output Qm exceeds socially optimal output Q*; deadweight welfare loss triangle shown. (7M)',
+      'Method 1 — Pigouvian tax: A tax set equal to the marginal external cost shifts MPC upward to equal MSC; output falls to Q*; the externality is internalised. (6M)',
+      'Method 2 — Regulation/Legislation: Government sets a legal limit on output or emissions (e.g. emissions cap); firms must comply; output is restricted to Q*. (7M)',
+    ],
+    fullMarksTips: [
+      'The diagram must show MPC below MSC — if your MPC equals MSC from the start there is no externality.',
+      'Label the deadweight loss triangle clearly — it represents the welfare cost of market over-production.',
+      'For correction methods, trace the mechanism to the outcome (Q reduced to Q*) — naming the method alone is not enough.',
+    ],
+  },
+  {
+    id: 'eco-ni-2024',
+    subject: 'economics', topic: 'national-income', topicLabel: 'National Income',
+    year: 2024, level: 'Higher Level', section: 'Section B — Q7', marks: 30,
+    question: '(a) Explain THREE limitations of using GDP per capita as a measure of living standards.\n(15 marks)\n\n(b) Discuss the Keynesian view of how government can use fiscal policy to close a deflationary gap.\n(15 marks)',
+    markingScheme: [
+      'Limitation 1 — Distribution of income: GDP per capita is an average — it does not show how income is distributed; a high GDP per capita can mask extreme inequality. (5M)',
+      'Limitation 2 — Non-market activity: GDP excludes unpaid work (e.g. caring for family members, volunteering) and the informal/black economy, understating true living standards. (5M)',
+      'Limitation 3 — Quality of life factors: GDP does not capture leisure time, life expectancy, political freedom, environmental quality or subjective well-being. (5M)',
+      'Deflationary gap: Actual national income (Y) is below full employment income (Yfe) — there is spare capacity and unemployment. (4M)',
+      'Keynesian solution: Increase government expenditure (G) and/or cut taxes → raises aggregate demand → multiplier effect increases Y by more than the initial injection → gap is closed. (6M)',
+      'Diagram showing AD/AS or 45° Keynesian cross with initial Y below Yfe, shift of AD or AE, new equilibrium at Yfe. (5M)',
+    ],
+    fullMarksTips: [
+      'For each limitation, name it, explain the mechanism, and give a real-world example — all three elements for full marks.',
+      'The deflationary gap question requires a diagram — sketch the Keynesian cross or AD/AS model.',
+      'Link the multiplier explicitly to why the gap is closed by MORE than the initial injection of G.',
+    ],
+  },
+  {
+    id: 'eco-ms-2024',
+    subject: 'economics', topic: 'market-structures', topicLabel: 'Market Structures',
+    year: 2024, level: 'Higher Level', section: 'Section A — Q4', marks: 10,
+    question: 'Explain the concept of "barriers to entry" in the context of market structures and give TWO examples.\n(10 marks)',
+    markingScheme: [
+      'Barriers to entry defined: Obstacles that prevent or deter new firms from entering a market and competing with established firms. (3M)',
+      'Barrier 1 — Economies of scale: Existing large firms produce at lower average costs; a new entrant cannot match this cost efficiency at low volumes, making it uncompetitive. (3M)',
+      'Barrier 2 — Patents/legal barriers: Exclusive legal rights prevent rivals from using the same product or process; e.g. pharmaceutical patents protect drug monopolies for up to 20 years. (2M)',
+      'Alternative accepted: High start-up capital requirements, brand loyalty/advertising, control of key resources, government licences. (2M)',
+    ],
+    fullMarksTips: [
+      'Define barriers to entry in terms of deterring or preventing entry — not just "making it hard".',
+      'For each example, explain WHY it deters entry (the economic mechanism), not just what it is.',
+      'Economies of scale is the strongest example to use at HL — link it to the long-run average cost curve.',
+    ],
+  },
+  {
+    id: 'eco-fp-2024',
+    subject: 'economics', topic: 'fiscal-policy', topicLabel: 'Fiscal Policy',
+    year: 2024, level: 'Higher Level', section: 'Section B — Q6', marks: 20,
+    question: '(a) Explain the difference between the national debt and the budget deficit.\n(8 marks)\n\n(b) Discuss the possible consequences of a persistently high national debt for the Irish economy.\n(12 marks)',
+    markingScheme: [
+      'Budget deficit: The annual shortfall when government expenditure exceeds tax revenue in a single year — a flow concept. (4M)',
+      'National debt: The accumulated total of all past budget deficits minus surpluses; the stock of all government borrowing outstanding. (4M)',
+      'Consequence 1 — High interest payments: Servicing a large debt diverts tax revenue away from public services (health, education), creating opportunity costs. (4M)',
+      'Consequence 2 — Reduced fiscal space: High debt limits the government\'s ability to increase spending in a recession (automatic stabilisers constrained); reduces policy flexibility. (4M)',
+      'Consequence 3 — Sovereign credit risk: Very high debt may cause credit rating agencies to downgrade Ireland; borrowing costs rise; investor confidence falls. (4M)',
+    ],
+    fullMarksTips: [
+      'The key distinction: deficit is annual (flow), debt is cumulative (stock) — use these precise terms.',
+      'For consequences, link each to a specific Irish context — mention the Troika bailout period (2010–2013) as a real-world example if relevant.',
+      'Each consequence needs a mechanism, not just a label — "reduced fiscal space" must be explained as "less ability to stimulate the economy".',
+    ],
+  },
+
+  // ── 2018 ─────────────────────────────────
+  {
+    id: 'eco-el-2018',
+    subject: 'economics', topic: 'elasticity', topicLabel: 'Elasticity',
+    year: 2018, level: 'Higher Level', section: 'Section A — Q2', marks: 10,
+    question: 'Explain what is meant by a "unit elastic" demand and illustrate it with a diagram. State ONE implication for a firm\'s total revenue.\n(10 marks)',
+    markingScheme: [
+      'Unit elastic demand defined: PED = −1 (absolute value of 1); a percentage change in price leads to an equal and opposite percentage change in quantity demanded. (3M)',
+      'Diagram: A rectangular hyperbola — a curve that is neither horizontal nor vertical, where every price-quantity combination gives the same total revenue. (3M)',
+      'Total revenue implication: When demand is unit elastic, a change in price leaves total revenue unchanged — a price rise is exactly offset by the proportional fall in quantity demanded. (4M)',
+    ],
+    fullMarksTips: [
+      'State PED = −1 (or |PED| = 1) explicitly — the numeric value is required.',
+      'The diagram is a rectangular hyperbola — if you draw a straight diagonal line you have drawn unitary elastic SUPPLY, not demand.',
+      'Total revenue (TR = P × Q) stays constant under unit elastic demand — state and explain this explicitly.',
+    ],
+  },
+  {
+    id: 'eco-lm-2018',
+    subject: 'economics', topic: 'labour-market', topicLabel: 'Labour Market',
+    year: 2018, level: 'Higher Level', section: 'Section B — Q8', marks: 30,
+    question: '(a) Explain FOUR factors that determine the wage rate in the labour market.\n(20 marks)\n\n(b) Discuss the economic arguments for and against the introduction of a national minimum wage.\n(10 marks)',
+    markingScheme: [
+      'Factor 1 — Supply and demand for labour: When demand for a type of labour exceeds supply, wages rise; excess supply pushes wages down — equilibrium wage clears the market. (5M)',
+      'Factor 2 — Productivity/MRP: More productive workers generate higher marginal revenue product; firms are willing to pay more for workers who add greater value. (5M)',
+      'Factor 3 — Trade union power: Strong unions can use collective bargaining and the threat of strike action to push wages above the competitive market rate. (5M)',
+      'Factor 4 — Level of education/skill: Skilled workers are scarcer and harder to replace; the supply of skilled labour is more inelastic, commanding higher wages. (5M)',
+      'For minimum wage — benefits: Reduces poverty and inequality; increases consumer spending; may increase productivity through reduced turnover. (5M)',
+      'Against minimum wage: May cause unemployment if set above equilibrium — firms hire fewer workers; small businesses may be disproportionately affected. (5M)',
+    ],
+    fullMarksTips: [
+      'For each wage determinant, name it, explain the mechanism, and show how it pushes wages up or down.',
+      'Productivity factor earns extra marks if you reference Marginal Revenue Product (MRP) theory specifically.',
+      'For the minimum wage discussion, use a labour market diagram showing the wage floor above equilibrium — this illustrates the unemployment effect.',
+    ],
+  },
+  {
+    id: 'eco-eg-2018',
+    subject: 'economics', topic: 'economic-growth', topicLabel: 'Economic Growth',
+    year: 2018, level: 'Higher Level', section: 'Section A — Q6', marks: 10,
+    question: 'Explain the difference between actual economic growth and potential economic growth, and state ONE cause of each.\n(10 marks)',
+    markingScheme: [
+      'Actual growth: An increase in real GDP — the economy moves closer to its existing productive capacity; measured by real GDP growth rate. (2M)',
+      'Potential growth: An increase in the productive capacity of the economy — the maximum output it is capable of producing shifts outward (LRAS shifts right). (2M)',
+      'Cause of actual growth: An increase in aggregate demand (e.g. rise in consumer spending, export growth, government investment). (3M)',
+      'Cause of potential growth: An increase in the quantity or quality of factors of production — e.g. net investment in capital, increase in workforce through immigration, technological progress. (3M)',
+    ],
+    fullMarksTips: [
+      'Actual growth = moving toward full capacity (using idle resources); potential growth = expanding the capacity frontier itself.',
+      'On a PPF diagram: actual growth moves a point inside the frontier toward the boundary; potential growth shifts the boundary outward.',
+      'Causes must match the type: demand-side causes → actual growth; supply-side causes → potential growth.',
+    ],
+  },
+  {
+    id: 'eco-it-2018',
+    subject: 'economics', topic: 'international-trade', topicLabel: 'International Trade',
+    year: 2018, level: 'Higher Level', section: 'Section B — Q9', marks: 25,
+    question: '(a) Explain THREE causes of a deficit on the current account of the balance of payments.\n(15 marks)\n\n(b) Discuss TWO policies a government might use to reduce a current account deficit.\n(10 marks)',
+    markingScheme: [
+      'Cause 1 — Uncompetitive exports: If domestic inflation is higher than trading partners\', Irish goods become relatively more expensive, reducing export revenues. (5M)',
+      'Cause 2 — High consumer spending on imports: Strong domestic income growth increases demand for imported goods (high marginal propensity to import). (5M)',
+      'Cause 3 — Structural weakness in exporting industries: Lack of diversification or investment in export sectors means the economy cannot expand exports to match import demand. (5M)',
+      'Policy 1 — Deflationary fiscal/monetary policy: Raising taxes or interest rates reduces consumer spending, cutting the demand for imports and improving the current account. (5M)',
+      'Policy 2 — Supply-side policies: Investment in education, infrastructure, and R&D improves competitiveness and productivity, boosting exports over the long run. (5M)',
+    ],
+    fullMarksTips: [
+      'For each cause, show the mechanism: how it reduces export revenue or increases import spending — the BOP effect must be explicit.',
+      'Note Ireland is in the eurozone and cannot devalue — mention this as a constraint when discussing exchange rate policy.',
+      'Supply-side policies are a strong long-run answer — they address the root cause (competitiveness) not just the symptom.',
+    ],
+  },
+  {
+    id: 'eco-mp-2018',
+    subject: 'economics', topic: 'monetary-policy', topicLabel: 'Monetary Policy',
+    year: 2018, level: 'Higher Level', section: 'Section A — Q9', marks: 10,
+    question: 'Explain what is meant by "quantitative easing" (QE) and describe how it was used by the ECB to stimulate the eurozone economy.\n(10 marks)',
+    markingScheme: [
+      'QE defined: A non-conventional monetary policy tool where a central bank creates new money electronically to purchase financial assets (usually government bonds) from banks and financial institutions. (4M)',
+      'Mechanism: Asset purchases inject new money into the financial system; banks have more funds to lend; lending increases, interest rates fall, investment and consumer spending rise. (3M)',
+      'ECB use: The ECB launched its Asset Purchase Programme (APP) from 2015, buying €80 billion of assets per month at its peak to combat deflation risk and stimulate growth after the 2008 financial crisis. (3M)',
+    ],
+    fullMarksTips: [
+      'Stress that QE is used when conventional interest rate cuts are no longer possible (rates at or near zero) — this is why it is called "unconventional".',
+      'The transmission mechanism (new money → more lending → lower rates → higher spending) must be explained step by step.',
+      'Mention the ECB specifically and give approximate dates/figures if known — this demonstrates real-world awareness.',
+    ],
+  },
+
+  // ── 2017 ─────────────────────────────────
+  {
+    id: 'eco-sd-2017',
+    subject: 'economics', topic: 'supply-demand', topicLabel: 'Supply & Demand',
+    year: 2017, level: 'Higher Level', section: 'Section A — Q3', marks: 10,
+    question: 'Explain the concept of "consumer surplus" and illustrate it on a supply and demand diagram.\n(10 marks)',
+    markingScheme: [
+      'Consumer surplus defined: The difference between the maximum price consumers are willing to pay for a good and the actual market price they pay — the benefit consumers receive above what they spend. (4M)',
+      'Diagram: Downward-sloping demand curve, supply curve, equilibrium price P*; consumer surplus is the triangular area above P* and below the demand curve. (4M)',
+      'Significance: Represents welfare gained by consumers; a price rise reduces consumer surplus; a price fall increases it. (2M)',
+    ],
+    fullMarksTips: [
+      'Define consumer surplus in terms of willingness to pay minus actual price — "benefit above cost" in plain language.',
+      'On the diagram, shade the triangle clearly and label it "CS" — the shaded area IS the consumer surplus.',
+      'Mention that consumer surplus falls when price rises — this links to welfare analysis and is tested at HL.',
+    ],
+  },
+  {
+    id: 'eco-mf-2017',
+    subject: 'economics', topic: 'market-failure', topicLabel: 'Market Failure',
+    year: 2017, level: 'Higher Level', section: 'Section B — Q6', marks: 20,
+    question: '(a) Explain the concept of a merit good and explain why the free market tends to under-provide merit goods.\n(10 marks)\n\n(b) Discuss ONE way the government can correct the under-provision of merit goods.\n(10 marks)',
+    markingScheme: [
+      'Merit good defined: A good that society deems beneficial and that consumers may under-value or under-consume if left to the free market — e.g. education, healthcare, vaccination. (3M)',
+      'Under-provision reason 1: Consumers underestimate the long-run private benefits (information failure) — they discount future benefits too heavily. (3M)',
+      'Under-provision reason 2: Positive externalities are not reflected in the market price; the social benefit exceeds the private benefit, so the market produces less than the socially optimal quantity. (4M)',
+      'Government correction — Subsidy: A subsidy reduces the price and increases the quantity consumed toward the social optimum; e.g. free secondary education, subsidised GP visits. (5M)',
+      'Mechanism: Subsidy shifts supply right, lowering price; consumption increases; the gap between private and social benefit is narrowed. (5M)',
+    ],
+    fullMarksTips: [
+      'Merit goods involve information failure (consumers don\'t know what\'s good for them) AND positive externalities — mention both.',
+      'Distinguish merit goods from public goods: merit goods ARE excludable and rival; the under-provision is a different problem.',
+      'For the government correction, trace the full mechanism through to the outcome — more consumption, closer to socially optimal level.',
+    ],
+  },
+  {
+    id: 'eco-un-2017',
+    subject: 'economics', topic: 'unemployment', topicLabel: 'Unemployment',
+    year: 2017, level: 'Higher Level', section: 'Section A — Q7', marks: 10,
+    question: 'Distinguish between the "natural rate of unemployment" and the "full employment" rate of unemployment.\n(10 marks)',
+    markingScheme: [
+      'Natural rate of unemployment: The rate of unemployment that exists when the labour market is in equilibrium — comprising only frictional and structural unemployment; typically estimated at 4–5% in most economies. (4M)',
+      'Full employment: An economic condition where all those who want to work at the prevailing wage are employed; does NOT mean zero unemployment — frictional unemployment still exists. (3M)',
+      'Relationship: Full employment corresponds to the natural rate — cyclical unemployment is zero; any unemployment below the natural rate creates inflationary pressure (Phillips curve). (3M)',
+    ],
+    fullMarksTips: [
+      'Full employment does NOT mean 0% unemployment — frictional and structural unemployment always exist.',
+      'Link the natural rate to the Phillips curve trade-off: below the natural rate, inflation rises; above it, there is spare capacity.',
+      'Give an approximate natural rate figure (4–5%) to show familiarity with real-world magnitudes.',
+    ],
+  },
+  {
+    id: 'eco-inf-2017',
+    subject: 'economics', topic: 'inflation', topicLabel: 'Inflation',
+    year: 2017, level: 'Higher Level', section: 'Section B — Q8', marks: 25,
+    question: '(a) Explain the relationship between inflation and unemployment as described by the Phillips curve.\n(10 marks)\n\n(b) Discuss the view that there is no long-run trade-off between inflation and unemployment.\n(15 marks)',
+    markingScheme: [
+      'Short-run Phillips curve: An inverse relationship between inflation and unemployment — lower unemployment is associated with higher inflation as the economy approaches full capacity. (4M)',
+      'Mechanism: Near full employment, labour shortages push up wages; firms raise prices to cover higher costs; inflation increases. (3M)',
+      'Diagram: Downward-sloping SRPC with inflation on vertical axis, unemployment on horizontal; a point to the left implies lower unemployment but higher inflation. (3M)',
+      'Long-run Phillips curve (LRPC): Vertical at the natural rate of unemployment — in the long run, attempts to reduce unemployment below the natural rate only produce higher inflation with no lasting employment gain. (6M)',
+      'Expectation-augmented Phillips curve: Workers and firms adjust their inflation expectations; any policy that reduces unemployment below the natural rate is temporary — expectations adjust and the SRPC shifts upward. (5M)',
+      'Conclusion: In the long run, there is no trade-off — the economy always returns to the natural rate regardless of inflation. (4M)',
+    ],
+    fullMarksTips: [
+      'Draw both the SRPC (downward sloping) and the LRPC (vertical) on the same diagram — this is the core of the question.',
+      'The key to the long-run argument is adaptive expectations — workers demand higher wages when they expect inflation, shifting the SRPC up.',
+      'Name Friedman and Phelps if you know them — the expectation-augmented model is associated with their work and earns higher-order marks.',
+    ],
+  },
+  {
+    id: 'eco-ms-2017',
+    subject: 'economics', topic: 'market-structures', topicLabel: 'Market Structures',
+    year: 2017, level: 'Higher Level', section: 'Section A — Q5', marks: 10,
+    question: 'Explain what is meant by "price discrimination" and give ONE condition necessary for it to occur.\n(10 marks)',
+    markingScheme: [
+      'Price discrimination defined: The practice by a firm of charging different prices to different consumers for the same good or service, where the price difference is not due to cost differences. (4M)',
+      'Example: Airlines charging different fares for the same seat; cinemas charging lower prices for students and OAPs; electricity at different rates for peak/off-peak. (2M)',
+      'Condition 1 — Market segmentation: The firm must be able to separate consumers into distinct groups with different price elasticities of demand and prevent resale between groups. (4M)',
+    ],
+    fullMarksTips: [
+      'Stress "not due to cost differences" in your definition — this distinguishes price discrimination from normal differential pricing.',
+      'For conditions, other accepted answers: the firm must have market power (some monopoly control over price); there must be different PED values across segments.',
+      'Preventing resale is crucial — without it, buyers in the cheap segment would resell to those in the expensive segment, eliminating the price difference.',
+    ],
+  },
+
+  // ── 2016 ─────────────────────────────────
+  {
+    id: 'eco-ni-2016',
+    subject: 'economics', topic: 'national-income', topicLabel: 'National Income',
+    year: 2016, level: 'Higher Level', section: 'Section B — Q5', marks: 25,
+    question: '(a) Explain the THREE methods of measuring national income.\n(15 marks)\n\n(b) Explain TWO reasons why comparing national income figures between countries may be misleading.\n(10 marks)',
+    markingScheme: [
+      'Method 1 — Expenditure method: Total spending on final goods and services: GDP = C + I + G + (X − M); counts all spending by households, firms, government and net exports. (5M)',
+      'Method 2 — Income method: Totals all factor incomes earned in production — wages, rent, interest and profit — avoiding double-counting of intermediate goods. (5M)',
+      'Method 3 — Output/Production method: Totals the value added at each stage of production across all industries; only net value added counted to avoid double-counting. (5M)',
+      'Misleading comparison 1 — Exchange rate fluctuations: Converting national incomes to a common currency using market exchange rates distorts comparisons; Purchasing Power Parity (PPP) adjustments are needed. (5M)',
+      'Misleading comparison 2 — Income distribution: A country with high average income may have extreme inequality — GDP per capita masks poverty for large sections of the population. (5M)',
+    ],
+    fullMarksTips: [
+      'For the expenditure method, state the formula GDP = C + I + G + (X − M) — the formula earns its own mark.',
+      'Stress that all three methods, correctly applied, should give the same answer — they measure the same circular flow from different angles.',
+      'For PPP comparison: explain that €1 buys different amounts in different countries — a dollar-denominated comparison using market rates ignores this.',
+    ],
+  },
+  {
+    id: 'eco-fp-2016',
+    subject: 'economics', topic: 'fiscal-policy', topicLabel: 'Fiscal Policy',
+    year: 2016, level: 'Higher Level', section: 'Section A — Q8', marks: 10,
+    question: 'Explain the concept of "automatic stabilisers" in fiscal policy and give TWO examples.\n(10 marks)',
+    markingScheme: [
+      'Automatic stabilisers defined: Features of the tax and welfare system that automatically reduce the size of the fiscal multiplier and dampen economic fluctuations without any new government action. (4M)',
+      'How they work: In a recession, tax receipts fall automatically (less income, less VAT) while welfare spending rises — both tend to support aggregate demand without deliberate policy. (2M)',
+      'Example 1 — Progressive income tax: As incomes fall in a recession, workers pay less tax automatically — more disposable income is retained, cushioning the fall in consumption. (2M)',
+      'Example 2 — Unemployment benefit: As unemployment rises, more workers receive welfare payments — this automatically boosts spending and limits the multiplied fall in national income. (2M)',
+    ],
+    fullMarksTips: [
+      'Stress "automatic" — no new government decision is needed; these mechanisms trigger by themselves.',
+      'Link automatic stabilisers to the business cycle: they reduce the amplitude of booms and recessions.',
+      'Both examples must explain the mechanism (how it supports AD) not just state the example.',
+    ],
+  },
+  {
+    id: 'eco-el-2016',
+    subject: 'economics', topic: 'elasticity', topicLabel: 'Elasticity',
+    year: 2016, level: 'Higher Level', section: 'Section B — Q6', marks: 20,
+    question: '(a) Explain what is meant by the price elasticity of demand and explain how a firm can use knowledge of PED to maximise its total revenue.\n(20 marks)',
+    markingScheme: [
+      'PED defined: The responsiveness of quantity demanded to a change in the price of the good. PED = % change in Qd ÷ % change in P. (4M)',
+      'Elastic demand (PED > 1): A price cut increases total revenue (% rise in Qd > % fall in P); a price rise reduces total revenue. (4M)',
+      'Inelastic demand (PED < 1): A price rise increases total revenue (% fall in Qd < % rise in P); a price cut reduces total revenue. (4M)',
+      'Unit elastic (PED = 1): Total revenue is maximised at this point — neither a price rise nor cut increases total revenue. (4M)',
+      'Firm application: A firm facing elastic demand should lower prices to maximise revenue; a firm facing inelastic demand should raise prices; total revenue is maximised where PED = 1. (4M)',
+    ],
+    fullMarksTips: [
+      'Structure the answer around the three PED ranges (elastic, inelastic, unit elastic) and what each implies for TR.',
+      'The total revenue rule: TR = P × Q; when demand is elastic, cutting price raises TR because the volume gain outweighs the price cut.',
+      'The relationship between PED and TR is a core LC topic — a clear table (PED range | Price change | TR change) impresses examiners.',
+    ],
+  },
+  {
+    id: 'eco-it-2016',
+    subject: 'economics', topic: 'international-trade', topicLabel: 'International Trade',
+    year: 2016, level: 'Higher Level', section: 'Section B — Q9', marks: 20,
+    question: '(a) Explain what is meant by the "terms of trade" and state TWO factors that can cause the terms of trade to deteriorate.\n(12 marks)\n\n(b) Explain how Ireland\'s membership of the eurozone affects its international trade.\n(8 marks)',
+    markingScheme: [
+      'Terms of trade defined: The ratio of a country\'s export prices to its import prices. ToT = (Index of export prices / Index of import prices) × 100. (4M)',
+      'Deterioration factor 1: A fall in world demand for a country\'s exports reduces export prices relative to import prices — terms of trade fall. (4M)',
+      'Deterioration factor 2: A rise in commodity/oil import prices increases import costs relative to export revenues — terms of trade fall. (4M)',
+      'Eurozone benefit — No exchange rate risk: Ireland trades in euros with other eurozone members — eliminates transaction costs and currency uncertainty, boosting trade volumes. (4M)',
+      'Eurozone constraint — No devaluation option: Ireland cannot devalue its currency to regain competitiveness; must rely on internal devaluation (wage and cost cuts) instead. (4M)',
+    ],
+    fullMarksTips: [
+      'State the ToT formula and explain: an index above 100 means favourable terms (exports worth more than imports); below 100 means unfavourable.',
+      'For deterioration causes, show the ratio falling: export price index falls or import price index rises.',
+      'For the eurozone effect, give one benefit (stable exchange rate, lower transaction costs) and one constraint (no devaluation) — both sides are needed.',
+    ],
+  },
+
+  // ── 2015 ─────────────────────────────────
+  {
+    id: 'eco-sd-2015',
+    subject: 'economics', topic: 'supply-demand', topicLabel: 'Supply & Demand',
+    year: 2015, level: 'Higher Level', section: 'Section B — Q5', marks: 25,
+    question: '(a) Using supply and demand analysis, explain the effect of a specific tax on the equilibrium price and quantity in a market.\n(12 marks)\n\n(b) Explain the concept of "tax incidence" and explain the circumstances under which the consumer bears most of the tax burden.\n(13 marks)',
+    markingScheme: [
+      'Specific tax effect on supply: A specific tax increases production costs by a fixed amount per unit — supply curve shifts left (upward) from S to S+tax. (4M)',
+      'New equilibrium: Price rises from P1 to P2 (but by less than the full tax); quantity falls from Q1 to Q2 — both consumers and producers share the tax burden. (4M)',
+      'Diagram: S curve, S+tax curve above it by the tax amount; D curve; new P2 and Q2; tax revenue rectangle shown. (4M)',
+      'Tax incidence defined: The distribution of the tax burden between buyers and sellers — who actually bears the cost of the tax in terms of price and quantity changes. (4M)',
+      'Consumer bears most of the burden when: Demand is price inelastic and/or supply is price elastic — consumers cannot easily reduce their purchases, so the price rise is passed on to them. (5M)',
+      'Example: Taxes on cigarettes, alcohol, petrol — inelastic demand means consumers bear most of the burden. (4M)',
+    ],
+    fullMarksTips: [
+      'The supply curve shifts LEFT (or UP by the tax amount) — the vertical distance between S and S+tax equals the tax per unit.',
+      'Price does not rise by the full tax — the split depends on relative elasticities; show this gap on your diagram.',
+      'Tax incidence depends on PED and PES — if demand is perfectly inelastic, consumers bear 100% of the tax.',
+    ],
+  },
+  {
+    id: 'eco-ms-2015',
+    subject: 'economics', topic: 'market-structures', topicLabel: 'Market Structures',
+    year: 2015, level: 'Higher Level', section: 'Section B — Q7', marks: 25,
+    question: '(a) Explain, using a diagram, the long-run equilibrium position of a firm in monopolistic competition.\n(15 marks)\n\n(b) Give TWO reasons why monopolistic competition is considered wasteful.\n(10 marks)',
+    markingScheme: [
+      'Monopolistic competition features: Many firms, differentiated products, low barriers to entry and exit. (3M)',
+      'Short-run: Firm makes supernormal profit attracting new entrants — demand curve for each firm shifts left as market share is divided. (4M)',
+      'Long-run equilibrium diagram: Downward-sloping AR curve tangent to the AC curve at equilibrium output (Qm); AR = AC (normal profit only); MR intersects MC below this point. (5M)',
+      'Productive inefficiency: Firm does not produce at minimum AC — output is less than optimal scale; excess capacity exists. (3M)',
+      'Reason 1 — Excess capacity/productive inefficiency: Firms operate with idle capacity (to the left of minimum AC) — resources are wasted. (5M)',
+      'Reason 2 — Allocative inefficiency: Price (AR) exceeds marginal cost (MC) — consumers pay more than the cost of producing the last unit. (5M)',
+    ],
+    fullMarksTips: [
+      'The long-run diagram is distinctive: AR must be tangent to AC (touching but not crossing) — this shows zero supernormal profit.',
+      '"Tangent to AC" means the firm is not at minimum AC — this IS the excess capacity result.',
+      'Name both inefficiencies (productive AND allocative) even if only asked for one — you earn credit for both.',
+    ],
+  },
+  {
+    id: 'eco-un-2015',
+    subject: 'economics', topic: 'unemployment', topicLabel: 'Unemployment',
+    year: 2015, level: 'Higher Level', section: 'Section A — Q5', marks: 10,
+    question: 'Explain the difference between voluntary and involuntary unemployment and discuss whether the distinction matters for policy.\n(10 marks)',
+    markingScheme: [
+      'Voluntary unemployment: Workers who choose not to accept available jobs at the prevailing wage — they prefer leisure or find the wage insufficient to compensate for working. (3M)',
+      'Involuntary unemployment: Workers who are willing and able to work at the prevailing wage but cannot find a job — caused by insufficient aggregate demand or structural mismatches. (3M)',
+      'Policy relevance: Involuntary unemployment requires demand-side or structural policies (fiscal stimulus, retraining); voluntary unemployment may respond to welfare reform or wage incentives — different causes require different solutions. (4M)',
+    ],
+    fullMarksTips: [
+      'The key distinction: voluntary = choice not to work; involuntary = want to work but no job available.',
+      'For policy relevance, show that the distinction changes what type of policy is appropriate — demand management vs supply-side reform.',
+      'Note that in practice, distinguishing between the two is difficult — this shows analytical depth.',
+    ],
+  },
+  {
+    id: 'eco-mp-2015',
+    subject: 'economics', topic: 'monetary-policy', topicLabel: 'Monetary Policy',
+    year: 2015, level: 'Higher Level', section: 'Section B — Q9', marks: 25,
+    question: '(a) Explain the main objectives of the European Central Bank (ECB).\n(10 marks)\n\n(b) Using the quantity theory of money, explain the relationship between money supply and inflation.\n(15 marks)',
+    markingScheme: [
+      'Primary objective: Maintaining price stability — keeping inflation close to but below 2% in the medium term across the eurozone. (4M)',
+      'Secondary objectives: Supporting general EU economic policies — high employment, sustainable growth, stable exchange rates — but only when consistent with the primary mandate. (3M)',
+      'Independence: The ECB is politically independent; cannot accept instructions from EU governments or institutions. (3M)',
+      'Quantity theory of money — equation: MV = PT (or MV = PY); M = money supply, V = velocity of circulation, P = price level, T/Y = volume of transactions/real output. (5M)',
+      'Assumptions: V and T are constant in the short run. (2M)',
+      'Inflation relationship: If M increases while V and T are held constant, P must rise proportionally — an increase in money supply causes inflation. (5M)',
+      'Policy implication: To control inflation, the central bank must control growth in the money supply. (3M)',
+    ],
+    fullMarksTips: [
+      'State the ECB\'s primary mandate as "price stability" and define it as inflation "close to but below 2%" — the specific target earns marks.',
+      'For the quantity theory, write the equation MV = PT clearly and identify each variable before applying it.',
+      'The key assumption is constant V and T — without stating this, the inflation conclusion does not follow logically.',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     ADDITIONAL YEARS — BUSINESS
+  ══════════════════════════════════════════ */
+
+  {
+    id: 'bus-org-2015',
+    subject: 'business', topic: 'business-organisation', topicLabel: 'Business Organisation',
+    year: 2015, level: 'Higher Level', section: 'Unit 3 — Q1', marks: 20,
+    question: 'Explain the term "sole trader" and outline THREE advantages and TWO disadvantages of this form of business organisation.\n(20 marks)',
+    markingScheme: [
+      'Sole trader defined: A business owned and operated by a single individual who bears unlimited personal liability for all debts. (3M)',
+      'Advantage 1 — Easy to set up: No legal formalities required; can trade immediately; low start-up costs. (3M)',
+      'Advantage 2 — Full control: The owner makes all decisions independently without consulting partners or shareholders. (3M)',
+      'Advantage 3 — Keep all profits: No profit-sharing required; all after-tax profits belong to the owner. (3M)',
+      'Disadvantage 1 — Unlimited liability: The owner\'s personal assets (home, savings) can be seized to pay business debts — full personal financial exposure. (4M)',
+      'Disadvantage 2 — Limited capital: Cannot issue shares; growth is limited to personal savings and loans; expansion is constrained. (4M)',
+    ],
+    fullMarksTips: [
+      'Unlimited liability is the most important disadvantage — explain the full implications, not just "you lose your money".',
+      'For each point, name it then explain the mechanism clearly in one or two sentences.',
+      'Other accepted advantages: privacy (no public accounts), flexibility, direct customer relationships.',
+    ],
+  },
+  {
+    id: 'bus-fin-2017',
+    subject: 'business', topic: 'finance', topicLabel: 'Finance & Accounts',
+    year: 2017, level: 'Higher Level', section: 'Unit 6 — Q2', marks: 20,
+    question: 'Explain the difference between short-term and long-term sources of finance and give ONE example of each.\n(20 marks)',
+    markingScheme: [
+      'Short-term finance defined: Finance repayable within one year; used to fund day-to-day working capital needs (e.g. buying stock, paying wages). (4M)',
+      'Short-term example — Bank overdraft: The business draws more money from its account than it has; bank allows this up to a limit; repayable on demand; suitable for temporary cash flow gaps. (6M)',
+      'Long-term finance defined: Finance repayable over more than one year; used to fund capital expenditure (e.g. machinery, property, expansion). (4M)',
+      'Long-term example — Debenture/Long-term loan: A fixed-term loan from a bank at an agreed interest rate; repaid over many years; secured against business assets. (6M)',
+    ],
+    fullMarksTips: [
+      'The key distinction is the time period: short-term = under 1 year; long-term = over 1 year — and link each to the purpose (working capital vs capital expenditure).',
+      'For each example, explain: what it is, how it works, why it suits the time frame.',
+      'Other valid examples — short: trade credit, factoring; long: equity/share issue, venture capital, leasing.',
+    ],
+  },
+  {
+    id: 'bus-mkt-2016',
+    subject: 'business', topic: 'marketing', topicLabel: 'Marketing',
+    year: 2016, level: 'Higher Level', section: 'Unit 5 — Q2', marks: 20,
+    question: 'Explain the concept of the "product life cycle" and discuss the marketing strategies a firm might use at each stage.\n(20 marks)',
+    markingScheme: [
+      'Introduction stage: Low sales, high costs, heavy promotion needed; price skimming or penetration pricing used to gain market entry. (4M)',
+      'Growth stage: Rapid sales growth, increasing competition enters; focus on differentiation; marketing emphasises brand building and distribution expansion. (4M)',
+      'Maturity stage: Sales plateau, market saturation, intense competition; price competition increases; firms seek product extensions or new market segments. (4M)',
+      'Decline stage: Falling sales, reduced marketing spend; firm may harvest profits, reposition, or withdraw the product from market. (4M)',
+      'Diagram: S-shaped (or bell-shaped) curve with the four stages labelled on the time axis and sales/profit on the vertical axis. (4M)',
+    ],
+    fullMarksTips: [
+      'Link marketing strategy to each stage specifically — generic "promote the product" answers do not earn marks.',
+      'Draw the PLC curve; label all four stages on the x-axis; show a separate profit curve if possible (profit lags behind sales).',
+      'The maturity stage is where most real competition occurs — show awareness that firms use brand extensions, new segments, or price cuts here.',
+    ],
+  },
+  {
+    id: 'bus-hr-2015',
+    subject: 'business', topic: 'human-resources', topicLabel: 'Human Resources',
+    year: 2015, level: 'Higher Level', section: 'Unit 4 — Q3', marks: 20,
+    question: 'Discuss the importance of motivation in the workplace and explain ONE motivational theory.\n(20 marks)',
+    markingScheme: [
+      'Importance of motivation: Motivated employees are more productive, produce better quality work, have lower absenteeism and turnover, and contribute to a positive workplace culture. (6M)',
+      'Maslow\'s Hierarchy of Needs: Five levels — physiological (food, shelter), safety, social/love, esteem, and self-actualisation; lower needs must be satisfied before higher ones motivate. (6M)',
+      'Application to management: Managers must identify which level employees are at and offer appropriate rewards — e.g. good salary satisfies physiological needs; promotion and recognition satisfy esteem. (4M)',
+      'Alternative theory accepted: Herzberg\'s Two-Factor Theory (hygiene vs motivators); McGregor\'s Theory X and Y; Taylor\'s scientific management. (4M)',
+    ],
+    fullMarksTips: [
+      'Name a specific theory (Maslow, Herzberg, etc.) and explain it clearly with all its components — vague references to "motivation theories" earn nothing.',
+      'For Maslow, draw the hierarchy pyramid and label all five levels — this demonstrates full knowledge.',
+      'Link the theory to management practice — how does it tell a manager what to do in practice?',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     ADDITIONAL YEARS — BIOLOGY
+  ══════════════════════════════════════════ */
+
+  {
+    id: 'bio-cell-2015',
+    subject: 'biology', topic: 'cell-biology', topicLabel: 'Cell Biology',
+    year: 2015, level: 'Higher Level', section: 'Section B — Q6', marks: 25,
+    question: '(a) Describe the structure and function of mitochondria.\n(10 marks)\n\n(b) Explain the role of ATP in cellular metabolism.\n(15 marks)',
+    markingScheme: [
+      'Mitochondria structure: Double membrane — outer membrane (smooth) and inner membrane (folded into cristae); matrix contains enzymes, DNA and ribosomes. (5M)',
+      'Function: Site of aerobic respiration — glucose is broken down in the presence of oxygen to produce ATP, CO₂ and water; the more active the cell, the more mitochondria it contains. (5M)',
+      'ATP structure: Adenosine triphosphate — adenosine + 3 phosphate groups; energy stored in high-energy phosphate bonds. (4M)',
+      'ATP function: Universal energy currency of the cell; provides energy for active transport, protein synthesis, muscle contraction, and all energy-requiring cellular processes. (5M)',
+      'ATP synthesis: Produced in mitochondria (aerobic respiration) and cytoplasm (anaerobic respiration/glycolysis); ADP + Pi + energy → ATP. (6M)',
+    ],
+    fullMarksTips: [
+      'Name both the inner membrane folds ("cristae") and the fluid inside ("matrix") — these specific terms earn marks.',
+      'Link the number of mitochondria to the cell\'s energy needs — muscle cells and liver cells have many; this shows understanding.',
+      'For ATP, stress that it is the immediate energy source — glucose is not directly used; it must be converted to ATP first.',
+    ],
+  },
+  {
+    id: 'bio-gen-2016',
+    subject: 'biology', topic: 'genetics', topicLabel: 'Genetics',
+    year: 2016, level: 'Higher Level', section: 'Section B — Q7', marks: 25,
+    question: '(a) Explain the process of meiosis and state its biological importance.\n(15 marks)\n\n(b) Distinguish between crossing over and independent assortment as sources of genetic variation.\n(10 marks)',
+    markingScheme: [
+      'Meiosis overview: Two successive divisions (Meiosis I and II) producing four haploid daughter cells from one diploid parent cell — reduces chromosome number by half. (3M)',
+      'Meiosis I: Homologous chromosomes pair up (synapsis) and separate — chromosome number halved; crossing over occurs during prophase I. (5M)',
+      'Meiosis II: Similar to mitosis — sister chromatids separate; four haploid cells produced. (3M)',
+      'Importance: Produces gametes (sperm and egg) for sexual reproduction; maintains chromosome number across generations; generates genetic variation. (4M)',
+      'Crossing over: During prophase I, non-sister chromatids of homologous chromosomes exchange segments — new combinations of alleles are created (recombination). (5M)',
+      'Independent assortment: During metaphase I, homologous chromosome pairs align randomly — each gamete receives a random mix of maternal and paternal chromosomes (2ⁿ combinations possible). (5M)',
+    ],
+    fullMarksTips: [
+      'Distinguish meiosis from mitosis clearly: meiosis has TWO divisions and produces 4 haploid cells; mitosis has ONE division and produces 2 diploid cells.',
+      'Crossing over and independent assortment both create new allele combinations but by different mechanisms — crossing over is within a chromosome pair; independent assortment is between different chromosome pairs.',
+      'State the importance of meiosis in terms of sexual reproduction AND variation — both points are tested.',
+    ],
+  },
+  {
+    id: 'bio-hum-2016',
+    subject: 'biology', topic: 'human-biology', topicLabel: 'Human Biology',
+    year: 2016, level: 'Higher Level', section: 'Section A — Q4', marks: 15,
+    question: 'Explain the role of the kidney in osmoregulation and describe how ADH (antidiuretic hormone) controls water reabsorption.\n(15 marks)',
+    markingScheme: [
+      'Osmoregulation: The control of water and salt balance in the blood — the kidney maintains constant blood osmotic pressure. (3M)',
+      'Nephron role: The loop of Henle creates a concentration gradient in the medulla; filtrate is concentrated as it passes through the collecting duct — water is reabsorbed by osmosis. (4M)',
+      'ADH release: When blood osmotic pressure rises (dehydration), the hypothalamus detects this and signals the posterior pituitary to release ADH into the blood. (4M)',
+      'ADH action: ADH increases the permeability of the collecting duct to water — more water is reabsorbed from the filtrate into the blood; urine becomes more concentrated and volume decreases. (4M)',
+    ],
+    fullMarksTips: [
+      'State clearly that ADH increases the permeability of the COLLECTING DUCT (not the entire nephron) to water.',
+      'Use the words "osmotic pressure" and "concentration gradient" — these are the technical terms the examiner expects.',
+      'Describe the negative feedback loop: dehydration → high osmotic pressure → more ADH → more water reabsorption → osmotic pressure falls — this shows full understanding.',
+    ],
+  },
+  {
+    id: 'bio-eco-2017',
+    subject: 'biology', topic: 'ecology', topicLabel: 'Ecology',
+    year: 2017, level: 'Higher Level', section: 'Section B — Q8', marks: 25,
+    question: '(a) Describe the nitrogen cycle and explain its importance for living organisms.\n(15 marks)\n\n(b) Explain what is meant by eutrophication and describe its ecological consequences.\n(10 marks)',
+    markingScheme: [
+      'Nitrogen fixation: Atmospheric N₂ converted to ammonium (NH₄⁺) by nitrogen-fixing bacteria (e.g. Rhizobium in root nodules of legumes) or by lightning. (4M)',
+      'Nitrification: Ammonium → nitrite (NO₂⁻) → nitrate (NO₃⁻) by nitrifying bacteria (Nitrosomonas, Nitrobacter); nitrate is absorbed by plant roots. (4M)',
+      'Denitrification: Denitrifying bacteria convert nitrates back to N₂ in anaerobic conditions (waterlogged soils) — returns nitrogen to the atmosphere. (3M)',
+      'Importance: Nitrogen is essential for amino acids, proteins, nucleic acids (DNA, RNA), and chlorophyll — without the cycle, nitrogen would not be available in usable form. (4M)',
+      'Eutrophication defined: Over-enrichment of water bodies with nutrients (especially nitrates and phosphates) from agricultural run-off or sewage. (3M)',
+      'Ecological consequences: Algal bloom → blocks light → aquatic plants die → bacteria decompose dead material → aerobic bacteria use up dissolved oxygen → fish and other organisms die (BOD rises). (7M)',
+    ],
+    fullMarksTips: [
+      'Name specific bacteria for each stage (Rhizobium, Nitrosomonas, Nitrobacter, Pseudomonas for denitrification) — generic "bacteria" loses marks at HL.',
+      'For eutrophication, trace the full chain from nutrient enrichment to fish death — each step must be linked to the next.',
+      'State that eutrophication raises the Biological Oxygen Demand (BOD) — this technical term is expected in HL answers.',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     ADDITIONAL YEARS — HISTORY
+  ══════════════════════════════════════════ */
+
+  {
+    id: 'his-rev-2015',
+    subject: 'history', topic: 'irish-revolution', topicLabel: 'Irish Revolution 1916–1923',
+    year: 2015, level: 'Higher Level', section: 'Section 3 — Q3', marks: 25,
+    question: 'What were the main terms of the Anglo-Irish Treaty of 1921 and why did it divide the nationalist movement?\n(25 marks)',
+    markingScheme: [
+      'Main terms — Dominion status: The Irish Free State was to have Dominion status within the British Empire (like Canada/Australia) — not a fully independent republic. (5M)',
+      'Partition: The six counties of Northern Ireland were excluded — they would remain part of the United Kingdom; a Boundary Commission was promised to review the border. (5M)',
+      'Oath of Allegiance: Members of the Dáil would be required to swear an oath of fidelity to the British Crown — deeply offensive to republican principles. (5M)',
+      'Division — Pro-Treaty: Collins argued it was "the freedom to achieve freedom"; practical step toward full independence; avoiding renewed all-out war. (5M)',
+      'Division — Anti-Treaty: De Valera and others rejected the oath and partition; saw it as a betrayal of the 1916 proclamation and the All-Ireland republic declared in 1919. (5M)',
+    ],
+    fullMarksTips: [
+      'Cover the three main contentious terms: Dominion status (not republic), partition, and the oath — all three are needed for full marks.',
+      'The division question requires BOTH pro-Treaty arguments (Collins) and anti-Treaty arguments (de Valera) — balance is essential.',
+      'Note that Collins signed under duress ("otherwise immediate and terrible war") — this context explains why leaders accepted difficult terms.',
+    ],
+  },
+  {
+    id: 'his-eur-2016',
+    subject: 'history', topic: 'modern-europe', topicLabel: 'Modern Europe & World',
+    year: 2016, level: 'Higher Level', section: 'Section 4 — Q2', marks: 30,
+    question: 'How did Stalin consolidate power in the Soviet Union in the 1920s and 1930s?\n(30 marks)',
+    markingScheme: [
+      'Struggle for succession: After Lenin\'s death (1924), Stalin outmanoeuvred rivals — Trotsky, Zinoviev, Kamenev — through control of party appointments as General Secretary. (6M)',
+      'Collectivisation (1928–33): Forced collectivisation of agriculture; peasant resistance crushed; kulaks liquidated as a class; state control of agricultural output secured. (6M)',
+      'Five Year Plans: Rapid industrialisation under centralised state planning; heavy industry prioritised; economic base for Soviet power built at great human cost. (6M)',
+      'Purges (1936–38): Great Terror — show trials of Old Bolsheviks; mass arrests and executions through NKVD; Red Army purged, removing potential rivals and cementing Stalin\'s absolute control. (6M)',
+      'Cult of personality: Stalin portrayed as infallible leader; censorship and propaganda; rewriting of history — Trotsky airbrushed from official photographs. (6M)',
+    ],
+    fullMarksTips: [
+      'Cover multiple methods — party control, economic transformation, terror — rather than focusing on one exclusively.',
+      'Give specific dates and events (Great Purge 1936–38, collectivisation 1928–33) — precision demonstrates depth of knowledge.',
+      'Link each method to how it eliminated opposition or secured loyalty — always connect back to the question of power consolidation.',
+    ],
+  },
+  {
+    id: 'his-ire-2015',
+    subject: 'history', topic: 'ireland-1922-1945', topicLabel: 'Ireland 1922–1945',
+    year: 2015, level: 'Higher Level', section: 'Section 3 — Q1', marks: 25,
+    question: 'Discuss the economic policies of Éamon de Valera\'s government in Ireland during the 1930s.\n(25 marks)',
+    markingScheme: [
+      'Economic nationalism / self-sufficiency: De Valera pursued an autarkic policy — aimed to make Ireland economically self-sufficient, reduce dependence on Britain. (5M)',
+      'Protectionism: High tariff barriers erected against imported goods; domestic industries protected behind trade walls to promote industrialisation. (5M)',
+      'Economic War with Britain (1932–38): De Valera refused to pay land annuities to Britain; Britain retaliated with tariffs on Irish cattle exports; Irish agriculture severely damaged. (6M)',
+      'Industrial development: Establishment of semi-state companies (Aer Lingus 1936, Irish Sugar Company); Shannon Airport developed; limited industrialisation achieved. (5M)',
+      'Anglo-Irish Trade Agreement 1938: Economic War ended; land annuities dispute settled; Treaty ports returned; trade normalised — pragmatic compromise. (4M)',
+    ],
+    fullMarksTips: [
+      'The Economic War (1932–38) is the centrepiece of this topic — explain its causes, effects on Irish agriculture, and resolution.',
+      'Note the contradiction: protectionism helped create some industry but damaged agriculture and living standards — this tension is worth exploring.',
+      'The 1938 Anglo-Irish Agreement was a significant milestone — it resolved the Economic War and returned the Treaty ports.',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     ADDITIONAL YEARS — MATHS
+  ══════════════════════════════════════════ */
+
+  {
+    id: 'mth-alg-2015',
+    subject: 'maths', topic: 'algebra', topicLabel: 'Algebra & Functions',
+    year: 2015, level: 'Higher Level', section: 'Paper 1 — Q4', marks: 20,
+    question: 'Let f(x) = x² − 4x + 3.\n\n(a) Find the roots of f(x) = 0.\n(b) Sketch the graph of f(x), showing all key features.\n(c) Find the range of values of x for which f(x) < 0.',
+    markingScheme: [
+      'Part (a): f(x) = (x−1)(x−3) = 0; roots: x = 1 and x = 3. (5M)',
+      'Part (b) — Sketch: Upward-opening parabola; roots at x = 1 and x = 3 labelled; vertex at (2, −1) found by completing the square or x = −b/2a; y-intercept at (0, 3). (8M)',
+      'Part (c): f(x) < 0 between the roots; solution: 1 < x < 3. (7M)',
+    ],
+    fullMarksTips: [
+      'Factor first for the roots — show the factored form (x−1)(x−3) before stating the roots.',
+      'For the sketch: mark both roots AND the vertex AND the y-intercept — all four features earn marks.',
+      'For part (c), the parabola is below the x-axis between the roots — if the coefficient of x² is positive, f(x) < 0 between the roots.',
+    ],
+  },
+  {
+    id: 'mth-sta-2016',
+    subject: 'maths', topic: 'statistics', topicLabel: 'Statistics & Probability',
+    year: 2016, level: 'Higher Level', section: 'Paper 2 — Q3', marks: 25,
+    question: 'In a class of 30 students, 18 study French, 14 study Spanish, and 6 study both languages.\n\n(a) Draw a Venn diagram to represent this information.\n(b) How many students study neither language?\n(c) A student is chosen at random. Find the probability that the student studies exactly one language.',
+    markingScheme: [
+      'Part (a) — Venn diagram: Two overlapping circles; French only = 18 − 6 = 12; Spanish only = 14 − 6 = 8; both = 6; correctly placed in diagram. (8M)',
+      'Part (b): Total studying at least one = 12 + 8 + 6 = 26; neither = 30 − 26 = 4 students. (7M)',
+      'Part (c): Students studying exactly one language = 12 + 8 = 20; P(exactly one) = 20/30 = 2/3. (10M)',
+    ],
+    fullMarksTips: [
+      'Always start a Venn diagram question by finding the intersection first — then subtract to find "only" regions.',
+      'For part (b), find the union first (|F ∪ S| = |F| + |S| − |F ∩ S|) then subtract from the total.',
+      'For part (c), "exactly one language" means French only OR Spanish only — not both; 12 + 8 = 20, not 26.',
+    ],
+  },
+  {
+    id: 'mth-tri-2015',
+    subject: 'maths', topic: 'trigonometry', topicLabel: 'Trigonometry',
+    year: 2015, level: 'Higher Level', section: 'Paper 2 — Q6', marks: 20,
+    question: 'A triangle ABC has sides a = 8 cm, b = 11 cm and included angle C = 35°.\n\n(a) Find the length of side c using the cosine rule.\n(b) Find the area of triangle ABC.',
+    markingScheme: [
+      'Part (a) — Cosine rule stated: c² = a² + b² − 2ab cos C. (3M)',
+      'Part (a) — Substitution: c² = 64 + 121 − 2(8)(11)cos 35° = 185 − 176(0.8192) = 185 − 144.18 = 40.82. (5M)',
+      'Part (a) — c = √40.82 ≈ 6.39 cm. (4M)',
+      'Part (b) — Area formula: Area = ½ab sin C = ½(8)(11)sin 35° = 44 × 0.5736 ≈ 25.24 cm². (8M)',
+    ],
+    fullMarksTips: [
+      'State the cosine rule formula before substituting — this earns a method mark even if arithmetic goes wrong.',
+      'Use your calculator carefully: cos 35° ≈ 0.8192; show this value in your working.',
+      'The area formula ½ab sin C requires the INCLUDED angle (the angle between the two given sides) — identify this correctly from the question.',
+    ],
+  },
+  {
+    id: 'mth-cal-2016',
+    subject: 'maths', topic: 'calculus', topicLabel: 'Calculus',
+    year: 2016, level: 'Higher Level', section: 'Paper 1 — Q8', marks: 25,
+    question: 'A curve has equation y = x³ − 6x² + 9x.\n\n(a) Find dy/dx.\n(b) Find the equations of the tangent and normal to the curve at the point where x = 1.\n(c) Find the x-coordinates of the stationary points and determine their nature.',
+    markingScheme: [
+      'Part (a): dy/dx = 3x² − 12x + 9. (4M)',
+      'Part (b) — y at x=1: y = 1 − 6 + 9 = 4; point (1, 4). Slope of tangent = 3(1) − 12(1) + 9 = 0; tangent is y = 4 (horizontal). (6M)',
+      'Part (b) — Normal: Perpendicular to a horizontal tangent is vertical; normal is x = 1. (3M)',
+      'Part (c) — Stationary points: dy/dx = 0 → 3x² − 12x + 9 = 0 → x² − 4x + 3 = 0 → (x−1)(x−3) = 0; x = 1 and x = 3. (5M)',
+      'Part (c) — Nature: d²y/dx² = 6x − 12; at x=1: −6 < 0 → local maximum; at x=3: +6 > 0 → local minimum. (7M)',
+    ],
+    fullMarksTips: [
+      'Differentiate each term carefully — the most common error is dropping a coefficient.',
+      'When the slope is 0 (horizontal tangent), the normal is a vertical line x = c — state this explicitly.',
+      'The second derivative test: negative → maximum; positive → minimum; zero → inconclusive (use first derivative test).',
+    ],
+  },
+  {
+    id: 'mth-geo-2015',
+    subject: 'maths', topic: 'geometry', topicLabel: 'Geometry & Co-ordinate',
+    year: 2015, level: 'Higher Level', section: 'Paper 2 — Q3', marks: 20,
+    question: 'A line l has equation 3x − 4y + 12 = 0.\n\n(a) Find the slope and y-intercept of l.\n(b) Find the perpendicular distance from the point P(2, −1) to the line l.\n(c) Find the equation of the line through P perpendicular to l.',
+    markingScheme: [
+      'Part (a): Rearrange: 4y = 3x + 12 → y = ¾x + 3; slope = ¾; y-intercept = 3. (5M)',
+      'Part (b) — Distance formula: d = |ax₁ + by₁ + c| / √(a² + b²) = |3(2) − 4(−1) + 12| / √(9+16) = |6 + 4 + 12| / 5 = 22/5 = 4.4 units. (8M)',
+      'Part (c): Perpendicular slope = −4/3 (negative reciprocal of ¾); equation: y − (−1) = −4/3(x − 2) → 4x + 3y − 5 = 0. (7M)',
+    ],
+    fullMarksTips: [
+      'State the perpendicular distance formula and identify a, b, c from the line equation before substituting.',
+      'For the perpendicular line, the slope is the NEGATIVE RECIPROCAL of the original slope — ¾ becomes −4/3.',
+      'Express the final equation with integer coefficients in the form ax + by + c = 0.',
+    ],
+  },
 ];
