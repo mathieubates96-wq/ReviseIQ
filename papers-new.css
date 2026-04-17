@@ -580,8 +580,7 @@
 }
 
 .tq-card:hover {
-  border-color: var(--green-200);
-  background: white;
+  border-color: var(--green-300);
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
