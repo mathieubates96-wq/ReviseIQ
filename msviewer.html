@@ -44,17 +44,45 @@
     <div class="page-header-band">
       <div class="container">
         <h1 class="page-title">Marking Scheme Viewer</h1>
-        <p class="page-subtitle">Read the question, attempt an answer in your head, then reveal the official marking scheme with a single click.</p>
+        <p class="page-subtitle">Pick a subject and topic, read the question, attempt it — then reveal the official marking scheme.</p>
       </div>
     </div>
 
     <div class="container msv-page">
 
-      <!-- Question navigator -->
-      <div class="msv-nav-bar" id="msvNavBar" role="tablist" aria-label="Select question"></div>
+      <!-- ── FILTER ROWS ── -->
+      <div class="msv-filters">
 
-      <!-- Split-panel viewer -->
-      <div class="msv-wrap" id="msvWrap">
+        <!-- Row 1: Subjects -->
+        <div class="msv-filter-row">
+          <span class="msv-filter-label">Subject</span>
+          <div class="msv-filter-pills" id="msvSubjectRow"></div>
+        </div>
+
+        <!-- Row 2: Topics -->
+        <div class="msv-filter-row" id="msvTopicRowWrap">
+          <span class="msv-filter-label">Topic</span>
+          <div class="msv-filter-pills" id="msvTopicRow"></div>
+        </div>
+
+        <!-- Row 3: Question list -->
+        <div class="msv-filter-row" id="msvQListWrap">
+          <span class="msv-filter-label">Question</span>
+          <div class="msv-q-list" id="msvQList"></div>
+        </div>
+
+      </div>
+
+      <!-- ── SPLIT-PANEL VIEWER ── -->
+
+      <!-- Empty state shown when no question is selected -->
+      <div class="msv-viewer-empty" id="msvViewerEmpty">
+        <div class="msv-empty-icon">📝</div>
+        <p>Select a subject and topic above to load questions.</p>
+      </div>
+
+      <!-- Viewer shown once a question is loaded -->
+      <div class="msv-wrap" id="msvWrap" style="display:none;">
 
         <!-- LEFT / TOP: Question -->
         <div class="msv-question-panel">
@@ -82,20 +110,15 @@
         <!-- RIGHT / BOTTOM: Marking Scheme -->
         <div class="msv-scheme-panel" id="msvSchemePanel" aria-hidden="true">
           <div class="msv-scheme-inner">
-
             <div class="msv-scheme-header">
               <span class="msv-badge msv-badge-scheme">✅ Marking Scheme</span>
-              <button class="msv-close-btn" id="msvCloseBtn" title="Close marking scheme" aria-label="Close">✕</button>
+              <button class="msv-close-btn" id="msvCloseBtn" title="Close" aria-label="Close">✕</button>
             </div>
-
-            <!-- Points + full marks box injected here -->
             <div id="msvSchemeContent"></div>
-
           </div>
         </div>
 
       </div>
-      <!-- /.msv-wrap -->
 
     </div>
   </main>
@@ -103,7 +126,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2025 ReviseIQ. Marking scheme content based on SEC past papers. Not official SEC material.</p>
+        <p>&copy; 2025 ReviseIQ. Marking scheme content is representative of SEC past papers. Not official SEC material.</p>
       </div>
     </div>
   </footer>
@@ -114,6 +137,7 @@
   <script src="firebase-init.js"></script>
   <script src="auth.js"></script>
   <script src="main.js"></script>
+  <script src="msviewer-data.js"></script>
   <script src="msviewer.js"></script>
 </body>
 </html>
