@@ -58,6 +58,26 @@
 
     <div class="container papers-new-wrap">
 
+      <!-- ── MODE TOGGLE ── -->
+      <div class="page-mode-toggle">
+        <button class="page-mode-btn active" id="modeFindPapers">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="1" y="1" width="5" height="6" rx="1"/><rect x="9" y="1" width="5" height="4" rx="1"/>
+            <rect x="1" y="9" width="5" height="5" rx="1"/><rect x="9" y="7" width="5" height="7" rx="1"/>
+          </svg>
+          Find Papers
+        </button>
+        <button class="page-mode-btn" id="modeBrowseTopics">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="6" cy="6" r="4"/><path d="M10.5 10.5L14 14"/>
+          </svg>
+          Browse by Topic
+        </button>
+      </div>
+
+      <!-- ── FIND PAPERS SECTION ── -->
+      <div id="findPapersSection">
+
       <!-- ── SELECTOR PANEL ── -->
       <div class="selector-panel">
 
@@ -146,6 +166,56 @@
         </div>
 
       </div>
+
+      </div><!-- end #findPapersSection -->
+
+      <!-- ── BROWSE BY TOPIC SECTION ── -->
+      <div id="topicBrowserSection" style="display:none;">
+
+        <!-- Subject picker -->
+        <div class="topic-controls">
+          <div class="selector-group">
+            <label class="selector-label" for="topicSelSubject">Subject</label>
+            <div class="select-wrap" style="max-width:260px;">
+              <select id="topicSelSubject">
+                <option value="economics">📉 Economics (HL)</option>
+                <option value="maths" disabled>📐 Maths — coming soon</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two-column layout: topic list + questions -->
+        <div class="topic-layout">
+
+          <!-- Left: topic list -->
+          <div class="topic-list-panel">
+            <div class="topic-list-header">
+              <span class="topic-list-title">Topics</span>
+              <span class="topic-list-count" id="topicCount"></span>
+            </div>
+            <input type="text" class="topic-search-input" id="topicSearchInput" placeholder="Search topics…" autocomplete="off" />
+            <div class="topic-list" id="topicList">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <!-- Right: questions for selected topic -->
+          <div class="topic-qs-panel" id="topicQsPanel">
+            <div class="topic-qs-empty" id="topicQsEmpty">
+              <div style="font-size:2.2rem;margin-bottom:12px;">👈</div>
+              <p>Select a topic to see past exam questions</p>
+            </div>
+            <div id="topicQsContent" style="display:none;">
+              <div class="topic-qs-header" id="topicQsHeader"></div>
+              <div class="topic-qs-list" id="topicQsList"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div><!-- end #topicBrowserSection -->
 
     </div>
   </div>

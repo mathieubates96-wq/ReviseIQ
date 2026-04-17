@@ -267,10 +267,273 @@ function renderResults(subject, year, level) {
 }
 
 // ─────────────────────────────────────────────
+// Topic Browser
+// ─────────────────────────────────────────────
+
+// Maps raw topic strings → normalised display name
+// Consolidates near-duplicate topics from the scraped data
+const TOPIC_ALIASES = {
+  'Demand and Supply':                  'Supply and Demand',
+  'Demand and Market Equilibrium':      'Market Equilibrium',
+  'Market Equilibrium':                 'Market Equilibrium',
+  'Supply and Demand':                  'Supply and Demand',
+  'Price Elasticity of Demand':         'Elasticity of Demand',
+  'Production Possibilities Frontier':  'Production Possibility Frontier',
+  'Consumer Utility and Demand':        'Consumer Behaviour',
+  'Consumer Behaviour / Price Effects': 'Consumer Behaviour',
+  'Utility and Consumer Behaviour':     'Consumer Behaviour',
+  'Law of Diminishing Marginal Utility':'Consumer Behaviour',
+  'Equi-Marginal Principle':            'Consumer Behaviour',
+  'Law of Demand':                      'Supply and Demand',
+  'Production and Costs':               'Production and Costs',
+  'Cost Curves':                        'Production and Costs',
+  'Cost Analysis':                      'Production and Costs',
+  'Short Run Production Decisions':     'Production and Costs',
+  'Law of Diminishing Marginal Returns':'Production and Costs',
+  'Specialisation and Cost Advantages': 'Production and Costs',
+  'Market Structures - Perfect Competition': 'Market Structures',
+  'Market Structures - Oligopoly':      'Market Structures',
+  'Market Structures - Monopoly':       'Market Structures',
+  'Market Structures / Oligopoly':      'Market Structures',
+  'Market Structures and Price Controls':'Market Structures',
+  'Perfect Competition':                'Market Structures',
+  'Price Discrimination':               'Market Structures',
+  'Pricing Strategies':                 'Market Structures',
+  'Price Controls':                     'Government Intervention',
+  'Price Controls and Housing Market':  'Government Intervention',
+  'Price Controls and Market Failure':  'Government Intervention',
+  'Price Controls/Labour Market':       'Government Intervention',
+  'Housing Market and Government Intervention': 'Government Intervention',
+  'Government Intervention':            'Government Intervention',
+  'Market Failure':                     'Market Failure',
+  'Market Failure - Demerit Goods':     'Market Failure',
+  'Greenwashing/Market Failure':        'Market Failure',
+  'Merit Goods':                        'Market Failure',
+  'Externalities':                      'Market Failure',
+  'Opportunity Cost and Externalities': 'Market Failure',
+  'Environmental Sustainability':       'Market Failure',
+  'National Income/Household Savings':  'National Income',
+  'Consumption':                        'National Income',
+  'Investment':                         'National Income',
+  'Multiplier':                         'National Income',
+  'Tourism and Circular Flow':          'Circular Flow of Income',
+  'Fiscal Policy':                      'Fiscal Policy',
+  'Taxation':                           'Taxation',
+  'Government Finance':                 'Government Finance and National Debt',
+  'Government Finance and Employment':  'Government Finance and National Debt',
+  'Government Policy Objectives':       'Fiscal Policy',
+  'Government Policy and Ageing Population': 'Fiscal Policy',
+  'Income Inequality and Government Policy': 'Fiscal Policy',
+  'Labour Market / Gig Economy':        'Labour Market and Employment',
+  'Labour Demand':                      'Labour Market and Employment',
+  'Labour Economics':                   'Labour Market and Employment',
+  'Labour Economics and Demographic Change': 'Labour Market and Employment',
+  'Capital and Labour':                 'Labour Market and Employment',
+  'Labour Force, Economic Rent, Bonds, Capital': 'Labour Market and Employment',
+  'Unemployment':                       'Unemployment',
+  'Employment':                         'Labour Market and Employment',
+  'Monetary Policy and Interest Rates': 'Monetary Policy',
+  'Monetary Policy and Eurozone':       'Monetary Policy',
+  'Central Bank and Financial Regulation': 'European Central Bank',
+  'Banking / Financial Services':       'European Central Bank',
+  'Banking and Credit':                 'European Central Bank',
+  'Household Savings':                  'National Income',
+  'Types of Inflation':                 'Inflation',
+  'Inflation/Cost of Living':           'Inflation',
+  'Inflation/Consumer Price Index':     'Inflation',
+  'Exchange Rates':                     'International Trade',
+  'International Trade and Exchange Rates': 'International Trade',
+  'Trade Protectionism':                'International Trade',
+  'Trade Protection/Tariffs':           'International Trade',
+  'Balance of Payments':                'Balance of Payments',
+  'Economic Growth':                    'Economic Development',
+  'Economic Growth and Development':    'Economic Development',
+  'Economic Development':               'Economic Development',
+  'Development Economics':              'Economic Development',
+  'Development Economics - HDI':        'Economic Development',
+  'Regional Development':               'Regional Development',
+  'Housing and Regional Development':   'Regional Development',
+  'Foreign Direct Investment':          'Foreign Direct Investment',
+  'Globalisation':                      'International Trade',
+  'Demographics and Population':        'Demographics',
+  'Ageing Population':                  'Demographics',
+  'Labour Market/Price Controls':       'Government Intervention',
+  'Supply and Price Discrimination':    'Market Structures',
+  'Supply Chain':                       'Production and Costs',
+  'Economic Methodology':               'Economic Methodology',
+  'Economic Statements/Methodology':    'Economic Methodology',
+  'Methodology - Positive and Normative Statements': 'Economic Methodology',
+  'Economic Theory':                    'Economic Methodology',
+  'Economic Thought':                   'Economic Methodology',
+  'Economic Aims':                      'Economic Methodology',
+  'Fundamental Economic Concepts':      'Economic Methodology',
+  'Opportunity Cost':                   'Economic Methodology',
+  'Scarcity & Choice':                  'Economic Methodology',
+  'Land Economics':                     'Factors of Production',
+  'Capital and Labour':                 'Factors of Production',
+  'Education Economics':                'Factors of Production',
+  'Tourism':                            'Regional Development',
+  'Hidden Economy':                     'National Income',
+  'Economic Impact of Events/Cost-Benefit Analysis': 'Cost-Benefit Analysis',
+  'Cost-Benefit Analysis':              'Cost-Benefit Analysis',
+  'Monetary Policy':                    'Monetary Policy',
+  'National Income':                    'National Income',
+  'Circular Flow of Income':            'Circular Flow of Income',
+};
+
+function normaliseTopic(raw) {
+  return TOPIC_ALIASES[raw] || raw;
+}
+
+let allEcoQuestions = null;
+
+async function loadEconomicsQuestions() {
+  if (allEcoQuestions) return allEcoQuestions;
+  try {
+    const res = await fetch('data/economics_questions.json');
+    allEcoQuestions = await res.json();
+    return allEcoQuestions;
+  } catch (e) {
+    console.error('Failed to load economics questions:', e);
+    return [];
+  }
+}
+
+function buildTopicIndex(questions) {
+  const index = {};
+  questions.forEach(q => {
+    const topic = normaliseTopic(q.topic);
+    if (!index[topic]) index[topic] = [];
+    index[topic].push({ ...q, normTopic: topic });
+  });
+  return index;
+}
+
+function renderTopicList(index, filter = '') {
+  const list = document.getElementById('topicList');
+  const countEl = document.getElementById('topicCount');
+  const lc = filter.toLowerCase();
+
+  const sorted = Object.entries(index)
+    .map(([name, qs]) => ({ name, count: qs.length }))
+    .filter(t => !lc || t.name.toLowerCase().includes(lc))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+
+  countEl.textContent = sorted.length + ' topics';
+
+  if (!sorted.length) {
+    list.innerHTML = '<div style="padding:16px 18px;font-size:0.85rem;color:var(--gray-400);">No topics match your search.</div>';
+    return;
+  }
+
+  list.innerHTML = sorted.map(t => `
+    <div class="topic-item" data-topic="${encodeURIComponent(t.name)}">
+      <span class="topic-item-name">${t.name}</span>
+      <span class="topic-item-count">${t.count}</span>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('.topic-item').forEach(el => {
+    el.addEventListener('click', () => {
+      list.querySelectorAll('.topic-item').forEach(i => i.classList.remove('active'));
+      el.classList.add('active');
+      const topic = decodeURIComponent(el.dataset.topic);
+      showTopicQuestions(topic, index[topic] || []);
+    });
+  });
+}
+
+function showTopicQuestions(topic, questions) {
+  const empty   = document.getElementById('topicQsEmpty');
+  const content = document.getElementById('topicQsContent');
+  const header  = document.getElementById('topicQsHeader');
+  const list    = document.getElementById('topicQsList');
+
+  empty.style.display   = 'none';
+  content.style.display = 'block';
+
+  const years = [...new Set(questions.map(q => q.year))].sort((a,b) => b - a);
+  const totalMarks = questions.reduce((s, q) => s + (q.marks || 0), 0);
+
+  header.innerHTML = `
+    <div>
+      <div class="topic-qs-name">${topic}</div>
+      <div class="topic-qs-meta">${questions.length} question${questions.length !== 1 ? 's' : ''} · ${years.length} year${years.length !== 1 ? 's' : ''} · ${totalMarks} marks total</div>
+    </div>
+  `;
+
+  const sortedQs = [...questions].sort((a, b) => b.year - a.year);
+
+  list.innerHTML = sortedQs.map(q => {
+    const paperKey = `economics-${q.year}`;
+    const local = LOCAL_PAPERS[paperKey];
+    const paperLink = local?.paper
+      ? `<a href="${local.paper}" target="_blank" rel="noopener" class="tq-paper-link">📄 ${q.year} Paper</a>`
+      : '';
+    const msLink = local?.ms
+      ? `<a href="${local.ms}" target="_blank" rel="noopener" class="tq-ms-link">📝 Mark Scheme</a>`
+      : '';
+
+    return `
+      <div class="tq-card">
+        <div class="tq-year">${q.year}</div>
+        <div class="tq-body">
+          <div class="tq-text">${q.question}</div>
+          <div class="tq-footer">
+            ${q.marks ? `<span class="tq-marks">${q.marks} marks</span>` : ''}
+            ${paperLink}
+            ${msLink}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function initTopicBrowser() {
+  const questions = await loadEconomicsQuestions();
+  if (!questions.length) {
+    document.getElementById('topicList').innerHTML =
+      '<div style="padding:16px 18px;font-size:0.85rem;color:var(--gray-400);">Could not load question data.</div>';
+    return;
+  }
+
+  const index = buildTopicIndex(questions);
+  renderTopicList(index);
+
+  document.getElementById('topicSearchInput').addEventListener('input', e => {
+    renderTopicList(index, e.target.value);
+  });
+}
+
+// ─────────────────────────────────────────────
 // Init
 // ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   let selectedLevel = 'higher';
+
+  // Mode toggle: Find Papers / Browse by Topic
+  let topicBrowserInitialised = false;
+  const findSection  = document.getElementById('findPapersSection');
+  const topicSection = document.getElementById('topicBrowserSection');
+
+  document.getElementById('modeFindPapers').addEventListener('click', () => {
+    document.getElementById('modeFindPapers').classList.add('active');
+    document.getElementById('modeBrowseTopics').classList.remove('active');
+    findSection.style.display  = '';
+    topicSection.style.display = 'none';
+  });
+
+  document.getElementById('modeBrowseTopics').addEventListener('click', () => {
+    document.getElementById('modeBrowseTopics').classList.add('active');
+    document.getElementById('modeFindPapers').classList.remove('active');
+    findSection.style.display  = 'none';
+    topicSection.style.display = '';
+    if (!topicBrowserInitialised) {
+      topicBrowserInitialised = true;
+      initTopicBrowser();
+    }
+  });
 
   // Level toggle
   document.querySelectorAll('.pill-btn').forEach(btn => {
