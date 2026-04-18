@@ -89,121 +89,130 @@ const ECO_STRAND_YEARS = {
 // ─────────────────────────────────────────────
 // Per-subject rich data (mirrors ECO_* structure)
 // ─────────────────────────────────────────────
+// Years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]
+//  idx:  [  0    1    2    3    4    5    6    7    8    9   10 ]
+// 2020 (idx 5) = 0 for all — no written exams due to COVID
 const SUBJECT_DATA = {
   biology: {
     label: 'Biology',
     years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
     sections: [
-      { name: 'Unit 1 — Study of Life', data: [1,1,1,1,1,1,1,1,1,1,1] },
-      { name: 'Unit 2 — The Cell',      data: [6,5,6,6,4,5,6,5,5,4,5] },
-      { name: 'Unit 3 — The Organism',  data: [3,3,3,3,3,3,3,3,3,3,3] },
+      { name: 'Unit 1 — Study of Life', data: [2,3,2,3,2,0,3,2,2,1,2] },
+      { name: 'Unit 2 — The Cell',      data: [5,5,6,5,4,0,5,5,5,4,5] },
+      { name: 'Unit 3 — The Organism',  data: [3,3,3,4,3,0,4,3,3,4,3] },
     ],
     strands: {
       'Unit 1 — Study of Life': { chapters: [
-        { name: '1.1 Ecology & Fieldwork',       data: [1,1,1,1,1,1,1,1,1,0,1] },
-        { name: '1.2 Plant Biology & Transport',  data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '1.1 Ecology & Fieldwork',       data: [1,1,1,1,1,0,1,1,1,0,1] },
+        { name: '1.2 Plant Biology & Transport',  data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '1.3 Nutrition & Food Science',   data: [0,1,0,1,0,0,1,0,0,0,0] },
+        { name: '1.4 Scientific Methods',         data: [1,1,1,1,1,0,1,1,1,1,1] },
       ]},
       'Unit 2 — The Cell': { chapters: [
-        { name: '2.1 Cell Structure & Division',  data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '2.2 Respiration',                data: [1,1,1,1,0,1,1,1,1,1,1] },
-        { name: '2.3 Photosynthesis',             data: [1,1,1,1,1,1,1,1,1,0,1] },
-        { name: '2.4 Genetics',                   data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '2.1 Cell Structure & Division',  data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Respiration',                data: [1,1,1,1,0,0,1,1,1,1,1] },
+        { name: '2.3 Photosynthesis',             data: [1,1,1,1,1,0,1,1,1,0,1] },
+        { name: '2.4 Genetics',                   data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '2.5 DNA & Biotechnology',        data: [0,0,0,1,0,0,1,0,1,1,0] },
-        { name: '2.6 Evolution',                  data: [1,1,1,1,0,1,1,1,0,0,1] },
+        { name: '2.6 Evolution',                  data: [1,1,1,1,0,0,1,1,0,0,1] },
       ]},
       'Unit 3 — The Organism': { chapters: [
-        { name: '3.1 Microbiology',               data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '3.2 Human Circulatory System',   data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '3.3 Human Nervous System',       data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.1 Microbiology',               data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.2 Human Circulatory System',   data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.3 Human Nervous System',       data: [0,1,1,1,1,0,1,1,0,1,1] },
         { name: '3.4 Human Reproductive System',  data: [1,1,0,1,1,0,1,1,1,0,1] },
-        { name: '3.5 Human Excretory System',     data: [1,0,1,1,1,0,1,0,1,1,0] },
-        { name: '3.6 Human Endocrine System',     data: [1,0,0,1,0,1,0,1,0,1,0] },
+        { name: '3.5 Human Excretory System',     data: [1,0,1,1,0,0,1,0,1,1,0] },
+        { name: '3.6 Human Endocrine System',     data: [0,0,0,1,0,0,0,1,0,1,0] },
+        { name: '3.7 Human Musculoskeletal Sys.', data: [0,0,1,0,0,0,0,0,1,0,1] },
+        { name: '3.8 Human Digestive System',     data: [0,1,0,0,1,0,1,0,0,1,0] },
       ]},
     },
-    defaultStrand: 'Unit 1 — Study of Life',
+    defaultStrand: 'Unit 2 — The Cell',
     defaultByYearStrand: 'Unit 2 — The Cell',
   },
   chemistry: {
     label: 'Chemistry',
     years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
     sections: [
-      { name: 'Core Chemistry',       data: [4,4,3,4,4,3,4,4,4,4,4] },
-      { name: 'Physical & Inorganic', data: [3,3,3,3,3,2,3,3,3,3,3] },
-      { name: 'Organic Chemistry',    data: [2,2,2,2,2,2,2,2,2,2,2] },
-      { name: 'Water & Environment',  data: [1,1,2,1,1,1,1,1,1,1,1] },
+      { name: 'Core Chemistry',       data: [4,3,3,4,4,0,4,3,3,3,4] },
+      { name: 'Physical & Inorganic', data: [4,4,3,4,3,0,4,4,4,4,3] },
+      { name: 'Organic Chemistry',    data: [3,2,3,2,3,0,3,2,3,2,3] },
+      { name: 'Water & Environment',  data: [2,1,2,2,1,0,2,2,1,2,2] },
     ],
     strands: {
       'Core Chemistry': { chapters: [
-        { name: 'Atomic Structure & Periodic Table', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Chemical Bonding',                  data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Stoichiometry & Moles',             data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Thermochemistry & Energy',          data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Atomic Structure & Periodic Table', data: [1,1,1,1,1,0,1,1,1,0,1] },
+        { name: 'Chemical Bonding',                  data: [1,0,1,1,1,0,1,1,0,1,1] },
+        { name: 'Stoichiometry & Moles',             data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Thermochemistry & Energy',          data: [1,1,0,1,1,0,1,0,1,1,1] },
       ]},
       'Physical & Inorganic': { chapters: [
-        { name: 'Rates of Reaction & Kinetics',      data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Chemical Equilibrium',              data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Acid-Base Chemistry & Titrations',  data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Electrochemistry & Oxidation',      data: [1,1,0,1,1,1,1,1,1,1,1] },
+        { name: 'Rates of Reaction & Kinetics',      data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Chemical Equilibrium',              data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Acid-Base Chemistry & Titrations',  data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Electrochemistry & Oxidation',      data: [1,1,0,1,0,0,1,1,1,1,0] },
       ]},
       'Organic Chemistry': { chapters: [
-        { name: 'Hydrocarbons & Nomenclature',        data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Organic Reactions & Functional Grp', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Polymers & Industrial Chem.',        data: [1,0,1,1,0,0,1,0,1,0,1] },
+        { name: 'Hydrocarbons & Nomenclature',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Organic Reactions & Functional Grp', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Polymers & Industrial Chem.',        data: [1,0,1,0,1,0,1,0,1,0,1] },
       ]},
       'Water & Environment': { chapters: [
-        { name: 'Water Chemistry & Treatment', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: 'Environmental Chemistry',     data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Water Chemistry & Treatment', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: 'Environmental Chemistry',     data: [1,0,1,1,0,0,1,1,0,1,1] },
       ]},
     },
-    defaultStrand: 'Core Chemistry',
-    defaultByYearStrand: 'Physical & Inorganic',
+    defaultStrand: 'Physical & Inorganic',
+    defaultByYearStrand: 'Organic Chemistry',
   },
   business: {
     label: 'Business',
     years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
     sections: [
-      { name: 'Unit 1 — People in Business', data: [2,2,2,2,2,1,2,2,2,2,2] },
-      { name: 'Unit 2 — Enterprise',         data: [2,2,2,2,2,1,2,2,2,2,2] },
-      { name: 'Unit 3&4 — Management',       data: [3,3,3,3,3,2,3,3,3,3,3] },
-      { name: 'Unit 5 — Business in Action', data: [3,3,3,3,3,2,3,3,3,3,3] },
-      { name: 'Unit 6&7 — Environment',      data: [2,2,2,2,2,1,2,2,2,2,2] },
+      { name: 'Unit 1 — People in Business', data: [2,2,2,2,2,0,2,2,2,2,2] },
+      { name: 'Unit 2 — Enterprise',         data: [2,1,2,2,1,0,2,2,1,2,2] },
+      { name: 'Unit 3&4 — Management',       data: [3,3,3,3,3,0,3,3,3,3,3] },
+      { name: 'Unit 5 — Business in Action', data: [3,3,2,3,3,0,2,3,3,2,3] },
+      { name: 'Unit 6&7 — Environment',      data: [2,2,2,1,2,0,2,2,1,2,2] },
     ],
     strands: {
       'Unit 1 — People in Business': { chapters: [
-        { name: '1.1 Employment & Industrial Relations', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '1.1 Employment & Industrial Relations', data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '1.2 Employer & Employee Rights',        data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '1.3 Trade Unions',                      data: [1,0,1,1,0,1,1,0,1,0,1] },
+        { name: '1.3 Trade Unions',                      data: [1,0,1,1,0,0,1,0,1,0,1] },
+        { name: '1.4 Conflict & Resolution',             data: [0,1,0,1,1,0,0,1,0,1,0] },
       ]},
       'Unit 2 — Enterprise': { chapters: [
-        { name: '2.1 Entrepreneurship',               data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '2.2 Business Ownership & Formation', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '2.3 Insurance & Risk',               data: [1,0,1,0,1,0,1,0,1,0,1] },
+        { name: '2.1 Entrepreneurship',               data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Business Ownership & Formation', data: [1,0,1,1,0,0,1,1,0,1,1] },
+        { name: '2.3 Insurance & Risk',               data: [0,0,1,0,1,0,0,1,0,0,1] },
+        { name: '2.4 Govt & Business',                data: [1,1,0,1,0,0,1,0,1,1,0] },
       ]},
       'Unit 3&4 — Management': { chapters: [
-        { name: '3.1 Management Activities & Skills', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '3.2 Leadership & Motivation',        data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '4.1 Human Resource Management',      data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '4.2 Finance & Accounts',             data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.1 Management Activities & Skills', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.2 Leadership & Motivation',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.1 Human Resource Management',      data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.2 Finance & Accounts',             data: [1,1,1,1,1,0,1,1,1,1,1] },
       ]},
       'Unit 5 — Business in Action': { chapters: [
-        { name: '5.1 Marketing & Market Research', data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '5.2 The Marketing Mix (4Ps)',     data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '5.1 Marketing & Market Research', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '5.2 The Marketing Mix (4Ps)',     data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '5.3 Production & Operations',     data: [1,1,0,1,1,0,1,1,0,1,1] },
-        { name: '5.4 Business Expansion',          data: [0,1,1,0,1,1,0,1,1,0,1] },
+        { name: '5.4 Business Expansion',          data: [0,1,0,0,1,0,0,1,1,0,0] },
       ]},
       'Unit 6&7 — Environment': { chapters: [
-        { name: '6.1 Taxation & Government Policy',       data: [1,1,1,1,1,1,1,1,1,1,1] },
-        { name: '6.2 Banking & Financial Services',       data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '7.1 European Union',                     data: [1,0,1,1,0,0,1,1,0,1,1] },
-        { name: '7.2 International Trade & Globalisation',data: [1,1,0,1,1,0,1,0,1,1,0] },
+        { name: '6.1 Taxation & Government Policy',        data: [1,1,1,0,1,0,1,1,0,1,1] },
+        { name: '6.2 Banking & Financial Services',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '7.1 European Union',                      data: [1,0,1,0,0,0,1,1,0,1,1] },
+        { name: '7.2 International Trade & Globalisation', data: [0,1,0,1,1,0,0,1,1,0,1] },
       ]},
     },
-    defaultStrand: 'Unit 1 — People in Business',
+    defaultStrand: 'Unit 3&4 — Management',
     defaultByYearStrand: 'Unit 3&4 — Management',
   },
   pe: {
     label: 'Physical Education',
+    // PE written exam introduced 2020; no COVID cancellation for PE (it's new)
     years: [2020,2021,2022,2023,2024,2025],
     sections: [
       { name: 'Strand 1 — Optimum Performance', data: [3,3,3,3,3,3] },
@@ -214,12 +223,14 @@ const SUBJECT_DATA = {
         { name: '1.1 Anatomy & Movement',         data: [1,1,1,1,1,1] },
         { name: '1.2 Exercise Physiology',         data: [1,1,1,1,1,1] },
         { name: '1.3 Physical Fitness & Training', data: [1,1,1,1,1,1] },
-        { name: '1.4 Psychology of Sport',         data: [1,1,1,1,1,1] },
+        { name: '1.4 Psychology of Sport',         data: [1,1,1,0,1,1] },
+        { name: '1.5 Biomechanics',                data: [0,0,1,1,0,1] },
       ]},
       'Strand 2 — Contemporary Issues': { chapters: [
-        { name: '2.1 Physical Activity & Health', data: [1,1,1,1,1,1] },
-        { name: '2.2 Sport & Society',            data: [1,1,1,1,1,1] },
-        { name: '2.3 Performance Analysis',       data: [0,1,1,0,1,1] },
+        { name: '2.1 Physical Activity & Health',  data: [1,1,1,1,1,1] },
+        { name: '2.2 Sport & Society',             data: [1,1,1,1,1,1] },
+        { name: '2.3 Performance Enhancement',     data: [0,1,1,0,1,0] },
+        { name: '2.4 Ethics in Sport',             data: [1,0,0,1,0,1] },
       ]},
     },
     defaultStrand: 'Strand 1 — Optimum Performance',
@@ -238,25 +249,29 @@ const SUBJECT_DATA = {
       'Strand 1 — Statistics & Probability': { chapters: [
         { name: '1.1 Statistics & Data Analysis', data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '1.2 Probability',                data: [1,0,1,1,1,0,1,1,1,0,1] },
-        { name: '1.3 Distributions & Inference',  data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.3 Normal Distribution',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.4 Hypothesis Testing',         data: [0,0,1,0,0,0,1,0,1,0,1] },
       ]},
       'Strand 2 — Geometry & Trigonometry': { chapters: [
-        { name: '2.1 Coordinate Geometry',        data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '2.2 Trigonometry',               data: [1,1,0,1,1,0,1,1,1,1,1] },
-        { name: '2.3 Geometry & Proofs',          data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.1 Coordinate Geometry',  data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Trigonometry',         data: [1,1,0,1,1,0,1,1,1,1,1] },
+        { name: '2.3 Geometry & Proofs',    data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.4 Circles & Lines',      data: [1,0,0,1,1,0,0,1,0,1,1] },
       ]},
       'Strand 3 — Number & Algebra': { chapters: [
-        { name: '3.1 Algebra & Equations',        data: [1,1,1,1,1,0,1,1,0,1,1] },
-        { name: '3.2 Complex Numbers',            data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '3.3 Sequences & Series',         data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.1 Algebra & Equations',  data: [1,1,1,1,1,0,1,1,0,1,1] },
+        { name: '3.2 Complex Numbers',      data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.3 Sequences & Series',   data: [1,0,1,1,1,0,1,0,1,1,1] },
+        { name: '3.4 Financial Maths',      data: [0,1,0,0,1,0,0,1,0,0,1] },
       ]},
       'Strand 4 — Functions & Calculus': { chapters: [
-        { name: '4.1 Differentiation',            data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '4.2 Integration',                data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '4.3 Functions & Graphs',         data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.1 Differentiation',      data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.2 Integration',          data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.3 Functions & Graphs',   data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.4 Differential Eqs.',    data: [0,1,0,1,0,0,0,1,0,1,0] },
       ]},
     },
-    defaultStrand: 'Strand 1 — Statistics & Probability',
+    defaultStrand: 'Strand 4 — Functions & Calculus',
     defaultByYearStrand: 'Strand 4 — Functions & Calculus',
   },
   history: {
@@ -271,17 +286,20 @@ const SUBJECT_DATA = {
       'Topic 1 — Irish History': { chapters: [
         { name: '1.1 Independence & Partition (1912–1923)', data: [1,1,1,1,1,0,1,1,1,1,1] },
         { name: '1.2 Ireland 1923–1968',                    data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '1.3 Northern Ireland',                     data: [1,0,1,1,0,0,1,1,0,1,1] },
+        { name: '1.3 Northern Ireland 1969+',               data: [1,0,1,1,0,0,1,1,0,1,1] },
+        { name: '1.4 Modern Ireland 1968–present',          data: [0,1,0,0,1,0,0,0,1,0,0] },
       ]},
       'Topic 2 — Wider World 1815–1945': { chapters: [
-        { name: '2.1 Revolution & Change 1815–1918',   data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '2.2 Fascism & Rise of Dictators',     data: [1,1,0,1,1,0,1,0,1,1,1] },
-        { name: '2.3 World War II',                    data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.1 Revolution & Change 1815–1918', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Fascism & Rise of Dictators',   data: [1,1,0,1,1,0,1,0,1,1,1] },
+        { name: '2.3 World War II',                  data: [1,1,0,1,1,0,1,0,1,1,1] },
+        { name: '2.4 USA 1900–1945',                 data: [0,0,1,0,0,0,0,1,0,0,0] },
       ]},
       'Topic 3 — Modern World 1945+': { chapters: [
-        { name: '3.1 The Cold War',              data: [1,1,1,1,1,0,1,1,1,1,1] },
-        { name: '3.2 Decolonisation',            data: [1,1,0,1,1,0,1,1,0,1,1] },
-        { name: '3.3 Europe Post-1945',          data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.1 The Cold War',             data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.2 Decolonisation',           data: [1,0,1,0,1,0,1,0,1,0,1] },
+        { name: '3.3 Europe Post-1945',         data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.4 USA Post-1945',            data: [0,1,0,1,0,0,0,1,0,1,0] },
       ]},
     },
     defaultStrand: 'Topic 1 — Irish History',
@@ -1495,11 +1513,19 @@ function renderSidebar(data) {
   const maxTotal = sorted[0]?.total ?? 9;
   const top3     = sorted.slice(0, 3);
 
+  // Derive denominator from the actual years present in the data (exclude 2020)
+  const dataYears = [...new Set(data.flatMap(t => Object.keys(t.yearData ?? {}).map(Number)))]
+    .filter(y => y !== 2020).sort((a, b) => a - b);
+  const maxYears = dataYears.length || YEARS.filter(y => y !== 2020).length;
+  const intro = document.getElementById('sidebarIntro');
+  if (intro && dataYears.length) {
+    intro.textContent = `Top 3 topics by total appearances (${dataYears[0]}–${dataYears[dataYears.length-1]})`;
+  }
+
   // ── Likely to Come Up ──
   const likelyList = document.getElementById('likelyList');
   likelyList.innerHTML = top3.map((t, i) => {
-    const maxYears  = YEARS.filter(y => y !== 2020).length;
-    const pct       = Math.round((t.total / maxTotal) * 100);
+    const pct = Math.round((t.total / maxTotal) * 100);
     const appearedLast = appearedInYear(t, LATEST_YEAR);
     const tagCls    = appearedLast ? 'tag-hot' : 'tag-due';
     const tagText   = appearedLast ? `Appeared in ${LATEST_YEAR}` : `Not in ${LATEST_YEAR} — watch out!`;
