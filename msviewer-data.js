@@ -10,6 +10,7 @@ const MSV_SUBJECTS = [
   { id: 'business',  label: 'Business',  emoji: '💼' },
   { id: 'biology',   label: 'Biology',   emoji: '🧬' },
   { id: 'chemistry', label: 'Chemistry', emoji: '⚗️' },
+  { id: 'pe',        label: 'Physical Education', emoji: '🏃' },
   { id: 'history',   label: 'History',   emoji: '🏛️' },
   { id: 'maths',     label: 'Maths',     emoji: '📐' },
 ];
@@ -1851,6 +1852,253 @@ const MSV_QUESTIONS = [
       'Cu electrodes in CuSO₄: CATHODE gains mass (Cu deposits), ANODE loses mass (Cu dissolves).',
       'Charge = I × t: convert minutes to SECONDS (×60) before calculating.',
       'Cu²⁺ requires 2 electrons — divide moles of electrons by 2 to get moles of Cu.',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     PHYSICAL EDUCATION
+  ══════════════════════════════════════════ */
+
+  // ── Anatomy & Movement ────────────────────
+  {
+    id: 'pe-2022-anatomy-01',
+    subject: 'pe', topic: 'anatomy', topicLabel: 'Anatomy & Movement',
+    year: 2022, level: 'HL', section: 'Q14d', marks: 12,
+    question: 'Examine how each of Newton\'s three laws of motion apply to performance in a physical activity of your choice. (12 marks)',
+    markingScheme: [
+      'Law 1 — Law of Inertia: an object at rest remains at rest and a body in motion remains in motion unless acted upon by an external force. Application: e.g. a sprinter in the blocks remains still until the starting force is applied; the ball continues moving until friction or air resistance acts on it. (4M)',
+      'Law 2 — Law of Acceleration: Force = Mass × Acceleration (F = ma). Application: e.g. a heavier shot-put requires more force to accelerate to the same speed; a footballer kicking with greater force produces more acceleration on the ball. (4M)',
+      'Law 3 — Law of Reaction: every action has an equal and opposite reaction. Application: e.g. a swimmer pushes water backwards (action) and is propelled forward (reaction); a runner pushes down on the ground and the ground pushes back, propelling them forward. (4M)',
+    ],
+    fullMarksTips: [
+      'Name and define each of the three laws — the definition alone earns the base mark.',
+      'Apply EACH law to a specific physical activity with a clear sporting example.',
+      'Law 2: always write the formula F = ma, not just the name.',
+      'Law 3: state both the action AND the equal/opposite reaction in your example.',
+      'Use the same physical activity for all three laws for a more coherent answer.',
+    ],
+  },
+  {
+    id: 'pe-2023-anatomy-01',
+    subject: 'pe', topic: 'anatomy', topicLabel: 'Anatomy & Movement',
+    year: 2023, level: 'HL', section: 'Q1', marks: 8,
+    question: '(a) Name any two planes of human movement. (b) Describe each plane and give a sporting example of movement in each plane. (8 marks)',
+    markingScheme: [
+      'Sagittal plane: divides the body into left and right halves; movement occurs in a forward/backward direction. Example: running, jumping, squatting. (3M)',
+      'Frontal plane: divides the body into front and back halves; movement occurs side to side. Example: side shuffle, star jump (abduction/adduction). (3M)',
+      'Transverse plane: divides the body into upper and lower halves; rotational movement. Example: golf swing, discus throw, turning in gymnastics. (3M — any two planes for full marks)',
+      'Award 1 mark for correctly naming each plane, plus 2 marks for a clear description + sporting example. (2M)',
+    ],
+    fullMarksTips: [
+      'Name the plane clearly — "sagittal", "frontal", or "transverse" (not just "horizontal/vertical").',
+      'Description must link the plane to a direction of movement (forward/back, side/side, rotational).',
+      'Give a SPECIFIC sporting example — not just "sport" but the actual movement (e.g. "a squat in weightlifting").',
+      'Any two of the three planes are accepted — pick the two you know best.',
+    ],
+  },
+
+  // ── Physical Fitness & Training ───────────
+  {
+    id: 'pe-2022-fitness-14b',
+    subject: 'pe', topic: 'fitness', topicLabel: 'Physical Fitness & Training',
+    year: 2022, level: 'HL', section: 'Q14b', marks: 8,
+    question: '(i) Describe a warm-up structure (e.g. RAMP) that athletes can use to ensure appropriate preparation for performance. (ii) Outline two reasons why a coach includes a cool-down at the end of a training session. (8 marks)',
+    markingScheme: [
+      'RAMP warm-up: Raise (increase heart rate, body temperature, blood flow — e.g. light jog); Activate (activate key muscle groups — e.g. glute bridges); Mobilise (move joints through full range of motion — e.g. hip circles); Potentiate (sport-specific, high-intensity prep — e.g. sprints, plyometrics). (4M)',
+      'Reason 1: Gradually reduces heart rate and blood pressure back to resting levels, preventing blood pooling in the muscles. (2M)',
+      'Reason 2: Reduces muscle soreness and stiffness (DOMS) by flushing out lactic acid and metabolic waste. (2M)',
+    ],
+    fullMarksTips: [
+      'RAMP is the ideal framework — state what each letter stands for and give an example for each stage.',
+      'Warm-up purpose: raise core temperature, increase blood flow to muscles, reduce injury risk.',
+      'Cool-down reasons: gradual heart rate reduction AND DOMS/lactic acid removal are the two key answers.',
+      'Be specific — "it\'s good for you" is not enough; explain the physiological benefit.',
+    ],
+  },
+  {
+    id: 'pe-2024-fitness-07',
+    subject: 'pe', topic: 'fitness', topicLabel: 'Physical Fitness & Training',
+    year: 2024, level: 'HL', section: 'Q7', marks: 8,
+    question: 'Explain two methods of physical fitness training used to develop performance for a named physical activity of your choice. (8 marks)',
+    markingScheme: [
+      'Method 1 example — Interval Training: alternating periods of high-intensity exercise with rest/low-intensity periods. Develops anaerobic capacity and speed. E.g. 10 × 100 m sprints with 60-second recovery for a GAA player. (4M)',
+      'Method 2 example — Resistance/Strength Training: using weights or body weight against resistance to develop muscular strength. E.g. squats and deadlifts to improve power and tackling strength in rugby. (4M)',
+      'Other valid methods: Continuous training (aerobic base), Fartlek (varied pace), Plyometrics (explosive power), Circuit training. All accepted with clear explanation and sporting application. (4M per method)',
+    ],
+    fullMarksTips: [
+      'Always name the physical activity first — the marker needs this context.',
+      'Each method needs: (1) a clear description of WHAT it involves and (2) how it develops performance in your sport.',
+      'Two DIFFERENT methods required — do not describe the same type of training twice.',
+      'Link the training method to a specific fitness component (e.g. interval → speed/anaerobic capacity).',
+    ],
+  },
+  {
+    id: 'pe-2023-fitness-14d',
+    subject: 'pe', topic: 'fitness', topicLabel: 'Physical Fitness & Training',
+    year: 2023, level: 'HL', section: 'Q14d', marks: 12,
+    question: 'The principles of training are used by coaches in the design of training programmes. Examine the impact that any two principles of training can have on the performance of an athlete. (12 marks)',
+    markingScheme: [
+      'Overload: the body must be stressed beyond its normal level to cause adaptation. Impact: progressive increases in intensity/volume force the body to adapt — building fitness over time. Without overload, performance plateaus. (6M)',
+      'Specificity: training must be specific to the demands of the sport and the athlete\'s needs. Impact: a 100 m sprinter trains with short explosive work not long slow runs — specific training produces specific improvements in the required energy systems and muscle groups. (6M)',
+      'Other valid principles: Reversibility (fitness is lost if training stops), Progression (gradual increase in training load), Rest and Recovery (adaptation occurs during rest), Variation (prevents boredom and overuse injuries). (6M per principle)',
+    ],
+    fullMarksTips: [
+      'Name the principle, define it clearly, then explain its impact on athletic PERFORMANCE.',
+      'Use a specific sport/athlete example to support each principle.',
+      'Overload and Specificity are the two safest choices — most candidates know these well.',
+      '"Examine" requires more than defining — you must discuss the impact and consequences.',
+    ],
+  },
+
+  // ── Psychology of Sport ───────────────────
+  {
+    id: 'pe-2023-psych-14b',
+    subject: 'pe', topic: 'psychology', topicLabel: 'Psychology of Sport',
+    year: 2023, level: 'HL', section: 'Q14b', marks: 10,
+    question: '(i) Define confidence related to sports performance. (ii) Discuss how confidence can impact performance in a physical activity of your choice. (10 marks)',
+    markingScheme: [
+      'Confidence: the belief in one\'s own ability to successfully execute a skill or perform in a given situation. Self-efficacy is the sport-specific term for confidence in performing a specific task. (2M)',
+      'Positive impact: high confidence allows the athlete to focus on performance rather than fear of failure; enables risk-taking and trying difficult skills; increases persistence after mistakes. (4M)',
+      'Negative impact (low confidence): leads to anxiety, hesitation, avoidance of difficult situations, reduced performance under pressure. (4M)',
+      'Must name a specific physical activity and apply the discussion to it. (0M — implicit requirement)',
+    ],
+    fullMarksTips: [
+      'Define confidence first — self-efficacy is the exact psychological term for sports contexts.',
+      'Discuss BOTH positive effects of high confidence AND negative effects of low confidence.',
+      'Name a specific physical activity and keep your examples relevant to it.',
+      '"Discuss" requires more than listing — explain the mechanism behind each impact.',
+    ],
+  },
+  {
+    id: 'pe-2024-psych-03',
+    subject: 'pe', topic: 'psychology', topicLabel: 'Psychology of Sport',
+    year: 2024, level: 'HL', section: 'Q3', marks: 8,
+    question: '(a) Discuss how motivation can impact an athlete\'s practice. (b) Name a strategy athletes use to enhance motivation and explain how it works. (8 marks)',
+    markingScheme: [
+      'High motivation: athlete trains harder, more consistently, with greater effort and focus; more likely to persist through difficult sessions; sets challenging goals. (4M)',
+      'Low motivation: athlete may skip training, put in minimal effort, lack focus, give up easily when challenged. (2M)',
+      'Strategy example — Goal Setting: setting SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound) gives the athlete clear targets and a sense of progress which maintains motivation. (4M)',
+      'Other valid strategies: mental imagery/visualisation, positive self-talk, performance profiling, reward systems. (4M if well explained)',
+    ],
+    fullMarksTips: [
+      'Contrast HIGH and LOW motivation — both are needed for a full discussion.',
+      'For the strategy: name it clearly (e.g. "Goal Setting") then explain the mechanism.',
+      'SMART goals is the safest answer — examiners expect it and it\'s easy to explain fully.',
+      'Link motivation back to specific aspects of practice (effort, consistency, persistence).',
+    ],
+  },
+
+  // ── Sport & Society ───────────────────────
+  {
+    id: 'pe-2022-society-15b',
+    subject: 'pe', topic: 'society', topicLabel: 'Sport & Society',
+    year: 2022, level: 'HL', section: 'Q15b', marks: 8,
+    question: 'Examine how women (or another named group) might tackle the barriers that exist for them in relation to participation in physical activity. (8 marks)',
+    markingScheme: [
+      'Barrier 1 — Time constraints: women often balance work and childcare responsibilities. Solution: flexible scheduling, online classes, workplace exercise initiatives. (4M)',
+      'Barrier 2 — Cost: gym memberships and sports equipment can be expensive. Solution: community sport schemes, free public parks/facilities, Sport Ireland funding initiatives. (4M)',
+      'Barrier 3 — Social/cultural: stereotypes about women in sport or lack of female role models. Solution: media representation of female athletes, school-based promotion, women-only classes to build confidence. (4M — any two barriers + solutions for full marks)',
+    ],
+    fullMarksTips: [
+      'Name the group first (e.g. "women") and keep your answer focused on that group.',
+      '"Examine" means: identify the barrier AND propose how they would TACKLE/overcome it.',
+      'Two well-developed barrier + solution pairs will score better than four shallow ones.',
+      'Reference real initiatives (e.g. Sport Ireland\'s Women in Sport policy) for extra quality.',
+    ],
+  },
+  {
+    id: 'pe-2023-society-14c',
+    subject: 'pe', topic: 'society', topicLabel: 'Sport & Society',
+    year: 2023, level: 'HL', section: 'Q14c', marks: 12,
+    question: 'Being involved with a sports team can provide a valuable social outlet for a person while also helping them to be physically active. Discuss three social benefits of physical activity for teenagers. (12 marks)',
+    markingScheme: [
+      'Benefit 1 — Social connections and friendships: team sport provides a shared goal and regular social interaction, helping teenagers form lasting friendships and develop communication skills. (4M)',
+      'Benefit 2 — Sense of belonging and identity: being part of a team gives teenagers a sense of community and purpose, particularly important during the social development stage of adolescence. (4M)',
+      'Benefit 3 — Reduced antisocial behaviour: organised sport provides structured activity and positive peer influence, reducing the likelihood of engaging in antisocial or risky behaviours. (4M)',
+      'Other valid benefits: improved mental health / reduced isolation, development of teamwork and leadership skills, cross-cultural interaction. (4M per benefit)',
+    ],
+    fullMarksTips: [
+      'Three distinct benefits required — do not repeat the same idea in different words.',
+      '"Discuss" means more than listing — explain WHY each benefit matters for teenagers specifically.',
+      'Link each benefit to social development, not just physical health.',
+      'Include a brief example for each benefit to demonstrate understanding.',
+    ],
+  },
+
+  // ── Physical Activity & Health ────────────
+  {
+    id: 'pe-2024-health-18',
+    subject: 'pe', topic: 'health', topicLabel: 'Physical Activity & Health',
+    year: 2024, level: 'HL', section: 'Q18a', marks: 20,
+    question: 'Define five components of health-related fitness. For each component, describe an activity that would develop it and explain the health benefit of developing that component. (20 marks)',
+    markingScheme: [
+      'Cardiovascular endurance: the ability of the heart and lungs to supply oxygen to working muscles over prolonged exercise. Activity: 30-minute jog. Benefit: reduces risk of heart disease, lowers blood pressure. (4M)',
+      'Muscular strength: the maximum force a muscle or muscle group can exert in a single effort. Activity: weight training (bench press). Benefit: improves posture, reduces injury risk, maintains bone density. (4M)',
+      'Muscular endurance: the ability of muscles to sustain repeated contractions over time. Activity: circuit training, press-ups. Benefit: reduces fatigue in daily activities, supports metabolic health. (4M)',
+      'Flexibility: the range of motion available at a joint. Activity: yoga, static stretching. Benefit: reduces muscle soreness and injury risk, improves posture. (4M)',
+      'Body composition: the ratio of lean body mass (muscle, bone) to body fat. Activity: combination of cardio and resistance training. Benefit: healthy body composition reduces risk of obesity-related diseases (Type 2 diabetes, heart disease). (4M)',
+    ],
+    fullMarksTips: [
+      'Five distinct components required — do not repeat similar ones (e.g. strength and endurance are different).',
+      'Each component needs: definition + activity example + specific health benefit.',
+      'Name the activity specifically (not just "exercise") and link it to the component.',
+      'Health benefits should mention specific diseases or conditions where possible.',
+      'Body composition is often forgotten — remember it as the fifth component.',
+    ],
+  },
+  {
+    id: 'pe-2022-health-14a',
+    subject: 'pe', topic: 'health', topicLabel: 'Physical Activity & Health',
+    year: 2022, level: 'HL', section: 'Q14a', marks: 6,
+    question: 'Describe appropriate first aid treatment for two different injuries commonly sustained by participants in a physical activity of your choice. (6 marks)',
+    markingScheme: [
+      'Injury 1 example — Sprained ankle: RICE protocol: Rest (stop activity immediately, avoid weight-bearing); Ice (apply ice pack wrapped in cloth for 15–20 min); Compression (apply bandage to reduce swelling); Elevation (raise the ankle above heart level). Seek medical attention if severe. (3M)',
+      'Injury 2 example — Muscle strain/tear: RICE protocol; gentle movement to avoid stiffness after 24–48 hours; avoid heat or massage in first 48 hours (increases inflammation). (3M)',
+      'Other valid injuries: concussion (remove from play, rest, no return to sport without medical clearance), fracture (immobilise, call emergency services), heat exhaustion (cool down, hydrate, move to shade). (3M per injury)',
+    ],
+    fullMarksTips: [
+      'Name the physical activity and both injuries specifically.',
+      'RICE (Rest, Ice, Compression, Elevation) is the core first aid for soft tissue injuries — know it in full.',
+      'For concussion: the key answer is removal from play and NO return without medical clearance.',
+      'State the steps in order — examiners want a clear procedure, not a list of random points.',
+    ],
+  },
+
+  // ── Exercise Physiology ───────────────────
+  {
+    id: 'pe-2023-physio-q5',
+    subject: 'pe', topic: 'physiology', topicLabel: 'Exercise Physiology',
+    year: 2023, level: 'HL', section: 'Q5', marks: 8,
+    question: '(a) Define skill. (b) Identify two characteristics of skilled performance. (c) Explain the term "creative application of skill". (8 marks)',
+    markingScheme: [
+      'Skill: the learned ability to bring about predetermined results with maximum certainty, minimum energy and minimum time. (2M)',
+      'Characteristic 1: consistency — the skilled performer can reproduce the movement accurately and reliably. (2M)',
+      'Characteristic 2: efficiency — uses minimal energy and effort to produce the desired outcome. Other valid characteristics: accuracy, fluency, adaptability, automaticity. (2M)',
+      'Creative application of skill: using a fundamental skill in an innovative or novel way to solve a performance problem or gain an advantage; adapting skills to the demands of the situation. E.g. a footballer using a dummy or backheel pass in an unexpected way. (2M)',
+    ],
+    fullMarksTips: [
+      'Definition of skill: use the key words "learned", "predetermined results", "maximum certainty", "minimum energy".',
+      'Two characteristics: consistency and efficiency are the safest choices.',
+      'Creative application: stress the ADAPTATION and NOVELTY of the skill — it\'s not just using a skill, it\'s adapting it innovatively.',
+      'Always give a sporting example to clarify your answer.',
+    ],
+  },
+  {
+    id: 'pe-2024-physio-recovery',
+    subject: 'pe', topic: 'physiology', topicLabel: 'Exercise Physiology',
+    year: 2024, level: 'HL', section: 'Q15b', marks: 8,
+    question: 'Explain two recovery strategies that athletes use after exercise to support adaptations of the body. (8 marks)',
+    markingScheme: [
+      'Strategy 1 — Sleep/Rest: during sleep, growth hormone is released which stimulates muscle repair and protein synthesis; sleep deprivation impairs recovery and adaptation. Athletes should aim for 8–10 hours. (4M)',
+      'Strategy 2 — Ice Bath/Cold Water Immersion: cold water constricts blood vessels, reducing inflammation and muscle swelling; on exiting the cold, blood rushes back bringing nutrients for repair. Reduces DOMS. (4M)',
+      'Strategy 3 — Active Recovery: low-intensity exercise (e.g. light jog or swim) after training promotes blood circulation, helping flush out metabolic waste (lactic acid) without adding muscle stress. (4M — any two strategies accepted)',
+      'Strategy 4 — Nutrition: consuming protein within 30–60 min post-exercise provides amino acids for muscle protein synthesis; carbohydrates replenish glycogen stores. (4M)',
+    ],
+    fullMarksTips: [
+      'Each strategy needs: what it involves AND the physiological mechanism behind recovery.',
+      'Sleep is the most overlooked strategy — the growth hormone release angle scores well.',
+      'Ice bath: state the mechanism (vasoconstriction → reduced inflammation, then vasodilation → nutrient delivery).',
+      'Nutrition: be specific — protein for muscle repair AND carbs for glycogen replenishment.',
     ],
   },
 ];

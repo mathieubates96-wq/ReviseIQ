@@ -215,6 +215,19 @@ const TREND_DATA = {
     ordinary: [],
   },
 
+  // ── PHYSICAL EDUCATION ────────────────────
+  pe: {
+    higher: [
+      { topic: 'Anatomy & Movement',      yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+      { topic: 'Physical Fitness',        yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+      { topic: 'Sport & Society',         yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+      { topic: 'Psychology of Sport',     yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+      { topic: 'Exercise Physiology',     yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+      { topic: 'Physical Activity & Health', yearData: { 2020:1, 2021:1, 2022:1, 2023:1, 2024:1, 2025:1 } },
+    ],
+    ordinary: [],
+  },
+
   // ── HISTORY ───────────────────────────────
   history: {
     higher: [
