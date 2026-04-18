@@ -9,6 +9,7 @@ const MSV_SUBJECTS = [
   { id: 'economics', label: 'Economics', emoji: '📉' },
   { id: 'business',  label: 'Business',  emoji: '💼' },
   { id: 'biology',   label: 'Biology',   emoji: '🧬' },
+  { id: 'chemistry', label: 'Chemistry', emoji: '⚗️' },
   { id: 'history',   label: 'History',   emoji: '🏛️' },
   { id: 'maths',     label: 'Maths',     emoji: '📐' },
 ];
@@ -1571,6 +1572,285 @@ const MSV_QUESTIONS = [
       'State the perpendicular distance formula and identify a, b, c from the line equation before substituting.',
       'For the perpendicular line, the slope is the NEGATIVE RECIPROCAL of the original slope — ¾ becomes −4/3.',
       'Express the final equation with integer coefficients in the form ax + by + c = 0.',
+    ],
+  },
+
+  /* ══════════════════════════════════════════
+     CHEMISTRY
+  ══════════════════════════════════════════ */
+
+  // ── Acid-Base & Titration ─────────────────
+  {
+    id: 'chem-2024-acid-01',
+    subject: 'chemistry', topic: 'acid-base', topicLabel: 'Acid-Base & Titration',
+    year: 2024, level: 'HL', section: 'Q1', marks: 50,
+    question: 'A student carried out an experiment to determine the concentration of ethanoic acid in vinegar. A 10.0 cm³ portion of vinegar was diluted to exactly 50.0 cm³. The diluted vinegar was titrated against 0.09 M NaOH; on average 12.4 cm³ of diluted vinegar neutralised 25.0 cm³ of NaOH. (a) Name the piece of apparatus used to measure the 10.0 cm³ portion accurately. (b) Describe how to dilute the portion to exactly 50.0 cm³. (c) Name a suitable indicator and state the colour change at the end point. (d) Calculate the concentration of ethanoic acid in the original vinegar in mol/L. (50 marks)',
+    markingScheme: [
+      'Pipette (or burette) used to accurately measure 10.0 cm³. (5M)',
+      'Transfer 10.0 cm³ vinegar to a 50 cm³ volumetric flask; add distilled water to the graduation mark; stopper and invert repeatedly to mix. (9M)',
+      'Indicator: phenolphthalein. Colour change: colourless to pink (pale pink) at end point. (9M)',
+      'Moles NaOH in 25 cm³ = 0.025 × 0.09 = 0.00225 mol. (5M)',
+      'Moles CH₃COOH per cm³ diluted = 0.00225 ÷ 12.4 = 1.815 × 10⁻⁴ mol/cm³. (9M)',
+      'Concentration of diluted vinegar = 1.815 × 10⁻⁴ × 1000 = 0.1815 mol/L. (5M)',
+      'Original vinegar = 0.1815 × 5 = 0.908 mol/L (dilution factor 50/10 = 5). (8M)',
+    ],
+    fullMarksTips: [
+      'Always name the PIPETTE — "measuring cylinder" will not score marks for this step.',
+      'State ALL steps for dilution: transfer to volumetric flask, add water to the mark, invert to mix.',
+      'Use phenolphthalein (not litmus) for strong base/weak acid titrations.',
+      'Show all working for the calculation — each arithmetic slip costs 1 mark.',
+      'Remember to apply the dilution factor (×5) to convert back to original concentration.',
+    ],
+  },
+  {
+    id: 'chem-2023-acid-01',
+    subject: 'chemistry', topic: 'acid-base', topicLabel: 'Acid-Base & Titration',
+    year: 2023, level: 'HL', section: 'Q1', marks: 50,
+    question: 'The reagent (NH₄)₂SO₄·FeSO₄·6H₂O (Mr = 392) was used to prepare a standard solution. (a) State two properties that make it suitable as a primary standard. (b) Describe how to prepare exactly 250 cm³ of a solution containing 9.31 g. (c) The standard Fe²⁺ solution was titrated against KMnO₄. On average 22.6 cm³ of KMnO₄ neutralised 25.0 cm³ of the Fe²⁺ solution. Equation: MnO₄⁻ + 5Fe²⁺ + 8H⁺ → Mn²⁺ + 5Fe³⁺ + 4H₂O. Calculate the concentration of KMnO₄. (50 marks)',
+    markingScheme: [
+      'High molar mass (392 g/mol) reduces weighing errors. (4M)',
+      'Stable / does not absorb moisture / does not react with air / available in high purity. (4M)',
+      'Weigh 9.31 g; dissolve in distilled water in a beaker; transfer quantitatively to 250 cm³ volumetric flask; add dilute H₂SO₄; make up to the mark with distilled water; stopper and invert to mix. (15M)',
+      'Concentration Fe²⁺: mol = 9.31 ÷ 392 = 0.02375 mol in 250 cm³ → 0.095 mol/L. (8M)',
+      'Moles Fe²⁺ in 25.0 cm³ = 0.025 × 0.095 = 0.002375 mol. (5M)',
+      'Moles KMnO₄ = 0.002375 ÷ 5 = 4.75 × 10⁻⁴ mol (from 1:5 mole ratio). (5M)',
+      'Concentration KMnO₄ = (4.75 × 10⁻⁴ × 1000) ÷ 22.6 = 0.021 mol/L. (9M)',
+    ],
+    fullMarksTips: [
+      'Give TWO distinct properties for primary standard — high purity AND high molar mass are the best.',
+      'Describe volumetric flask preparation in full: beaker → flask → acid → water to mark → invert.',
+      'Dilute H₂SO₄ must be added to prevent oxidation of Fe²⁺ to Fe³⁺.',
+      'The 1:5 mole ratio (MnO₄⁻:Fe²⁺) is critical — identify this from the balanced equation.',
+      'Show full step-by-step calculation — each arithmetic error costs 1 mark.',
+    ],
+  },
+  {
+    id: 'chem-2022-acid-08',
+    subject: 'chemistry', topic: 'acid-base', topicLabel: 'Acid-Base & Titration',
+    year: 2022, level: 'HL', section: 'Q8', marks: 50,
+    question: '(a) Explain, with the aid of a diagram, the acidic nature of the carboxylic acid functional group. (b) Give an example of a reaction demonstrating the acidity of ethanol. (c) Distinguish between a strong acid and a weak acid, giving one example of each. (d) Define pH. Calculate the pH of 0.12 M NaOH (Kw = 1 × 10⁻¹⁴). (50 marks)',
+    markingScheme: [
+      'Carboxylic group: –COOH; the O–H bond is polar (diagram: δ+ on H, δ– on O); H⁺ is released in water forming –COO⁻. (12M)',
+      'Ethanol reacts with sodium metal: 2C₂H₅OH + 2Na → 2C₂H₅ONa + H₂ (shows H⁺ donation). (8M)',
+      'Strong acid: fully dissociates in water (e.g. HCl, H₂SO₄). (6M)',
+      'Weak acid: partially dissociates in water (e.g. CH₃COOH, HNO₂). (6M)',
+      'pH = −log[H⁺]; a measure of the acidity or alkalinity of a solution. (6M)',
+      '[OH⁻] = 0.12 mol/L; [H⁺] = Kw ÷ [OH⁻] = 1×10⁻¹⁴ ÷ 0.12 = 8.33×10⁻¹⁴; pH = −log(8.33×10⁻¹⁴) = 13.08. (12M)',
+    ],
+    fullMarksTips: [
+      'Always draw AND label the carboxylic acid diagram — the polar O–H bond with δ+/δ– symbols.',
+      'The ethanol/sodium reaction is the standard answer — write the full balanced equation.',
+      'Distinguish strong vs weak by "fully" vs "partially" dissociates — not just "more acidic".',
+      'For pH of a base: use [H⁺] = Kw ÷ [OH⁻], then pH = −log[H⁺].',
+      'Show all working — a missing negative sign or wrong rounding loses marks.',
+    ],
+  },
+
+  // ── Chemical Equilibrium ──────────────────
+  {
+    id: 'chem-2022-equil-07',
+    subject: 'chemistry', topic: 'equilibrium', topicLabel: 'Chemical Equilibrium',
+    year: 2022, level: 'HL', section: 'Q7', marks: 50,
+    question: 'Methanol is manufactured: CO(g) + 2H₂(g) ⇌ CH₃OH(g), ΔH = −94.4 kJ/mol. 5.0 mol CO and 10.0 mol H₂ were placed in a 5.0 L container at 250°C; 25% of CO was converted at equilibrium. (a) Explain chemical equilibrium in terms of (i) rates and (ii) concentrations. (b) Write the expression for Kc and calculate its value. (c) State one advantage of using a catalyst. (d) State Le Chatelier\'s principle. Explain the effect of adding more CO on (i) methanol yield and (ii) Kc. (50 marks)',
+    markingScheme: [
+      'Equilibrium: rate of forward reaction equals rate of reverse reaction. (4M)',
+      'Concentrations of reactants and products remain constant (not equal) over time. (4M)',
+      'Kc = [CH₃OH] / ([CO][H₂]²). (8M)',
+      'ICE: CO reacted = 1.25 mol, remaining CO = 3.75 mol, H₂ = 7.5 mol, CH₃OH = 1.25 mol. In 5 L: [CO]=0.75, [H₂]=1.5, [CH₃OH]=0.25 mol/L. Kc = 0.25 / (0.75 × 1.5²) = 0.148 L² mol⁻². (18M)',
+      'Catalyst advantage: equilibrium reached faster (lowers activation energy for both reactions). (6M)',
+      'Le Chatelier: when a system at equilibrium is disturbed, it responds to minimise the disturbance. (6M)',
+      'Adding CO shifts equilibrium to the right → yield of methanol increases. (4M)',
+      'Kc is unchanged — only temperature changes Kc, not concentration or catalysts. (4M)',
+    ],
+    fullMarksTips: [
+      'Rates are EQUAL at equilibrium — not that concentrations are equal to each other.',
+      'Write Kc as products over reactants; apply stoichiometric powers (H₂ is SQUARED here).',
+      'Build a full ICE table to find equilibrium concentrations before calculating Kc.',
+      'Kc ONLY changes with temperature — this is a classic exam trap for catalyst/concentration questions.',
+      'Le Chatelier: always state the principle first, then apply it to the specific change.',
+    ],
+  },
+  {
+    id: 'chem-2023-equil-09',
+    subject: 'chemistry', topic: 'equilibrium', topicLabel: 'Chemical Equilibrium',
+    year: 2023, level: 'HL', section: 'Q9', marks: 50,
+    question: 'PCl₃(g) + Cl₂(g) ⇌ PCl₅(g), ΔH = −88 kJ/mol. 2.0 mol PCl₃ and 2.0 mol Cl₂ are placed in a 1.0 L container; at equilibrium 1.5 mol PCl₅ is present. (a) Write the expression for Kc. (b) Calculate the value of Kc. (c) Predict and explain the effect on equilibrium position of (i) increasing pressure and (ii) increasing temperature. (d) What is the effect of a catalyst on Kc? (50 marks)',
+    markingScheme: [
+      'Kc = [PCl₅] / ([PCl₃][Cl₂]). (8M)',
+      'At equilibrium: PCl₃ = 0.5 mol/L, Cl₂ = 0.5 mol/L, PCl₅ = 1.5 mol/L (1 L container). (8M)',
+      'Kc = 1.5 / (0.5 × 0.5) = 6.0 mol⁻¹ L. (12M)',
+      'Increasing pressure: 2 mol gas on left, 1 mol gas on right → equilibrium shifts RIGHT (to fewer moles of gas) → yield of PCl₅ increases. (8M)',
+      'Increasing temperature: reaction is exothermic → equilibrium shifts LEFT to absorb heat → yield of PCl₅ decreases → Kc decreases. (8M)',
+      'Catalyst has NO effect on Kc — speeds up both forward and reverse reactions equally; only temperature changes Kc. (6M)',
+    ],
+    fullMarksTips: [
+      'Always include units for Kc — here mol⁻¹ L since the expression has more reactant moles.',
+      'For pressure: count moles of GAS on each side — high pressure favours the side with fewer gas moles.',
+      'For temperature: identify exo/endo first (ΔH sign), then apply Le Chatelier.',
+      'Catalyst NEVER changes Kc or equilibrium position — only temperature does.',
+      'ICE table: PCl₃ and Cl₂ each decrease by 1.5 mol (same as PCl₅ formed).',
+    ],
+  },
+
+  // ── Rates of Reaction ─────────────────────
+  {
+    id: 'chem-2022-rates-03',
+    subject: 'chemistry', topic: 'rates', topicLabel: 'Rates of Reaction',
+    year: 2022, level: 'HL', section: 'Q3', marks: 50,
+    question: 'The decomposition of H₂O₂ using MnO₂ as catalyst was investigated. 25 cm³ H₂O₂ decomposed in presence of 0.5 g MnO₂; O₂ volume was monitored over time. (a) Define catalyst. (b) Explain in terms of collision theory why increasing [H₂O₂] increases the rate. (c) From a graph calculate (i) average rate over the first 4 minutes and (ii) instantaneous rate at 4 minutes. (d) How would the rate change if MnO₂ was in larger pieces rather than powder? Explain. (50 marks)',
+    markingScheme: [
+      'Catalyst: a substance that increases the rate of a chemical reaction without itself being permanently changed; it provides an alternative reaction pathway with lower activation energy. (8M)',
+      'Higher [H₂O₂] → more molecules per unit volume → more frequent collisions between H₂O₂ and MnO₂ → more collisions with energy ≥ Ea → higher rate. (12M)',
+      'Average rate = volume O₂ at 4 min ÷ 4 minutes (read value from graph); units: cm³/min. (10M)',
+      'Instantaneous rate = slope of tangent drawn to the curve at t = 4 min; calculate rise ÷ run from tangent. (10M)',
+      'Larger pieces → smaller total surface area → fewer collisions per second between H₂O₂ and MnO₂ → lower rate. (10M)',
+    ],
+    fullMarksTips: [
+      'Catalyst definition must include: increases rate, not permanently changed, lower activation energy.',
+      'Collision theory: link concentration → more molecules → more collisions → more successful collisions.',
+      'Instantaneous rate: draw a TANGENT at the point, then calculate its gradient.',
+      'For solid catalysts: larger pieces = smaller surface area = slower rate (fewer collision sites).',
+      'Always state units for rate calculations (cm³/min or mol/L/s).',
+    ],
+  },
+  {
+    id: 'chem-2023-rates-thio',
+    subject: 'chemistry', topic: 'rates', topicLabel: 'Rates of Reaction',
+    year: 2023, level: 'HL', section: 'Q3', marks: 50,
+    question: 'Na₂S₂O₃ + 2HCl → 2NaCl + SO₂ + S + H₂O. The reaction was repeated at different [Na₂S₂O₃] and at different temperatures. (a) Describe the end-point detection method used. (b) Explain why increasing concentration increases the rate. (c) What does a straight-line graph of rate (1/t) vs concentration tell you about the order of reaction? (d) Describe how the effect of temperature was investigated and explain the results. (50 marks)',
+    markingScheme: [
+      'End point: a cross is drawn on paper under the flask; the stopwatch is stopped when the cross is no longer visible due to sulfur (S) precipitate forming. (8M)',
+      'Higher [Na₂S₂O₃] → more particles per unit volume → more frequent collisions → more collisions with energy ≥ Ea → higher rate. (12M)',
+      'Straight-line graph through origin: rate is directly proportional to concentration → first-order reaction with respect to Na₂S₂O₃. (12M)',
+      'Temperature effect: same concentration; reactants heated to different temperatures in a water bath; temperature measured with thermometer; stopwatch started when mixed. (10M)',
+      'Higher temperature → more particles with energy ≥ Ea AND more frequent collisions → more successful collisions → higher rate (shorter time). (8M)',
+    ],
+    fullMarksTips: [
+      'The "cross" method is specific to this experiment — name it explicitly.',
+      'For collision theory: always include "energy ≥ activation energy" for successful collisions.',
+      'Straight line through origin = rate ∝ concentration = FIRST ORDER reaction.',
+      'Water bath is essential for temperature control — state it clearly in the description.',
+      'Temperature increases both collision FREQUENCY and the PROPORTION with energy ≥ Ea.',
+    ],
+  },
+
+  // ── Organic Chemistry ─────────────────────
+  {
+    id: 'chem-2023-organic-02',
+    subject: 'chemistry', topic: 'organic', topicLabel: 'Organic Chemistry',
+    year: 2023, level: 'HL', section: 'Q2', marks: 50,
+    question: 'A student prepared ethyne from CaC₂ + 2H₂O → C₂H₂ + Ca(OH)₂. (a) Draw and label the apparatus for preparation and collection of ethyne over water. Why is the first test-tube less pure? (b) Describe and explain observations when (i) dilute bromine water and (ii) acidified KMnO₄ are added to ethyne. (c) Write a balanced combustion equation for ethyne. (d) Calculate the maximum volume of ethyne at RTP from 2.0 g of 80% pure CaC₂ (Mr CaC₂ = 64; molar volume = 24 L). (50 marks)',
+    markingScheme: [
+      'Diagram: flat-bottomed flask with CaC₂ and water; delivery tube into water trough; inverted water-filled test-tubes for collection. All labelled. (14M)',
+      'First test-tube less pure: initially contains air from the apparatus — the first tube collected is a mixture of air and ethyne. (6M)',
+      'Bromine water: decolourised (orange/brown to colourless) — addition reaction across C≡C. (4M)',
+      'KMnO₄: decolourised (purple to colourless) — oxidation of C≡C triple bond. (4M)',
+      'Both tests show ethyne is unsaturated (contains C≡C triple bond) — undergoes addition/oxidation reactions. (6M)',
+      'Balanced combustion: 2C₂H₂ + 5O₂ → 4CO₂ + 2H₂O. (8M)',
+      'Pure CaC₂ = 2.0 × 0.80 = 1.6 g; mol CaC₂ = 1.6 ÷ 64 = 0.025 mol; mol C₂H₂ = 0.025 mol; V = 0.025 × 24 = 0.60 L. (8M)',
+    ],
+    fullMarksTips: [
+      'Diagram MUST be labelled — water trough, delivery tube, upturned test-tubes all required.',
+      'First test-tube: state explicitly it contains AIR that was already in the apparatus.',
+      'State the EXACT colour change for each reagent (orange→colourless; purple→colourless).',
+      'Combustion equation: check C, H, O balance in sequence — 4C, 4H → 4CO₂, 2H₂O, then 5O₂.',
+      'Apply purity percentage FIRST to get mass of pure CaC₂ before using Mr.',
+    ],
+  },
+  {
+    id: 'chem-2024-organic-02',
+    subject: 'chemistry', topic: 'organic', topicLabel: 'Organic Chemistry',
+    year: 2024, level: 'HL', section: 'Q2', marks: 50,
+    question: 'A student purified benzoic acid by recrystallisation using water as the solvent. (a) Why is water a suitable solvent? (b) Explain the purpose of the hot filtration. (c) Why is the second filtration only done after sufficient cooling? (d) What observation shows the product is pure? (e) A second student tested ethanal for easy oxidation: identify the reagent, state the colour change, identify the organic product, and write a half-equation for the reduction of the inorganic reagent. (50 marks)',
+    markingScheme: [
+      'Water suitable: benzoic acid is much more soluble in HOT water than cold → dissolves completely on heating, crystallises on cooling. (8M)',
+      'Hot filtration: removes insoluble impurities (e.g. charcoal) while benzoic acid remains dissolved in the hot filtrate. (8M)',
+      'Second filtration after cooling: allows recrystallisation to complete — benzoic acid becomes insoluble as it cools, forming crystals that are then filtered off. (8M)',
+      'Product is pure when it has a sharp, single melting point (122°C); no depression or broadening of melting point range. (6M)',
+      'Reagent: Tollens\' reagent (ammoniacal AgNO₃) or Fehling\'s solution. (5M)',
+      'Colour change: Tollens\' → silver mirror on test tube wall; Fehling\'s → blue to brick-red precipitate (Cu₂O). (5M)',
+      'Organic product: ethanoic acid (CH₃COOH). (5M)',
+      'Half-equation: Ag⁺ + e⁻ → Ag (Tollens\') OR Cu²⁺ + 2e⁻ → Cu (Fehling\'s). (5M)',
+    ],
+    fullMarksTips: [
+      'Recrystallisation: HOT = soluble (dissolves), COLD = insoluble (crystallises) — state both.',
+      'Hot filtration removes INSOLUBLE impurities; the benzoic acid stays in solution at this stage.',
+      'Purity shown by SHARP melting point — not a range, exactly at 122°C.',
+      'Tollens\' gives silver mirror; Fehling\'s gives brick-red Cu₂O precipitate — know both.',
+      'Ethanal → ethanoic acid; the −CHO group is oxidised to −COOH.',
+    ],
+  },
+
+  // ── Atomic Structure ──────────────────────
+  {
+    id: 'chem-2022-atomic-05',
+    subject: 'chemistry', topic: 'atomic', topicLabel: 'Atomic Structure',
+    year: 2022, level: 'HL', section: 'Q5', marks: 50,
+    question: '(a) Define atomic number and mass number. (b) Define isotopes and relative atomic mass. (c) Explain the aufbau principle, Hund\'s rule, and the Pauli exclusion principle. Write the electronic configuration of Fe (Z = 26). (d) Explain the trend in first ionisation energy across Period 3, including the exceptions between Mg→Al and P→S. (50 marks)',
+    markingScheme: [
+      'Atomic number: number of protons in the nucleus. Mass number: total protons + neutrons. (8M)',
+      'Isotopes: atoms of the same element with the same atomic number but different mass numbers (different neutrons). (6M)',
+      'Relative atomic mass: weighted average mass of all naturally occurring isotopes of an element relative to 1/12 the mass of ¹²C. (6M)',
+      'Aufbau: electrons fill orbitals in order of increasing energy. Hund\'s: electrons singly occupy all orbitals in a subshell before pairing. Pauli: no two electrons can have the same four quantum numbers (max 2 electrons per orbital, opposite spins). (12M)',
+      'Fe configuration: 1s² 2s² 2p⁶ 3s² 3p⁶ 3d⁶ 4s² (or [Ar] 3d⁶ 4s²). (6M)',
+      'Period 3 trend: first IE generally increases from Na to Ar due to increasing nuclear charge with same shielding → electrons held more tightly. (6M)',
+      'Exception Mg→Al: Al removes a 3p¹ electron (higher energy, less tightly held than 3s²) → lower IE than Mg. (3M)',
+      'Exception P→S: S has a paired 3p electron; electron-electron repulsion makes it easier to remove → lower IE than P. (3M)',
+    ],
+    fullMarksTips: [
+      'Atomic number = protons only; mass number = protons + neutrons — be precise.',
+      'Isotopes: SAME proton number, DIFFERENT neutron number (hence different mass number).',
+      'Relative atomic mass must mention "weighted average" and "relative to ¹²C".',
+      'For Fe configuration: 3d fills before 4s when writing the full configuration is [Ar] 3d⁶ 4s².',
+      'Period 3 IE exceptions: Mg>Al (3s² easier than 3p¹ expected) and P>S (paired electrons repel).',
+    ],
+  },
+
+  // ── Thermochemistry ───────────────────────
+  {
+    id: 'chem-2023-thermo-03b',
+    subject: 'chemistry', topic: 'thermochemistry', topicLabel: 'Thermochemistry',
+    year: 2023, level: 'HL', section: 'Q3', marks: 50,
+    question: 'A student measured the enthalpy of neutralisation of HCl by NaOH. 25 cm³ of 1.0 M HCl was mixed with 25 cm³ of 1.0 M NaOH; the temperature rose from 20.0°C to 26.7°C. (SHC = 4.18 J g⁻¹ K⁻¹; density = 1 g/cm³) (a) Write the equation for the reaction. (b) Calculate the heat released. (c) Calculate the molar enthalpy of neutralisation. (d) Suggest two sources of error and how to minimise them. (50 marks)',
+    markingScheme: [
+      'HCl(aq) + NaOH(aq) → NaCl(aq) + H₂O(l), or ionic: H⁺(aq) + OH⁻(aq) → H₂O(l). (6M)',
+      'Mass of solution = 50 g; ΔT = 26.7 − 20.0 = 6.7°C; Q = mcΔT = 50 × 4.18 × 6.7 = 1400.3 J = 1.40 kJ. (12M)',
+      'Moles H₂O formed = moles HCl = 0.025 × 1.0 = 0.025 mol. (6M)',
+      'Molar enthalpy ΔH = −1.40 ÷ 0.025 = −56.0 kJ mol⁻¹ (negative = exothermic). (12M)',
+      'Error 1: heat loss to surroundings → minimise by using an insulated polystyrene cup with a lid. (7M)',
+      'Error 2: inaccurate temperature measurement → use a calibrated digital thermometer. (7M)',
+    ],
+    fullMarksTips: [
+      'Q = mcΔT: use the TOTAL mass of solution (25 cm³ + 25 cm³ = 50 g, since density = 1 g/cm³).',
+      'ΔT = T_final − T_initial; double-check which is higher before subtracting.',
+      'Moles = volume (L) × concentration; convert cm³ to L first.',
+      'ΔH must be NEGATIVE for neutralisation (exothermic) — a missing minus sign loses marks.',
+      'Two distinct errors: heat loss and temperature measurement are the standard correct answers.',
+    ],
+  },
+
+  // ── Electrochemistry ──────────────────────
+  {
+    id: 'chem-2022-electro-06',
+    subject: 'chemistry', topic: 'electrochemistry', topicLabel: 'Electrochemistry',
+    year: 2022, level: 'HL', section: 'Q6', marks: 50,
+    question: 'A hydrogen fuel-cell uses H₂ and O₂; overall reaction: H₂ + ½O₂ → H₂O. (a) Distinguish between electrolytic and galvanic cells. (b) Write half-equations at the anode and cathode of the fuel cell. (c) Describe electrolysis of aqueous CuSO₄ using copper electrodes and state observations at each electrode. (d) Calculate the mass of copper deposited when 0.5 A is passed for 10 minutes through CuSO₄. (Mr Cu = 64; F = 96,500 C mol⁻¹) (50 marks)',
+    markingScheme: [
+      'Electrolytic cell: electrical energy used to drive a non-spontaneous chemical reaction. Galvanic cell: a spontaneous chemical reaction produces electrical energy. (8M)',
+      'Anode (oxidation): H₂ → 2H⁺ + 2e⁻. (6M)',
+      'Cathode (reduction): ½O₂ + 2H⁺ + 2e⁻ → H₂O. (6M)',
+      'Cu electrodes in CuSO₄: at cathode Cu²⁺ + 2e⁻ → Cu (copper deposits, cathode gains mass); at anode Cu → Cu²⁺ + 2e⁻ (anode dissolves, anode loses mass). (12M)',
+      'Charge = I × t = 0.5 × (10 × 60) = 300 C. (6M)',
+      'Moles electrons = 300 ÷ 96,500 = 3.11 × 10⁻³ mol. (6M)',
+      'Moles Cu = 3.11 × 10⁻³ ÷ 2 = 1.555 × 10⁻³ mol (2 electrons per Cu²⁺). (3M)',
+      'Mass Cu = 1.555 × 10⁻³ × 64 = 0.10 g. (3M)',
+    ],
+    fullMarksTips: [
+      'Galvanic = spontaneous (produces electricity); electrolytic = non-spontaneous (uses electricity).',
+      'Fuel cell: H₂ oxidised at ANODE (loses e⁻); O₂ reduced at CATHODE (gains e⁻).',
+      'Cu electrodes in CuSO₄: CATHODE gains mass (Cu deposits), ANODE loses mass (Cu dissolves).',
+      'Charge = I × t: convert minutes to SECONDS (×60) before calculating.',
+      'Cu²⁺ requires 2 electrons — divide moles of electrons by 2 to get moles of Cu.',
     ],
   },
 ];
