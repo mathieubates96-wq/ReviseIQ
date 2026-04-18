@@ -87,6 +87,209 @@ const ECO_STRAND_YEARS = {
 };
 
 // ─────────────────────────────────────────────
+// Per-subject rich data (mirrors ECO_* structure)
+// ─────────────────────────────────────────────
+const SUBJECT_DATA = {
+  biology: {
+    label: 'Biology',
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Unit 1 — Study of Life', data: [1,1,1,1,1,1,1,1,1,1,1] },
+      { name: 'Unit 2 — The Cell',      data: [6,5,6,6,4,5,6,5,5,4,5] },
+      { name: 'Unit 3 — The Organism',  data: [3,3,3,3,3,3,3,3,3,3,3] },
+    ],
+    strands: {
+      'Unit 1 — Study of Life': { chapters: [
+        { name: '1.1 Ecology & Fieldwork',       data: [1,1,1,1,1,1,1,1,1,0,1] },
+        { name: '1.2 Plant Biology & Transport',  data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '1.3 Nutrition & Food Science',   data: [0,1,0,1,0,0,1,0,0,0,0] },
+      ]},
+      'Unit 2 — The Cell': { chapters: [
+        { name: '2.1 Cell Structure & Division',  data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '2.2 Respiration',                data: [1,1,1,1,0,1,1,1,1,1,1] },
+        { name: '2.3 Photosynthesis',             data: [1,1,1,1,1,1,1,1,1,0,1] },
+        { name: '2.4 Genetics',                   data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '2.5 DNA & Biotechnology',        data: [0,0,0,1,0,0,1,0,1,1,0] },
+        { name: '2.6 Evolution',                  data: [1,1,1,1,0,1,1,1,0,0,1] },
+      ]},
+      'Unit 3 — The Organism': { chapters: [
+        { name: '3.1 Microbiology',               data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.2 Human Circulatory System',   data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.3 Human Nervous System',       data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.4 Human Reproductive System',  data: [1,1,0,1,1,0,1,1,1,0,1] },
+        { name: '3.5 Human Excretory System',     data: [1,0,1,1,1,0,1,0,1,1,0] },
+        { name: '3.6 Human Endocrine System',     data: [1,0,0,1,0,1,0,1,0,1,0] },
+      ]},
+    },
+    defaultStrand: 'Unit 1 — Study of Life',
+    defaultByYearStrand: 'Unit 2 — The Cell',
+  },
+  chemistry: {
+    label: 'Chemistry',
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Core Chemistry',       data: [4,4,3,4,4,3,4,4,4,4,4] },
+      { name: 'Physical & Inorganic', data: [3,3,3,3,3,2,3,3,3,3,3] },
+      { name: 'Organic Chemistry',    data: [2,2,2,2,2,2,2,2,2,2,2] },
+      { name: 'Water & Environment',  data: [1,1,2,1,1,1,1,1,1,1,1] },
+    ],
+    strands: {
+      'Core Chemistry': { chapters: [
+        { name: 'Atomic Structure & Periodic Table', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Chemical Bonding',                  data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Stoichiometry & Moles',             data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Thermochemistry & Energy',          data: [1,1,1,1,1,1,1,1,1,1,1] },
+      ]},
+      'Physical & Inorganic': { chapters: [
+        { name: 'Rates of Reaction & Kinetics',      data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Chemical Equilibrium',              data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Acid-Base Chemistry & Titrations',  data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Electrochemistry & Oxidation',      data: [1,1,0,1,1,1,1,1,1,1,1] },
+      ]},
+      'Organic Chemistry': { chapters: [
+        { name: 'Hydrocarbons & Nomenclature',        data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Organic Reactions & Functional Grp', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Polymers & Industrial Chem.',        data: [1,0,1,1,0,0,1,0,1,0,1] },
+      ]},
+      'Water & Environment': { chapters: [
+        { name: 'Water Chemistry & Treatment', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: 'Environmental Chemistry',     data: [1,1,1,1,1,1,1,1,1,1,1] },
+      ]},
+    },
+    defaultStrand: 'Core Chemistry',
+    defaultByYearStrand: 'Physical & Inorganic',
+  },
+  business: {
+    label: 'Business',
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Unit 1 — People in Business', data: [2,2,2,2,2,1,2,2,2,2,2] },
+      { name: 'Unit 2 — Enterprise',         data: [2,2,2,2,2,1,2,2,2,2,2] },
+      { name: 'Unit 3&4 — Management',       data: [3,3,3,3,3,2,3,3,3,3,3] },
+      { name: 'Unit 5 — Business in Action', data: [3,3,3,3,3,2,3,3,3,3,3] },
+      { name: 'Unit 6&7 — Environment',      data: [2,2,2,2,2,1,2,2,2,2,2] },
+    ],
+    strands: {
+      'Unit 1 — People in Business': { chapters: [
+        { name: '1.1 Employment & Industrial Relations', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '1.2 Employer & Employee Rights',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.3 Trade Unions',                      data: [1,0,1,1,0,1,1,0,1,0,1] },
+      ]},
+      'Unit 2 — Enterprise': { chapters: [
+        { name: '2.1 Entrepreneurship',               data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '2.2 Business Ownership & Formation', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '2.3 Insurance & Risk',               data: [1,0,1,0,1,0,1,0,1,0,1] },
+      ]},
+      'Unit 3&4 — Management': { chapters: [
+        { name: '3.1 Management Activities & Skills', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '3.2 Leadership & Motivation',        data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '4.1 Human Resource Management',      data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '4.2 Finance & Accounts',             data: [1,1,1,1,1,1,1,1,1,1,1] },
+      ]},
+      'Unit 5 — Business in Action': { chapters: [
+        { name: '5.1 Marketing & Market Research', data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '5.2 The Marketing Mix (4Ps)',     data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '5.3 Production & Operations',     data: [1,1,0,1,1,0,1,1,0,1,1] },
+        { name: '5.4 Business Expansion',          data: [0,1,1,0,1,1,0,1,1,0,1] },
+      ]},
+      'Unit 6&7 — Environment': { chapters: [
+        { name: '6.1 Taxation & Government Policy',       data: [1,1,1,1,1,1,1,1,1,1,1] },
+        { name: '6.2 Banking & Financial Services',       data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '7.1 European Union',                     data: [1,0,1,1,0,0,1,1,0,1,1] },
+        { name: '7.2 International Trade & Globalisation',data: [1,1,0,1,1,0,1,0,1,1,0] },
+      ]},
+    },
+    defaultStrand: 'Unit 1 — People in Business',
+    defaultByYearStrand: 'Unit 3&4 — Management',
+  },
+  pe: {
+    label: 'Physical Education',
+    years: [2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Strand 1 — Optimum Performance', data: [3,3,3,3,3,3] },
+      { name: 'Strand 2 — Contemporary Issues',  data: [2,2,2,2,2,2] },
+    ],
+    strands: {
+      'Strand 1 — Optimum Performance': { chapters: [
+        { name: '1.1 Anatomy & Movement',         data: [1,1,1,1,1,1] },
+        { name: '1.2 Exercise Physiology',         data: [1,1,1,1,1,1] },
+        { name: '1.3 Physical Fitness & Training', data: [1,1,1,1,1,1] },
+        { name: '1.4 Psychology of Sport',         data: [1,1,1,1,1,1] },
+      ]},
+      'Strand 2 — Contemporary Issues': { chapters: [
+        { name: '2.1 Physical Activity & Health', data: [1,1,1,1,1,1] },
+        { name: '2.2 Sport & Society',            data: [1,1,1,1,1,1] },
+        { name: '2.3 Performance Analysis',       data: [0,1,1,0,1,1] },
+      ]},
+    },
+    defaultStrand: 'Strand 1 — Optimum Performance',
+    defaultByYearStrand: 'Strand 1 — Optimum Performance',
+  },
+  maths: {
+    label: 'Maths',
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Strand 1 — Statistics & Probability', data: [2,1,2,2,2,0,2,2,2,1,2] },
+      { name: 'Strand 2 — Geometry & Trigonometry',  data: [2,2,1,2,2,0,2,2,2,2,2] },
+      { name: 'Strand 3 — Number & Algebra',         data: [2,2,2,2,2,0,2,2,1,2,2] },
+      { name: 'Strand 4 — Functions & Calculus',     data: [2,2,2,2,2,0,2,2,2,2,2] },
+    ],
+    strands: {
+      'Strand 1 — Statistics & Probability': { chapters: [
+        { name: '1.1 Statistics & Data Analysis', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.2 Probability',                data: [1,0,1,1,1,0,1,1,1,0,1] },
+        { name: '1.3 Distributions & Inference',  data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+      'Strand 2 — Geometry & Trigonometry': { chapters: [
+        { name: '2.1 Coordinate Geometry',        data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Trigonometry',               data: [1,1,0,1,1,0,1,1,1,1,1] },
+        { name: '2.3 Geometry & Proofs',          data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+      'Strand 3 — Number & Algebra': { chapters: [
+        { name: '3.1 Algebra & Equations',        data: [1,1,1,1,1,0,1,1,0,1,1] },
+        { name: '3.2 Complex Numbers',            data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.3 Sequences & Series',         data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+      'Strand 4 — Functions & Calculus': { chapters: [
+        { name: '4.1 Differentiation',            data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.2 Integration',                data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '4.3 Functions & Graphs',         data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+    },
+    defaultStrand: 'Strand 1 — Statistics & Probability',
+    defaultByYearStrand: 'Strand 4 — Functions & Calculus',
+  },
+  history: {
+    label: 'History',
+    years: [2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+    sections: [
+      { name: 'Topic 1 — Irish History',         data: [2,2,2,2,2,0,2,2,2,2,2] },
+      { name: 'Topic 2 — Wider World 1815–1945', data: [2,2,1,2,2,0,2,1,2,2,2] },
+      { name: 'Topic 3 — Modern World 1945+',    data: [2,2,2,2,2,0,2,2,2,2,2] },
+    ],
+    strands: {
+      'Topic 1 — Irish History': { chapters: [
+        { name: '1.1 Independence & Partition (1912–1923)', data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.2 Ireland 1923–1968',                    data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '1.3 Northern Ireland',                     data: [1,0,1,1,0,0,1,1,0,1,1] },
+      ]},
+      'Topic 2 — Wider World 1815–1945': { chapters: [
+        { name: '2.1 Revolution & Change 1815–1918',   data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '2.2 Fascism & Rise of Dictators',     data: [1,1,0,1,1,0,1,0,1,1,1] },
+        { name: '2.3 World War II',                    data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+      'Topic 3 — Modern World 1945+': { chapters: [
+        { name: '3.1 The Cold War',              data: [1,1,1,1,1,0,1,1,1,1,1] },
+        { name: '3.2 Decolonisation',            data: [1,1,0,1,1,0,1,1,0,1,1] },
+        { name: '3.3 Europe Post-1945',          data: [1,1,1,1,1,0,1,1,1,1,1] },
+      ]},
+    },
+    defaultStrand: 'Topic 1 — Irish History',
+    defaultByYearStrand: 'Topic 3 — Modern World 1945+',
+  },
+};
+
+// ─────────────────────────────────────────────
 // Trend data
 // yearData[year] = 1 if topic appeared, 0 if not
 // ─────────────────────────────────────────────
@@ -293,32 +496,42 @@ let ecoByYearChartInstance = null;
 let ecoDeepDiveInstance    = null;
 let selectedStrand         = 'Strand 2 — Decision Making';
 let selectedByYearStrand   = 'Strand 4 — Macro Policy';
+// Per-subject selected strand state (for non-economics rich subjects)
+const selectedStrands        = {};
+const selectedByYearStrands  = {};
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
 // ─────────────────────────────────────────────
 function renderChart() {
-  // Economics gets its own two-chart layout
+  const subjectLabel = document.getElementById('selSubject').selectedOptions[0]?.text?.replace(/^\S+\s/, '') ?? currentSubject;
+  const levelLabel   = currentLevel === 'higher' ? 'Higher' : 'Ordinary';
+
+  // Economics: dedicated layout
   if (currentSubject === 'economics') {
     document.getElementById('genericChartSection').style.display = 'none';
     document.getElementById('ecoChartSection').style.display     = 'block';
-    document.querySelector('.trends-mode-wrap').style.display    = ''; // show mode toggle
+    document.querySelector('.trends-mode-wrap').style.display    = '';
+
+    // Update headings
+    const yr = `${ECO_SECTION_YEARS.years[0]}–${ECO_SECTION_YEARS.years[ECO_SECTION_YEARS.years.length-1]}`;
+    const h1 = document.getElementById('richStrandHeading');
+    const h2 = document.getElementById('richSectionYearHeading');
+    if (h1) h1.textContent = `Strand Frequency — ${subjectLabel} ${levelLabel} (${yr})`;
+    if (h2) h2.textContent = `Sections Overview — ${subjectLabel} ${levelLabel} (${yr})`;
 
     if (currentMode === 'line') {
-      // "View by Year" mode → per-year stacked + deep dive
-      document.getElementById('ecoFreqSection').style.display    = 'none';
-      document.getElementById('ecoByYearSection').style.display  = 'block';
+      document.getElementById('ecoFreqSection').style.display   = 'none';
+      document.getElementById('ecoByYearSection').style.display = 'block';
       renderEcoByYear();
       renderEcoStrandDeepDive(selectedByYearStrand);
     } else {
-      // "Frequency" mode → strand bar + chapter breakdown
-      document.getElementById('ecoFreqSection').style.display    = 'block';
-      document.getElementById('ecoByYearSection').style.display  = 'none';
+      document.getElementById('ecoFreqSection').style.display   = 'block';
+      document.getElementById('ecoByYearSection').style.display = 'none';
       renderEconomicsStrands();
       renderEconomicsChapters(selectedStrand);
     }
-    renderEcoPredictions(); // always shown for economics
-    // Sidebar — build from ECO_SECTION_YEARS so we get real yearly presence
+    renderEcoPredictions();
     const ecoSidebarData = ECO_SECTION_YEARS.sections.map(sec => {
       const yearData = {};
       ECO_SECTION_YEARS.years.forEach((y, i) => { yearData[y] = sec.data[i] > 0 ? 1 : 0; });
@@ -328,7 +541,47 @@ function renderChart() {
     return;
   }
 
-  // Generic subjects
+  // Subjects with rich SUBJECT_DATA
+  if (SUBJECT_DATA[currentSubject]) {
+    document.getElementById('genericChartSection').style.display = 'none';
+    document.getElementById('ecoChartSection').style.display     = 'block';
+    document.querySelector('.trends-mode-wrap').style.display    = '';
+
+    const sd = SUBJECT_DATA[currentSubject];
+    const yr = `${sd.years[0]}–${sd.years[sd.years.length-1]}`;
+    const h1 = document.getElementById('richStrandHeading');
+    const h2 = document.getElementById('richSectionYearHeading');
+    if (h1) h1.textContent = `Unit Frequency — ${subjectLabel} ${levelLabel} (${yr})`;
+    if (h2) h2.textContent = `Sections Overview — ${subjectLabel} ${levelLabel} (${yr})`;
+
+    // Initialise per-subject strand state on first use
+    if (!selectedStrands[currentSubject])       selectedStrands[currentSubject]       = sd.defaultStrand;
+    if (!selectedByYearStrands[currentSubject]) selectedByYearStrands[currentSubject] = sd.defaultByYearStrand;
+
+    if (currentMode === 'line') {
+      document.getElementById('ecoFreqSection').style.display   = 'none';
+      document.getElementById('ecoByYearSection').style.display = 'block';
+      renderRichByYear(currentSubject);
+      renderRichDeepDive(currentSubject, selectedByYearStrands[currentSubject]);
+    } else {
+      document.getElementById('ecoFreqSection').style.display   = 'block';
+      document.getElementById('ecoByYearSection').style.display = 'none';
+      renderRichStrands(currentSubject);
+      renderRichChapters(currentSubject, selectedStrands[currentSubject]);
+    }
+    renderRichPredictions(currentSubject);
+
+    // Build sidebar from section presence per year
+    const sidebarData = sd.sections.map(sec => {
+      const yearData = {};
+      sd.years.forEach((y, i) => { yearData[y] = sec.data[i] > 0 ? 1 : 0; });
+      return { topic: sec.name, yearData };
+    });
+    renderSidebar(sidebarData);
+    return;
+  }
+
+  // Fallback: generic bar/line chart
   document.getElementById('genericChartSection').style.display = 'block';
   document.getElementById('ecoChartSection').style.display     = 'none';
   document.querySelector('.trends-mode-wrap').style.display    = '';
@@ -339,8 +592,6 @@ function renderChart() {
 
   if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
 
-  const subjectLabel   = document.getElementById('selSubject').selectedOptions[0]?.text?.replace(/^\S+\s/, '') ?? currentSubject;
-  const levelLabel     = currentLevel === 'higher' ? 'Higher' : 'Ordinary';
   const validYearCount = YEARS.filter(y => y !== 2020).length;
 
   if (currentMode === 'bar') {
@@ -359,12 +610,12 @@ function renderChart() {
   renderSidebar(data.map(t => ({ topic: t.topic, yearData: t.yearData })));
 }
 
-// ── Helper: build numbered strand pills ──
-function buildStrandPills(containerId, activeStrand, onSelect) {
+// ── Helper: build numbered strand pills (works for any strandObj) ──
+function buildStrandPills(containerId, strandObj, activeStrand, onSelect) {
   const el = document.getElementById(containerId);
   if (!el) return;
-  el.innerHTML = Object.keys(ECO_STRAND_YEARS).map(name => {
-    const m   = name.match(/Strand\s*(\d+)\s*[—\-]\s*(.+)/i);
+  el.innerHTML = Object.keys(strandObj).map(name => {
+    const m   = name.match(/(?:Strand|Unit|Topic)\s*([\d&]+)\s*[—\-]\s*(.+)/i);
     const num = m ? m[1] : '?';
     const lbl = m ? m[2] : name;
     return `
@@ -442,7 +693,7 @@ function renderEconomicsStrands() {
   });
 
   // Build section selector pills
-  buildStrandPills('ecoStrandSelector', selectedStrand, name => {
+  buildStrandPills('ecoStrandSelector', ECO_STRAND_YEARS, selectedStrand, name => {
     selectedStrand = name;
     renderEconomicsChapters(selectedStrand);
   });
@@ -652,7 +903,7 @@ function renderEcoStrandDeepDive(strandName) {
   });
 
   // Build strand selector pills
-  buildStrandPills('ecoByYearStrandSelector', strandName, name => {
+  buildStrandPills('ecoByYearStrandSelector', ECO_STRAND_YEARS, strandName, name => {
     selectedByYearStrand = name;
     renderEcoStrandDeepDive(selectedByYearStrand);
   });
@@ -724,6 +975,348 @@ function renderEcoPredictions() {
   const rankBg   = ['#f59e0b', 'var(--gray-400)', '#a16207', 'var(--gray-400)', 'var(--gray-400)'];
 
   container.innerHTML = predictions.map((p, i) => `
+    <div class="pred-item">
+      <span class="pred-rank" style="background:${rankBg[i]}">${i + 1}</span>
+      <div class="pred-info">
+        <div class="pred-header">
+          <span class="pred-name">${p.chapter}</span>
+          <span class="pred-strand-badge">${p.strand}</span>
+          <span class="likely-tag ${tagClass[p.tag] || 'tag-due'}">${p.tagLabel}</span>
+          <span class="pred-pct">${p.pct}%</span>
+        </div>
+        <p class="pred-reason">${p.reason}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─────────────────────────────────────────────
+// Generic rich-chart renderers (used for all subjects except economics)
+// ─────────────────────────────────────────────
+
+function renderRichStrands(subjectId) {
+  if (ecoStrandInstance) { ecoStrandInstance.destroy(); ecoStrandInstance = null; }
+  const canvas = document.getElementById('ecoStrandChart');
+  if (!canvas) return;
+
+  const sd = SUBJECT_DATA[subjectId];
+  const sections = sd.sections.map((sec, i) => ({
+    name:  sec.name,
+    total: sec.data.reduce((s, v) => s + v, 0),
+    color: PALETTE[i % PALETTE.length],
+  })).sort((a, b) => b.total - a.total);
+
+  ecoStrandInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: sections.map(s => s.name),
+      datasets: [{
+        label: 'Total appearances',
+        data: sections.map(s => s.total),
+        backgroundColor: sections.map(s => s.color.bg),
+        borderColor:     sections.map(s => s.color.border),
+        borderWidth: 2,
+        borderRadius: 6,
+        borderSkipped: false,
+      }],
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 700, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label(ctx) {
+              const total    = ctx.parsed.x;
+              const allTotal = sections.reduce((s, v) => s + v.total, 0);
+              const pct      = Math.round((total / allTotal) * 100);
+              return ` ${total} appearances (${pct}% of all tracked topics)`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 2, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: `Total appearances in past papers (${sd.years[0]}–${sd.years[sd.years.length-1]})`, font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+        },
+        y: {
+          grid: { display: false },
+          ticks: { font: { family: 'Inter', size: 13, weight: '600' }, color: '#374151' },
+        },
+      },
+    },
+  });
+
+  const active = selectedStrands[subjectId] || sd.defaultStrand;
+  buildStrandPills('ecoStrandSelector', sd.strands, active, name => {
+    selectedStrands[subjectId] = name;
+    renderRichChapters(subjectId, name);
+  });
+}
+
+function renderRichChapters(subjectId, sectionName) {
+  ecoChapterInstance = null;
+  const el = document.getElementById('ecoChapterChart');
+  if (!el) return;
+
+  const sd          = SUBJECT_DATA[subjectId];
+  const sectionData = sd.strands[sectionName];
+  if (!sectionData) return;
+
+  const years       = sd.years;
+  const n           = years.length;
+  const latestYear  = years[years.length - 1];
+  const recent4     = years.slice(-4);
+  const recent4Idx  = recent4.map(y => years.indexOf(y));
+
+  const chapters = sectionData.chapters.map(ch => {
+    const total         = ch.data.reduce((s, v) => s + v, 0);
+    const yearsAppeared = ch.data.filter(v => v > 0).length;
+    const pct           = Math.round((yearsAppeared / n) * 100);
+    const r4            = recent4Idx.reduce((s, i) => s + ch.data[i], 0);
+    const older         = total - r4;
+
+    let lastYearIdx = -1;
+    for (let i = ch.data.length - 1; i >= 0; i--) {
+      if (ch.data[i] > 0) { lastYearIdx = i; break; }
+    }
+    const lastYear = lastYearIdx >= 0 ? years[lastYearIdx] : null;
+    const gap      = lastYear ? latestYear - lastYear : 99;
+    return { name: ch.name, total, yearsAppeared, pct, recent4: r4, older, lastYear, gap };
+  }).filter(c => c.total > 0).sort((a, b) => b.total - a.total);
+
+  const maxTotal   = Math.max(...chapters.map(c => c.total), 1);
+  const sectionIdx = Object.keys(sd.strands).indexOf(sectionName);
+  const color      = PALETTE[sectionIdx % PALETTE.length];
+
+  el.innerHTML = chapters.map((ch, i) => {
+    const r4Pct    = Math.round((ch.recent4 / maxTotal) * 100);
+    const olderPct = Math.round((ch.older   / maxTotal) * 100);
+    let tagHtml = '';
+    if (ch.recent4 >= 3)                            tagHtml = `<span class="likely-tag tag-hot">Trending ↑</span>`;
+    else if (ch.gap >= 3 && ch.yearsAppeared >= 3)  tagHtml = `<span class="likely-tag tag-due">Overdue</span>`;
+    else if (ch.pct >= 80)                          tagHtml = `<span class="likely-tag tag-hot">Staple</span>`;
+
+    return `
+      <div class="chapter-item">
+        <div class="chapter-item-top">
+          <span class="chapter-num">${i + 1}</span>
+          <span class="chapter-name">${ch.name}</span>
+          <span class="chapter-pct-badge" style="color:${color.border}; border-color:${color.border}">${ch.pct}%</span>
+          ${tagHtml}
+        </div>
+        <div class="chapter-bar-track">
+          <div class="chapter-bar-fill" style="width:${r4Pct}%; background:${color.bg};${r4Pct > 0 && olderPct > 0 ? ' border-right:2px solid #fff' : ''}"></div>
+          <div class="chapter-bar-fill chapter-bar-older" style="width:${olderPct}%"></div>
+        </div>
+        <div class="chapter-stats">
+          <span>Appeared in <strong>${ch.yearsAppeared}/${n}</strong> past papers</span>
+          <span style="color:${color.border}"><strong>${ch.recent4}</strong> appearances in last 4 exams</span>
+        </div>
+      </div>
+    `;
+  }).join('') + `
+    <div class="chapter-bar-legend" style="margin-top:12px; padding-top:10px; border-top:1px solid var(--gray-100)">
+      <span style="color:${color.border}">■ Recent (${recent4[0]}–${recent4[recent4.length-1]})</span>
+      <span style="color:var(--gray-400)">■ Older</span>
+      <span style="color:var(--gray-400); margin-left:auto">% = proportion of ${n} past papers where topic appeared</span>
+    </div>
+  `;
+}
+
+function renderRichByYear(subjectId) {
+  if (ecoByYearChartInstance) { ecoByYearChartInstance.destroy(); ecoByYearChartInstance = null; }
+  const canvas = document.getElementById('ecoSectionYearChart');
+  if (!canvas) return;
+
+  const sd       = SUBJECT_DATA[subjectId];
+  const labels   = sd.years.map(String);
+  const datasets = sd.sections.map((sec, i) => {
+    const color = PALETTE[i % PALETTE.length];
+    return {
+      label:           sec.name,
+      data:            sec.data,
+      backgroundColor: color.bg,
+      borderColor:     color.border,
+      borderWidth:     1,
+      borderRadius:    3,
+      borderSkipped:   false,
+    };
+  });
+
+  ecoByYearChartInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 700, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 16 },
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label(ctx) {
+              if (ctx.parsed.y === 0) return null;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y}`;
+            },
+            footer(items) {
+              const total = items.reduce((s, i) => s + i.parsed.y, 0);
+              return `Total: ${total}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          stacked: true,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+        },
+        y: {
+          stacked: true,
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 2, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Topic appearances', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+        },
+      },
+    },
+  });
+}
+
+function renderRichDeepDive(subjectId, strandName) {
+  if (ecoDeepDiveInstance) { ecoDeepDiveInstance.destroy(); ecoDeepDiveInstance = null; }
+  const canvas = document.getElementById('ecoDeepDiveChart');
+  if (!canvas) return;
+
+  const sd         = SUBJECT_DATA[subjectId];
+  const strandData = sd.strands[strandName];
+  if (!strandData) return;
+
+  const heading = document.getElementById('ecoDeepDiveHeading');
+  if (heading) heading.textContent = `Deep Dive — ${strandName}`;
+
+  const labels   = sd.years.map(String);
+  const datasets = strandData.chapters.map((ch, i) => {
+    const color = PALETTE[i % PALETTE.length];
+    return {
+      label:           ch.name,
+      data:            ch.data,
+      backgroundColor: color.bg,
+      borderColor:     color.border,
+      borderWidth:     1.5,
+      borderRadius:    3,
+      borderSkipped:   false,
+    };
+  });
+
+  ecoDeepDiveInstance = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 500, easing: 'easeOutQuart' },
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 14 },
+        },
+        tooltip: {
+          mode: 'index',
+          intersect: false,
+          callbacks: {
+            label(ctx) {
+              if (ctx.parsed.y === 0) return null;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y === 1 ? 'appeared' : ctx.parsed.y}`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+        },
+        y: {
+          min: 0,
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Appearances', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+        },
+      },
+    },
+  });
+
+  const active = selectedByYearStrands[subjectId] || sd.defaultByYearStrand;
+  buildStrandPills('ecoByYearStrandSelector', sd.strands, active, name => {
+    selectedByYearStrands[subjectId] = name;
+    renderRichDeepDive(subjectId, name);
+  });
+}
+
+function renderRichPredictions(subjectId) {
+  const container = document.getElementById('ecoPredictionsList');
+  if (!container) return;
+
+  const sd      = SUBJECT_DATA[subjectId];
+  const years   = sd.years;
+  const n       = years.length;
+  const latest  = years[years.length - 1];
+  const r3Idx   = years.slice(-3).map(y => years.indexOf(y));
+  const tagClass = { staple: 'tag-hot', hot: 'tag-hot', due: 'tag-due', watch: 'tag-due' };
+  const rankBg   = ['#f59e0b', 'var(--gray-400)', '#a16207', 'var(--gray-400)', 'var(--gray-400)'];
+
+  const candidates = [];
+  for (const [strandName, strandObj] of Object.entries(sd.strands)) {
+    for (const ch of strandObj.chapters) {
+      const total = ch.data.reduce((s, v) => s + v, 0);
+      if (total === 0) continue;
+      const yearsAppeared = ch.data.filter(v => v > 0).length;
+      const recent3       = r3Idx.reduce((s, i) => s + (ch.data[i] > 0 ? 1 : 0), 0);
+      let lastYearIdx = -1;
+      for (let i = ch.data.length - 1; i >= 0; i--) {
+        if (ch.data[i] > 0) { lastYearIdx = i; break; }
+      }
+      const lastYear = lastYearIdx >= 0 ? years[lastYearIdx] : null;
+      const gap      = lastYear ? latest - lastYear : 99;
+      let score = (yearsAppeared / n) * 60 + recent3 * 13;
+      if (gap >= 2 && yearsAppeared >= 4) score += gap * 4;
+
+      let tag, tagLabel;
+      if      (yearsAppeared >= Math.floor(n * 0.7))  { tag = 'staple'; tagLabel = 'Staple'; }
+      else if (recent3 >= 2)                           { tag = 'hot';    tagLabel = 'Hot streak'; }
+      else if (gap >= 2 && yearsAppeared >= 3)         { tag = 'due';    tagLabel = 'Overdue'; }
+      else                                             { tag = 'watch';  tagLabel = 'Watch'; }
+
+      let reason;
+      if (tag === 'staple')       reason = `A core topic — appeared in ${yearsAppeared} of ${n} past papers.`;
+      else if (tag === 'hot')     reason = `Appeared in ${recent3} of the last 3 exams — an upward trend.`;
+      else if (tag === 'due')     reason = `${yearsAppeared} historical appearances but not seen since ${lastYear}.`;
+      else                        reason = `${yearsAppeared} past-paper appearances — worth covering.`;
+
+      const pct = Math.round((yearsAppeared / n) * 100);
+      candidates.push({ strand: strandName, chapter: ch.name, score, tag, tagLabel, reason, yearsAppeared, pct });
+    }
+  }
+
+  candidates.sort((a, b) => b.score - a.score);
+  const top5 = candidates.slice(0, 5);
+
+  container.innerHTML = top5.map((p, i) => `
     <div class="pred-item">
       <span class="pred-rank" style="background:${rankBg[i]}">${i + 1}</span>
       <div class="pred-info">
