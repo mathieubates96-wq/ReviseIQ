@@ -516,6 +516,7 @@ let selectedByYearStrand   = 'Strand 4 — Macro Policy';
 // Per-subject selected strand state (for non-economics rich subjects)
 const selectedStrands        = {};
 const selectedByYearStrands  = {};
+let deepDiveMode = 'bar'; // 'bar' | 'line'
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
@@ -854,21 +855,35 @@ function renderEcoByYear() {
   });
 }
 
-// ── ECONOMICS: Strand deep dive by year ──
-function renderEcoStrandDeepDive(strandName) {
+// ── Shared deep dive renderer — bar or smooth line ──
+function renderDeepDiveChart(canvas, years, strandData, headingText) {
   if (ecoDeepDiveInstance) { ecoDeepDiveInstance.destroy(); ecoDeepDiveInstance = null; }
-  const canvas = document.getElementById('ecoDeepDiveChart');
-  if (!canvas) return;
-
-  const strandData = ECO_STRAND_YEARS[strandName];
-  if (!strandData) return;
+  if (!canvas || !strandData) return;
 
   const heading = document.getElementById('ecoDeepDiveHeading');
-  if (heading) heading.textContent = `Strand Deep Dive — ${strandName}`;
+  if (heading) heading.textContent = headingText;
 
-  const labels   = ECO_SECTION_YEARS.years.map(String);
+  const labels = years.map(String);
+  const isLine = deepDiveMode === 'line';
+
   const datasets = strandData.chapters.map((ch, i) => {
     const color = PALETTE[i % PALETTE.length];
+    if (isLine) {
+      return {
+        label:                ch.name,
+        data:                 ch.data,
+        borderColor:          color.border,
+        backgroundColor:      color.light,
+        pointBackgroundColor: color.border,
+        pointBorderColor:     color.border,
+        pointBorderWidth:     1,
+        pointRadius:          4,
+        pointHoverRadius:     7,
+        borderWidth:          2.5,
+        tension:              0.4,
+        fill:                 false,
+      };
+    }
     return {
       label:           ch.name,
       data:            ch.data,
@@ -881,12 +896,13 @@ function renderEcoStrandDeepDive(strandName) {
   });
 
   ecoDeepDiveInstance = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
+    type: isLine ? 'line' : 'bar',
     data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       animation: { duration: 500, easing: 'easeOutQuart' },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
           display: true,
@@ -894,32 +910,46 @@ function renderEcoStrandDeepDive(strandName) {
           labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 14 },
         },
         tooltip: {
-          mode: 'index',
-          intersect: false,
           callbacks: {
             label(ctx) {
               if (ctx.parsed.y === 0) return null;
-              return ` ${ctx.dataset.label}: ${ctx.parsed.y} question${ctx.parsed.y !== 1 ? 's' : ''}`;
+              const v = ctx.parsed.y;
+              return isLine
+                ? ` ${ctx.dataset.label}: ${v === 1 ? '✓ appeared' : v}`
+                : ` ${ctx.dataset.label}: ${v}`;
             },
           },
         },
       },
       scales: {
         x: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          grid: { color: 'rgba(128,128,128,0.08)' },
+          ticks: { font: { family: 'Inter', size: 11 }, color: '#6b7280', maxRotation: 45 },
         },
         y: {
-          min: 0,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Number of questions', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+          min: isLine ? -0.05 : 0,
+          max: isLine ? 1.15 : undefined,
+          grid: { color: 'rgba(128,128,128,0.08)' },
+          ticks: {
+            stepSize: 1,
+            font: { family: 'Inter', size: 12 }, color: '#6b7280',
+            callback: isLine ? (v => v === 1 ? 'Yes' : v === 0 ? 'No' : '') : undefined,
+          },
+          title: {
+            display: true,
+            text: isLine ? 'Topic appeared in exam' : 'Appearances',
+            font: { family: 'Inter', size: 11 }, color: '#9ca3af',
+          },
         },
       },
     },
   });
+}
 
-  // Build strand selector pills
+// ── ECONOMICS: Strand deep dive by year ──
+function renderEcoStrandDeepDive(strandName) {
+  const canvas = document.getElementById('ecoDeepDiveChart');
+  renderDeepDiveChart(canvas, ECO_SECTION_YEARS.years, ECO_STRAND_YEARS[strandName], `Strand Deep Dive — ${strandName}`);
   buildStrandPills('ecoByYearStrandSelector', ECO_STRAND_YEARS, strandName, name => {
     selectedByYearStrand = name;
     renderEcoStrandDeepDive(selectedByYearStrand);
@@ -1214,70 +1244,9 @@ function renderRichByYear(subjectId) {
 }
 
 function renderRichDeepDive(subjectId, strandName) {
-  if (ecoDeepDiveInstance) { ecoDeepDiveInstance.destroy(); ecoDeepDiveInstance = null; }
+  const sd     = SUBJECT_DATA[subjectId];
   const canvas = document.getElementById('ecoDeepDiveChart');
-  if (!canvas) return;
-
-  const sd         = SUBJECT_DATA[subjectId];
-  const strandData = sd.strands[strandName];
-  if (!strandData) return;
-
-  const heading = document.getElementById('ecoDeepDiveHeading');
-  if (heading) heading.textContent = `Deep Dive — ${strandName}`;
-
-  const labels   = sd.years.map(String);
-  const datasets = strandData.chapters.map((ch, i) => {
-    const color = PALETTE[i % PALETTE.length];
-    return {
-      label:           ch.name,
-      data:            ch.data,
-      backgroundColor: color.bg,
-      borderColor:     color.border,
-      borderWidth:     1.5,
-      borderRadius:    3,
-      borderSkipped:   false,
-    };
-  });
-
-  ecoDeepDiveInstance = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 500, easing: 'easeOutQuart' },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 14 },
-        },
-        tooltip: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            label(ctx) {
-              if (ctx.parsed.y === 0) return null;
-              return ` ${ctx.dataset.label}: ${ctx.parsed.y === 1 ? 'appeared' : ctx.parsed.y}`;
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-        },
-        y: {
-          min: 0,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Appearances', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
-        },
-      },
-    },
-  });
-
+  renderDeepDiveChart(canvas, sd.years, sd.strands[strandName], `Deep Dive — ${strandName}`);
   const active = selectedByYearStrands[subjectId] || sd.defaultByYearStrand;
   buildStrandPills('ecoByYearStrandSelector', sd.strands, active, name => {
     selectedByYearStrands[subjectId] = name;
@@ -1574,22 +1543,38 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Level toggle
-  document.querySelectorAll('.pill-btn').forEach(btn => {
+  document.querySelectorAll('.trends-level-wrap .pill-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.trends-level-wrap .pill-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentLevel = btn.dataset.level;
       renderChart();
     });
   });
 
-  // Chart mode toggle
-  document.querySelectorAll('.mode-btn').forEach(btn => {
+  // Chart mode toggle (bar / line for the main section overview)
+  document.querySelectorAll('.trends-mode-wrap .mode-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.trends-mode-wrap .mode-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentMode = btn.dataset.mode;
       renderChart();
+    });
+  });
+
+  // Deep dive bar / line toggle
+  document.getElementById('deepDiveToggle')?.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById('deepDiveToggle').querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      deepDiveMode = btn.dataset.ddmode;
+      // Re-render whichever deep dive is currently showing
+      if (currentSubject === 'economics') {
+        renderEcoStrandDeepDive(selectedByYearStrand);
+      } else if (SUBJECT_DATA[currentSubject]) {
+        const strand = selectedByYearStrands[currentSubject] || SUBJECT_DATA[currentSubject].defaultByYearStrand;
+        renderRichDeepDive(currentSubject, strand);
+      }
     });
   });
 
