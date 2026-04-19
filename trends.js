@@ -505,7 +505,7 @@ function appearedInYear(topicObj, year) {
 // ─────────────────────────────────────────────
 let currentSubject         = 'economics';
 let currentLevel           = 'higher';
-let currentMode            = 'bar';
+let currentMode            = 'line';
 let chartInstance          = null;
 let ecoStrandInstance      = null;
 let ecoChapterInstance     = null;
@@ -516,7 +516,7 @@ let selectedByYearStrand   = 'Strand 4 — Macro Policy';
 // Per-subject selected strand state (for non-economics rich subjects)
 const selectedStrands        = {};
 const selectedByYearStrands  = {};
-let deepDiveMode = 'bar'; // 'bar' | 'line'
+let deepDiveMode = 'line'; // 'bar' | 'line'
 
 // ─────────────────────────────────────────────
 // Build & render Chart.js chart
@@ -790,69 +790,75 @@ function renderEconomicsChapters(sectionName) {
 }
 
 // ── ECONOMICS: Sections stacked bar by year ──
-function renderEcoByYear() {
+// ── Shared section-by-year smooth line chart ──
+function renderSectionLineChart(canvasId, years, sections) {
   if (ecoByYearChartInstance) { ecoByYearChartInstance.destroy(); ecoByYearChartInstance = null; }
-  const canvas = document.getElementById('ecoSectionYearChart');
+  const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
-  const labels   = ECO_SECTION_YEARS.years.map(String);
-  const datasets = ECO_SECTION_YEARS.sections.map((sec, i) => {
+  const labels   = years.map(String);
+  const datasets = sections.map((sec, i) => {
     const color = PALETTE[i % PALETTE.length];
     return {
-      label:           sec.name,
-      data:            sec.data,
-      backgroundColor: color.bg,
-      borderColor:     color.border,
-      borderWidth:     1,
-      borderRadius:    3,
-      borderSkipped:   false,
+      label:                sec.name,
+      data:                 sec.data,
+      borderColor:          color.border,
+      backgroundColor:      color.light,
+      pointBackgroundColor: color.border,
+      pointBorderColor:     color.border,
+      pointRadius:          4,
+      pointHoverRadius:     7,
+      borderWidth:          2.5,
+      tension:              0.4,
+      fill:                 false,
     };
   });
 
   ecoByYearChartInstance = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
+    type: 'line',
     data: { labels, datasets },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       animation: { duration: 700, easing: 'easeOutQuart' },
+      interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
           display: true,
           position: 'bottom',
-          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 16 },
+          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 16, usePointStyle: true },
         },
         tooltip: {
-          mode: 'index',
-          intersect: false,
           callbacks: {
             label(ctx) {
               if (ctx.parsed.y === 0) return null;
-              return ` ${ctx.dataset.label}: ${ctx.parsed.y} q`;
+              return ` ${ctx.dataset.label}: ${ctx.parsed.y}`;
             },
-            footer(items) {
-              const total = items.reduce((s, i) => s + i.parsed.y, 0);
-              return `Total: ${total} questions`;
+            title(items) {
+              const yr = items[0].label;
+              return yr === '2020' ? `${yr} (COVID — no written exam)` : yr;
             },
           },
         },
       },
       scales: {
         x: {
-          stacked: true,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          grid: { color: 'rgba(128,128,128,0.08)' },
+          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280', maxRotation: 45 },
         },
         y: {
-          stacked: true,
           min: 0,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 5, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Number of questions', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
+          grid: { color: 'rgba(128,128,128,0.08)' },
+          ticks: { stepSize: 1, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
+          title: { display: true, text: 'Appearances / questions per year', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
         },
       },
     },
   });
+}
+
+function renderEcoByYear() {
+  renderSectionLineChart('ecoSectionYearChart', ECO_SECTION_YEARS.years, ECO_SECTION_YEARS.sections);
 }
 
 // ── Shared deep dive renderer — bar or smooth line ──
@@ -1178,69 +1184,8 @@ function renderRichChapters(subjectId, sectionName) {
 }
 
 function renderRichByYear(subjectId) {
-  if (ecoByYearChartInstance) { ecoByYearChartInstance.destroy(); ecoByYearChartInstance = null; }
-  const canvas = document.getElementById('ecoSectionYearChart');
-  if (!canvas) return;
-
-  const sd       = SUBJECT_DATA[subjectId];
-  const labels   = sd.years.map(String);
-  const datasets = sd.sections.map((sec, i) => {
-    const color = PALETTE[i % PALETTE.length];
-    return {
-      label:           sec.name,
-      data:            sec.data,
-      backgroundColor: color.bg,
-      borderColor:     color.border,
-      borderWidth:     1,
-      borderRadius:    3,
-      borderSkipped:   false,
-    };
-  });
-
-  ecoByYearChartInstance = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
-    data: { labels, datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 700, easing: 'easeOutQuart' },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-          labels: { font: { family: 'Inter', size: 12 }, color: '#6b7280', boxWidth: 14, padding: 16 },
-        },
-        tooltip: {
-          mode: 'index',
-          intersect: false,
-          callbacks: {
-            label(ctx) {
-              if (ctx.parsed.y === 0) return null;
-              return ` ${ctx.dataset.label}: ${ctx.parsed.y}`;
-            },
-            footer(items) {
-              const total = items.reduce((s, i) => s + i.parsed.y, 0);
-              return `Total: ${total}`;
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          stacked: true,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-        },
-        y: {
-          stacked: true,
-          min: 0,
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { stepSize: 2, font: { family: 'Inter', size: 12 }, color: '#6b7280' },
-          title: { display: true, text: 'Topic appearances', font: { family: 'Inter', size: 11 }, color: '#9ca3af' },
-        },
-      },
-    },
-  });
+  const sd = SUBJECT_DATA[subjectId];
+  renderSectionLineChart('ecoSectionYearChart', sd.years, sd.sections);
 }
 
 function renderRichDeepDive(subjectId, strandName) {
